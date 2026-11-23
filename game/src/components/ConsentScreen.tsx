@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { apiEnabled } from '../api'
 import { CONFIG } from '../config'
 import type { Consent } from '../types'
 import { Mascot } from '../ui/Mascot'
@@ -40,10 +41,18 @@ export function ConsentScreen({ onAccept }: { onAccept: (c: Consent) => void }) 
       </ul>
 
       <h2>Where it goes</h2>
-      <p>
-        In this prototype, everything stays in this browser. Nothing is sent to a server. You can export or delete
-        your data at any time from the end screen.
-      </p>
+      {apiEnabled ? (
+        <p>
+          Your answers, your consent choices and, if you opt in, your hesitation numbers are sent to the research
+          server, linked only to your random player code. They are kept for up to a year and then deleted. You can
+          export your data, or delete it here and on the server, at any time from the end screen.
+        </p>
+      ) : (
+        <p>
+          In this prototype, everything stays in this browser. Nothing is sent to a server. You can export or delete
+          your data at any time from the end screen.
+        </p>
+      )}
 
       <label className="check">
         <input type="checkbox" checked={adult} onChange={(e) => setAdult(e.target.checked)} />
