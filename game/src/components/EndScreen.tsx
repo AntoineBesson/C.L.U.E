@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { estimateTraits, uniqueness } from '../profile'
 import { scoreCard } from '../scoring'
 import { deleteAllData, exportData } from '../storage'
 import type { Item, ResponseRecord } from '../types'
+import { Confetti } from '../ui/Confetti'
+import { CountUp } from '../ui/CountUp'
+import { Mascot } from '../ui/Mascot'
+import { sfx } from '../ui/sound'
 
 interface Props {
   items: Item[]
@@ -14,6 +18,7 @@ interface Props {
 
 export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }: Props) {
   const [confirmDelete, setConfirmDelete] = useState(false)
+  useEffect(() => sfx.fanfare(), [])
   const prompted = responses.filter((r) => r.confirm.shown)
   const changed = prompted.filter((r) => r.confirm.changedAfterPrompt).length
   const signals = responses.map((r) => r.signals).filter((s) => s !== null)
@@ -39,23 +44,38 @@ export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }
 
   return (
     <main>
-      <div className="panel">
-      <h1>That&rsquo;s today&rsquo;s set</h1>
-      <p className="lede">
-        You answered {responses.length} dilemmas and scored <strong>{points}</strong> points for reading the crowd.
-        {placeholder && ' (Crowd numbers are placeholders until real players have played.)'}
-      </p>
+      <Confetti />
+      <div className="panel end">
+      <div className="hero">
+        <Mascot mood="happy" size={92} />
+        <div>
+          <h1>That&rsquo;s today&rsquo;s set!</h1>
+          <p className="tagline">You answered {responses.length} dilemmas.</p>
+        </div>
+      </div>
 
-      <h2>Your score</h2>
-      <ul>
-        {scores.map((s) => (
-          <li key={s.itemId}>
-            Prediction {s.prediction}/100
-            {s.bonus > 0 && <> + {s.bonus} truth bonus</>}
-            {s.sameAsYou !== null && <> · {Math.round(s.sameAsYou * 100)}% answered like you</>}
-          </li>
-        ))}
-      </ul>
+      <div className="scoreboard">
+        <div className="big-score">
+          <CountUp value={points} />
+          <span>points for reading the crowd</span>
+        </div>
+        {placeholder && (
+          <p className="hint">Crowd numbers are placeholders until real players have played.</p>
+        )}
+        <ol className="score-tiles">
+          {scores.map((s, i) => (
+            <li key={s.itemId} style={{ '--i': i } as React.CSSProperties}>
+              <span className="tile-n">#{i + 1}</span>
+              <strong>{s.prediction}</strong>
+              <span className="tile-of">/100</span>
+              {s.bonus > 0 && <span className="tile-bonus">+{s.bonus} truth bonus</span>}
+              {s.sameAsYou !== null && (
+                <span className="tile-same">{Math.round(s.sameAsYou * 100)}% answered like you</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
 
       <h2>What {responses.length} answers say about you</h2>
       <p className="hint">
@@ -63,22 +83,45 @@ export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }
         every day you play.
       </p>
       <ul className="traits">
-        {traits.map((t) => (
-          <li key={t.trait}>
-            {t.label}: {t.value >= 0 ? 'leans high' : 'leans low'} ({t.value.toFixed(2)} ± {t.spread.toFixed(2)},{' '}
-            {t.evidence} answer{t.evidence === 1 ? '' : 's'})
-          </li>
-        ))}
+        {traits.map((t, i) => {
+          const lo = Math.max(-1, t.value - t.spread)
+          const hi = Math.min(1, t.value + t.spread)
+          return (
+            <li key={t.trait} style={{ '--i': i } as React.CSSProperties}>
+              <div className="trait-top">
+                <span className="trait-name">{t.label}</span>
+                <span className="trait-lean">{t.value >= 0 ? 'leans high' : 'leans low'}</span>
+              </div>
+              <div
+                className="trait-track"
+                role="img"
+                aria-label={`${t.label}: ${t.value.toFixed(2)} plus or minus ${t.spread.toFixed(2)}, from ${t.evidence} answer${t.evidence === 1 ? '' : 's'}`}
+              >
+                <span className="trait-range" style={{ left: `${(lo + 1) * 50}%`, width: `${(hi - lo) * 50}%` }} />
+                <span className="trait-dot" style={{ left: `${(t.value + 1) * 50}%` }} />
+              </div>
+              <div className="trait-meta">
+                {t.value.toFixed(2)} ± {t.spread.toFixed(2)} · {t.evidence} answer{t.evidence === 1 ? '' : 's'}
+              </div>
+            </li>
+          )
+        })}
       </ul>
       {unique.answers > 0 && (
-        <p>
-          From {unique.answers} answers alone, about <strong>one player in {unique.oneIn.toLocaleString()}</strong>{' '}
-          would have answered exactly like you ({unique.bits.toFixed(1)} bits). Every extra answer narrows it down.
-        </p>
+        <div className="one-in">
+          <p className="one-in-kicker">From {unique.answers} answers alone, about</p>
+          <p className="one-in-big">
+            1 in <CountUp value={unique.oneIn} />
+          </p>
+          <p>
+            players would have answered exactly like you ({unique.bits.toFixed(1)} bits). Every extra answer narrows
+            it down.
+          </p>
+        </div>
       )}
 
       <h2>What your answers already show</h2>
-      <ul>
+      <ul className="facts">
         <li>
           &ldquo;Are you sure?&rdquo; was asked on {prompted.length} of {responses.length} cards, and you changed
           your answer {changed} time{changed === 1 ? '' : 's'}.
@@ -93,7 +136,7 @@ export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }
       </ul>
 
       <div className="actions">
-        <button className="primary" onClick={onPlayAgain}>
+        <button className="primary big" onClick={onPlayAgain}>
           Play another set
         </button>
         <button onClick={download}>Export my data</button>

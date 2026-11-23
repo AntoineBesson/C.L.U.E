@@ -99,3 +99,18 @@ until the DPIA and the ethics review are done.
   "answeredAt": "..."
 }
 ```
+
+## Look and feel
+
+The visual layer lives in `game/src/ui/` and `game/src/styles.css` and never
+touches what is recorded:
+
+- **Clu**, the mascot (`ui/Mascot.tsx`): an original SVG blob with moods for
+  the consent screen, the "Are you sure?" prompt, the crowd guess and the reveal.
+- **Sounds** (`ui/sound.ts`): short Web Audio blips synthesised in code, no
+  audio files. The speaker button in the top bar mutes them (saved in this
+  browser as `clue.ui.muted`).
+- **Motion**: card entrances, option pops, confetti and count-up numbers. All
+  of it switches off under the system "reduce motion" setting.
+- Fonts: Fredoka and Nunito (SIL Open Font License), bundled through
+  `@fontsource`, so nothing is fetched from a font CDN.
