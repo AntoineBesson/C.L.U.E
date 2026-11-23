@@ -7,3 +7,8 @@ dist/
 data/raw/
 *.parquet
 !.env.example
+
+# Harness call caches (answers.jsonl keeps the results)
+runs/*/cache.jsonl
+__pycache__/
+.pytest_cache/

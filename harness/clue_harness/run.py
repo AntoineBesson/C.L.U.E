@@ -1,0 +1,164 @@
+"""Have AI players answer the bank as personas.
+
+    python -m clue_harness.run --personas ../agents/personas.json --items ../items/seed.json \\
+        --backend claude-cli:claude-haiku-5-5 --out ../runs/phase0-smoke
+
+One row per (persona, item, backend). Steps follow the spec's harness:
+render (persona as system prompt, options shuffled per persona and item),
+call, map the letter back to the option key, retry once with a stricter
+suffix, then log the answer as invalid. Every call is cached by a hash of
+(backend, system, user), so an interrupted run picks up where it stopped.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import sys
+import threading
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+
+from . import prompts
+from .backends import Backend, make_backend
+from .personas import system_prompt
+
+
+class Cache:
+    """Append-only JSONL cache keyed by prompt hash; safe to resume."""
+
+    def __init__(self, path: Path):
+        self.path = path
+        self.lock = threading.Lock()
+        self.data: dict[str, dict] = {}
+        if path.exists():
+            for line in path.read_text().splitlines():
+                if line.strip():
+                    row = json.loads(line)
+                    self.data[row["key"]] = row
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+    @staticmethod
+    def key(backend: str, system: str, user: str) -> str:
+        return hashlib.sha256(f"{backend}\x00{system}\x00{user}".encode()).hexdigest()
+
+    def get(self, key: str) -> dict | None:
+        return self.data.get(key)
+
+    def put(self, key: str, value: dict) -> None:
+        row = {"key": key, **value}
+        with self.lock:
+            self.data[key] = row
+            with self.path.open("a") as f:
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
+def _call(backend: Backend, cache: Cache, system: str, user: str, context: dict, retries: int = 3) -> dict:
+    key = Cache.key(backend.name, system, user)
+    hit = cache.get(key)
+    if hit:
+        return hit
+    for attempt in range(retries):
+        try:
+            r = backend.answer(system, user, context)
+            break
+        except Exception as e:  # network, rate limits, CLI hiccups
+            if attempt == retries - 1:
+                raise
+            time.sleep(2 ** attempt * 2)
+            print(f"retry after error: {e}", file=sys.stderr)
+    value = {"text": r.text, "probs": r.probs, "usage": r.usage, "sampling": r.sampling}
+    cache.put(key, value)
+    return value
+
+
+def answer_one(backend: Backend, cache: Cache, persona: dict, item: dict) -> dict:
+    order = prompts.option_order(item, persona["persona_id"])
+    system = system_prompt(persona)
+    context = {"persona": persona, "item": item, "order": order}
+    attempts = 0
+    value = None
+    raw = ""
+    reply: dict = {}
+    for strict in (False, True):
+        attempts += 1
+        user = prompts.render(item, order, strict=strict)
+        reply = _call(backend, cache, system, user, context)
+        raw = reply["text"]
+        value = prompts.parse(item, order, raw)
+        if value is not None:
+            break
+    probs = None
+    if reply.get("probs") and order:
+        probs = {order[prompts.LETTERS.index(L)]: p for L, p in reply["probs"].items() if prompts.LETTERS.index(L) < len(order)}
+    return {
+        "agent_id": f"{persona['persona_id']}@{backend.name}",
+        "persona_id": persona["persona_id"],
+        "archetype": persona["archetype"],
+        "model": backend.name,
+        "item_id": item["id"],
+        "answer_type": item["answer"]["type"],
+        "order": order,
+        "chosen_key": value if isinstance(value, str) else None,
+        "chosen_position": order.index(value) if isinstance(value, str) and order else None,
+        "value": value if isinstance(value, int) else None,
+        "probs": probs,
+        "sampling": reply.get("sampling", "sample"),
+        "invalid": value is None,
+        "attempts": attempts,
+        "raw_text": raw,
+        "input_tokens": reply.get("usage", {}).get("input_tokens"),
+        "output_tokens": reply.get("usage", {}).get("output_tokens"),
+    }
+
+
+def run(personas: list[dict], items: list[dict], backend_specs: list[str], out: Path, workers: int = 8) -> list[dict]:
+    out.mkdir(parents=True, exist_ok=True)
+    cache = Cache(out / "cache.jsonl")
+    items = [i for i in items if prompts.playable(i)]
+    rows: list[dict] = []
+    for spec in backend_specs:
+        backend = make_backend(spec)
+        jobs = [(p, i) for p in personas for i in items]
+        done = 0
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = [pool.submit(answer_one, backend, cache, p, i) for p, i in jobs]
+            for f in as_completed(futures):
+                rows.append(f.result())
+                done += 1
+                if done % 50 == 0 or done == len(jobs):
+                    print(f"{backend.name}: {done}/{len(jobs)}", file=sys.stderr)
+    rows.sort(key=lambda r: (r["model"], r["persona_id"], r["item_id"]))
+    with (out / "answers.jsonl").open("w") as f:
+        for r in rows:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    try:
+        import pandas as pd
+
+        df = pd.DataFrame(rows)
+        df["order"] = df["order"].map(lambda o: ",".join(o) if o else None)
+        df["probs"] = df["probs"].map(lambda p: json.dumps(p) if p else None)
+        df.to_parquet(out / "answers.parquet", index=False)
+    except ImportError:
+        pass
+    return rows
+
+
+def main(argv: list[str] | None = None) -> None:
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--personas", type=Path, required=True)
+    p.add_argument("--items", type=Path, required=True)
+    p.add_argument("--backend", action="append", required=True, help="repeat for several models")
+    p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--workers", type=int, default=8)
+    p.add_argument("--limit-personas", type=int)
+    args = p.parse_args(argv)
+    personas = json.loads(args.personas.read_text())[: args.limit_personas]
+    items = json.loads(args.items.read_text())
+    run(personas, items, args.backend, args.out, args.workers)
+
+
+if __name__ == "__main__":
+    main()

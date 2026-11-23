@@ -1,0 +1,5 @@
+numpy>=2
+pandas>=2      # optional: Parquet output
+pyarrow>=15    # optional: Parquet output
+anthropic      # optional: anthropic:<model> backend
+pytest
