@@ -1,0 +1,355 @@
+{
+  "id": "mfq2",
+  "name": "Moral Foundations Questionnaire-2 (MFQ-2)",
+  "citation": "Atari, M., Haidt, J., Graham, J., Koleva, S., Stevens, S. T., & Dehghani, M. (2023). Morality beyond the WEIRD: How the nomological network of morality varies across cultures. Journal of Personality and Social Psychology, 125(5), 1157-1188.",
+  "doi": "10.1037/pspp0000470",
+  "materials": "https://osf.io/srtxn/",
+  "terms": "The paper states that all materials are publicly available on OSF. The OSF licence has not been checked yet (see items/scales/README.md).",
+  "instructions": {
+    "en": "For each of the statements below, please indicate how well each statement describes you or your opinions."
+  },
+  "response": {
+    "min": 1,
+    "max": 5,
+    "labels": {
+      "en": [
+        "Does not describe me at all",
+        "Slightly describes me",
+        "Moderately describes me",
+        "Describes me fairly well",
+        "Describes me extremely well"
+      ]
+    }
+  },
+  "scoring": "Mean of the 6 items of each foundation. No reversed items.",
+  "languages": {
+    "en": "original",
+    "fr": "todo: French version used in the paper's Study 2 (France, Belgium, Switzerland); get it from the OSF materials"
+  },
+  "items": [
+    {
+      "id": "mfq2_01",
+      "n": 1,
+      "trait": "care",
+      "reversed": false,
+      "text": {
+        "en": "Caring for people who have suffered is an important virtue."
+      }
+    },
+    {
+      "id": "mfq2_02",
+      "n": 2,
+      "trait": "equality",
+      "reversed": false,
+      "text": {
+        "en": "The world would be a better place if everyone made the same amount of money."
+      }
+    },
+    {
+      "id": "mfq2_03",
+      "n": 3,
+      "trait": "proportionality",
+      "reversed": false,
+      "text": {
+        "en": "I think people who are more hard-working should end up with more money."
+      }
+    },
+    {
+      "id": "mfq2_04",
+      "n": 4,
+      "trait": "loyalty",
+      "reversed": false,
+      "text": {
+        "en": "I think children should be taught to be loyal to their country."
+      }
+    },
+    {
+      "id": "mfq2_05",
+      "n": 5,
+      "trait": "authority",
+      "reversed": false,
+      "text": {
+        "en": "I think it is important for societies to cherish their traditional values."
+      }
+    },
+    {
+      "id": "mfq2_06",
+      "n": 6,
+      "trait": "purity",
+      "reversed": false,
+      "text": {
+        "en": "I think the human body should be treated like a temple, housing something sacred within."
+      }
+    },
+    {
+      "id": "mfq2_07",
+      "n": 7,
+      "trait": "care",
+      "reversed": false,
+      "text": {
+        "en": "I believe that compassion for those who are suffering is one of the most crucial virtues."
+      }
+    },
+    {
+      "id": "mfq2_08",
+      "n": 8,
+      "trait": "equality",
+      "reversed": false,
+      "text": {
+        "en": "Our society would have fewer problems if people had the same income."
+      }
+    },
+    {
+      "id": "mfq2_09",
+      "n": 9,
+      "trait": "proportionality",
+      "reversed": false,
+      "text": {
+        "en": "I think people should be rewarded in proportion to what they contribute."
+      }
+    },
+    {
+      "id": "mfq2_10",
+      "n": 10,
+      "trait": "loyalty",
+      "reversed": false,
+      "text": {
+        "en": "It upsets me when people have no loyalty to their country."
+      }
+    },
+    {
+      "id": "mfq2_11",
+      "n": 11,
+      "trait": "authority",
+      "reversed": false,
+      "text": {
+        "en": "I feel that most traditions serve a valuable function in keeping society orderly."
+      }
+    },
+    {
+      "id": "mfq2_12",
+      "n": 12,
+      "trait": "purity",
+      "reversed": false,
+      "text": {
+        "en": "I believe chastity is an important virtue."
+      }
+    },
+    {
+      "id": "mfq2_13",
+      "n": 13,
+      "trait": "care",
+      "reversed": false,
+      "text": {
+        "en": "We should all care for people who are in emotional pain."
+      }
+    },
+    {
+      "id": "mfq2_14",
+      "n": 14,
+      "trait": "equality",
+      "reversed": false,
+      "text": {
+        "en": "I believe that everyone should be given the same quantity of resources in life."
+      }
+    },
+    {
+      "id": "mfq2_15",
+      "n": 15,
+      "trait": "proportionality",
+      "reversed": false,
+      "text": {
+        "en": "The effort a worker puts into a job ought to be reflected in the size of a raise they receive."
+      }
+    },
+    {
+      "id": "mfq2_16",
+      "n": 16,
+      "trait": "loyalty",
+      "reversed": false,
+      "text": {
+        "en": "Everyone should love their own community."
+      }
+    },
+    {
+      "id": "mfq2_17",
+      "n": 17,
+      "trait": "authority",
+      "reversed": false,
+      "text": {
+        "en": "I think obedience to parents is an important virtue."
+      }
+    },
+    {
+      "id": "mfq2_18",
+      "n": 18,
+      "trait": "purity",
+      "reversed": false,
+      "text": {
+        "en": "It upsets me when people use foul language like it is nothing."
+      }
+    },
+    {
+      "id": "mfq2_19",
+      "n": 19,
+      "trait": "care",
+      "reversed": false,
+      "text": {
+        "en": "I am empathetic toward those people who have suffered in their lives."
+      }
+    },
+    {
+      "id": "mfq2_20",
+      "n": 20,
+      "trait": "equality",
+      "reversed": false,
+      "text": {
+        "en": "I believe it would be ideal if everyone in society wound up with roughly the same amount of money."
+      }
+    },
+    {
+      "id": "mfq2_21",
+      "n": 21,
+      "trait": "proportionality",
+      "reversed": false,
+      "text": {
+        "en": "It makes me happy when people are recognized on their merits."
+      }
+    },
+    {
+      "id": "mfq2_22",
+      "n": 22,
+      "trait": "loyalty",
+      "reversed": false,
+      "text": {
+        "en": "Everyone should defend their country, if called upon."
+      }
+    },
+    {
+      "id": "mfq2_23",
+      "n": 23,
+      "trait": "authority",
+      "reversed": false,
+      "text": {
+        "en": "We all need to learn from our elders."
+      }
+    },
+    {
+      "id": "mfq2_24",
+      "n": 24,
+      "trait": "purity",
+      "reversed": false,
+      "text": {
+        "en": "If I found out that an acquaintance had an unusual but harmless sexual fetish I would feel uneasy about them."
+      }
+    },
+    {
+      "id": "mfq2_25",
+      "n": 25,
+      "trait": "care",
+      "reversed": false,
+      "text": {
+        "en": "Everyone should try to comfort people who are going through something hard."
+      }
+    },
+    {
+      "id": "mfq2_26",
+      "n": 26,
+      "trait": "equality",
+      "reversed": false,
+      "text": {
+        "en": "When people work together toward a common goal, they should share the rewards equally, even if some worked harder on it."
+      }
+    },
+    {
+      "id": "mfq2_27",
+      "n": 27,
+      "trait": "proportionality",
+      "reversed": false,
+      "text": {
+        "en": "In a fair society, those who work hard should live with higher standards of living."
+      }
+    },
+    {
+      "id": "mfq2_28",
+      "n": 28,
+      "trait": "loyalty",
+      "reversed": false,
+      "text": {
+        "en": "Everyone should feel proud when a person in their community wins in an international competition."
+      }
+    },
+    {
+      "id": "mfq2_29",
+      "n": 29,
+      "trait": "authority",
+      "reversed": false,
+      "text": {
+        "en": "I believe that one of the most important values to teach children is to have respect for authority."
+      }
+    },
+    {
+      "id": "mfq2_30",
+      "n": 30,
+      "trait": "purity",
+      "reversed": false,
+      "text": {
+        "en": "People should try to use natural medicines rather than chemically identical human-made ones."
+      }
+    },
+    {
+      "id": "mfq2_31",
+      "n": 31,
+      "trait": "care",
+      "reversed": false,
+      "text": {
+        "en": "It pains me when I see someone ignoring the needs of another human being."
+      }
+    },
+    {
+      "id": "mfq2_32",
+      "n": 32,
+      "trait": "equality",
+      "reversed": false,
+      "text": {
+        "en": "I get upset when some people have a lot more money than others in my country."
+      }
+    },
+    {
+      "id": "mfq2_33",
+      "n": 33,
+      "trait": "proportionality",
+      "reversed": false,
+      "text": {
+        "en": "I feel good when I see cheaters get caught and punished."
+      }
+    },
+    {
+      "id": "mfq2_34",
+      "n": 34,
+      "trait": "loyalty",
+      "reversed": false,
+      "text": {
+        "en": "I believe the strength of a sports team comes from the loyalty of its members to each other."
+      }
+    },
+    {
+      "id": "mfq2_35",
+      "n": 35,
+      "trait": "authority",
+      "reversed": false,
+      "text": {
+        "en": "I think having a strong leader is good for society."
+      }
+    },
+    {
+      "id": "mfq2_36",
+      "n": 36,
+      "trait": "purity",
+      "reversed": false,
+      "text": {
+        "en": "I admire people who keep their virginity until marriage."
+      }
+    }
+  ]
+}
