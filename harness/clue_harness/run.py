@@ -26,6 +26,32 @@ from .backends import Backend, make_backend
 from .personas import system_prompt
 
 
+class BudgetExhausted(Exception):
+    """The run hit its call budget or the provider's rate limit; rerun later to resume."""
+
+
+class Budget:
+    """Caps new (uncached) backend calls, e.g. to fit a free tier's daily quota."""
+
+    def __init__(self, max_calls: int | None):
+        self.left = max_calls
+        self.lock = threading.Lock()
+        self.stopped = False
+
+    def take(self) -> None:
+        with self.lock:
+            if self.stopped:
+                raise BudgetExhausted("stopped")
+            if self.left is not None:
+                if self.left <= 0:
+                    raise BudgetExhausted("call budget used up")
+                self.left -= 1
+
+    def stop(self) -> None:
+        with self.lock:
+            self.stopped = True
+
+
 class Cache:
     """Append-only JSONL cache keyed by prompt hash; safe to resume."""
 
@@ -55,16 +81,26 @@ class Cache:
                 f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
-def _call(backend: Backend, cache: Cache, system: str, user: str, context: dict, retries: int = 3) -> dict:
+def _is_rate_limit(e: Exception) -> bool:
+    return getattr(e, "code", None) in (402, 429) or "rate limit" in str(e).lower()
+
+
+def _call(backend: Backend, cache: Cache, system: str, user: str, context: dict,
+          budget: Budget | None = None, retries: int = 3) -> dict:
     key = Cache.key(backend.name, system, user)
     hit = cache.get(key)
     if hit:
         return hit
     for attempt in range(retries):
+        if budget:
+            budget.take()
         try:
             r = backend.answer(system, user, context)
             break
         except Exception as e:  # network, rate limits, CLI hiccups
+            if _is_rate_limit(e) and budget:
+                budget.stop()
+                raise BudgetExhausted(f"provider limit: {e}") from e
             if attempt == retries - 1:
                 raise
             time.sleep(2 ** attempt * 2)
@@ -74,7 +110,7 @@ def _call(backend: Backend, cache: Cache, system: str, user: str, context: dict,
     return value
 
 
-def answer_one(backend: Backend, cache: Cache, persona: dict, item: dict) -> dict:
+def answer_one(backend: Backend, cache: Cache, persona: dict, item: dict, budget: Budget | None = None) -> dict:
     order = prompts.option_order(item, persona["persona_id"])
     system = system_prompt(persona)
     context = {"persona": persona, "item": item, "order": order}
@@ -85,7 +121,7 @@ def answer_one(backend: Backend, cache: Cache, persona: dict, item: dict) -> dic
     for strict in (False, True):
         attempts += 1
         user = prompts.render(item, order, strict=strict)
-        reply = _call(backend, cache, system, user, context)
+        reply = _call(backend, cache, system, user, context, budget)
         raw = reply["text"]
         value = prompts.parse(item, order, raw)
         if value is not None:
@@ -114,22 +150,32 @@ def answer_one(backend: Backend, cache: Cache, persona: dict, item: dict) -> dic
     }
 
 
-def run(personas: list[dict], items: list[dict], backend_specs: list[str], out: Path, workers: int = 8) -> list[dict]:
+def run(personas: list[dict], items: list[dict], backend_specs: list[str], out: Path, workers: int = 8,
+        max_calls: int | None = None) -> list[dict]:
+    """Answer every (persona, item) on every backend. With max_calls, stop after that many
+    new calls per backend; cached answers are free, so rerunning resumes the run."""
     out.mkdir(parents=True, exist_ok=True)
     cache = Cache(out / "cache.jsonl")
     items = [i for i in items if prompts.playable(i)]
     rows: list[dict] = []
     for spec in backend_specs:
         backend = make_backend(spec)
+        budget = Budget(max_calls)
         jobs = [(p, i) for p in personas for i in items]
-        done = 0
+        done = skipped = 0
         with ThreadPoolExecutor(max_workers=workers) as pool:
-            futures = [pool.submit(answer_one, backend, cache, p, i) for p, i in jobs]
+            futures = [pool.submit(answer_one, backend, cache, p, i, budget) for p, i in jobs]
             for f in as_completed(futures):
-                rows.append(f.result())
+                try:
+                    rows.append(f.result())
+                except BudgetExhausted:
+                    skipped += 1
+                    continue
                 done += 1
                 if done % 50 == 0 or done == len(jobs):
                     print(f"{backend.name}: {done}/{len(jobs)}", file=sys.stderr)
+        if skipped:
+            print(f"{backend.name}: stopped with {skipped} answers left; rerun to resume", file=sys.stderr)
     rows.sort(key=lambda r: (r["model"], r["persona_id"], r["item_id"]))
     with (out / "answers.jsonl").open("w") as f:
         for r in rows:
@@ -155,13 +201,20 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--workers", type=int, default=8)
     p.add_argument("--limit-personas", type=int)
+    p.add_argument("--persona-ids", nargs="*", help="only these personas")
+    p.add_argument("--item-ids", nargs="*", help="only these items")
+    p.add_argument("--max-calls", type=int, help="stop after this many new calls per backend (free tiers)")
     args = p.parse_args(argv)
     personas = json.loads(args.personas.read_text())[: args.limit_personas]
     from .scales import load_scale
 
     items = json.loads(args.items.read_text()) if args.items else []
     items += [i for path in args.scales for i in load_scale(path)]
-    run(personas, items, args.backend, args.out, args.workers)
+    if args.persona_ids:
+        personas = [p for p in personas if p["persona_id"] in args.persona_ids]
+    if args.item_ids:
+        items = [i for i in items if i["id"] in args.item_ids]
+    run(personas, items, args.backend, args.out, args.workers, args.max_calls)
 
 
 if __name__ == "__main__":
