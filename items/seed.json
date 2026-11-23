@@ -1,0 +1,93 @@
+[
+  {
+    "id": "q0001",
+    "domain": "work",
+    "intensity": 2,
+    "scenario": "A colleague presents your idea as their own in a meeting with your manager. Nobody else knows it was yours.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        { "key": "A", "text": "Let it go; the team benefits either way.", "keyed": { "care": 1 } },
+        { "key": "B", "text": "Tell your manager privately that it was your idea.", "keyed": { "proportionality": 1 } },
+        { "key": "C", "text": "Stay quiet, and use it against them later.", "keyed": { "machiavellianism": 1 } },
+        { "key": "D", "text": "Talk to the colleague first, before anyone else.", "keyed": { "loyalty": 1 } }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0002",
+    "domain": "money",
+    "intensity": 1,
+    "scenario": "A cashier gives you 20 euros too much in change. You only notice once you are back at your car.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        { "key": "A", "text": "Go back and return it.", "keyed": { "honesty_humility": 1 } },
+        { "key": "B", "text": "Keep it; it was their mistake.", "keyed": { "honesty_humility": -1 } }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0003",
+    "domain": "friends",
+    "intensity": 2,
+    "scenario": "Your best friend asks you to be their alibi: they say they were with you last night. You know they were somewhere they should not have been.",
+    "answer": {
+      "type": "slider",
+      "prompt": "How likely are you to cover for them?",
+      "minLabel": "Never",
+      "maxLabel": "Certainly",
+      "keyed": { "loyalty": 1, "honesty_humility": -1 }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0004",
+    "domain": "family",
+    "intensity": 2,
+    "scenario": "Your parent can no longer live alone. Moving them in with you would strain your relationship and your job.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        { "key": "A", "text": "Move them in anyway.", "keyed": { "care": 1 } },
+        { "key": "B", "text": "Find a good care home and visit often.", "keyed": { "conscientiousness": 1 } },
+        { "key": "C", "text": "Ask your siblings to share the load equally.", "keyed": { "equality": 1 } }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0005",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A runaway trolley will hit five workers. You can pull a lever to send it onto a side track, where it will hit one worker instead.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        { "key": "A", "text": "Pull the lever.", "keyed": { "instrumental_harm": 1 } },
+        { "key": "B", "text": "Do nothing.", "keyed": { "instrumental_harm": -1 } }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0006",
+    "domain": "online",
+    "intensity": 1,
+    "scenario": "You find a stranger's phone on a bench. It is unlocked.",
+    "answer": {
+      "type": "text",
+      "prompt": "What do you do, in a sentence?",
+      "maxLength": 200
+    },
+    "lang": "en",
+    "source": "hand-written"
+  }
+]

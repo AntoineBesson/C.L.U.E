@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+.env*
+# Never commit collected player data
+data/raw/
+*.parquet
