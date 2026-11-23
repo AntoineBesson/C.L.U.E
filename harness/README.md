@@ -26,6 +26,9 @@ python -m clue_harness.analyse --run ../runs/phase0-smoke \
     --personas ../agents/personas.json --items ../items/seed.json \
     --scales-run ../runs/phase0-scales --scales ../items/scales/mfq2.json ../items/scales/ous.json \
     > ../runs/phase0-smoke/report.md
+
+# Phase 1 pre-run (100 agents) and item gate: see runs/phase1-prerun/run.sh
+python -m clue_harness.personas --n 50 --seed 2027 --first-id 101 > ../agents/personas-phase1.json
 ```
 
 ## Modules
@@ -39,6 +42,7 @@ python -m clue_harness.analyse --run ../runs/phase0-smoke \
 | `run.py` | The runner: retries, strict-suffix retry, resumable cache, JSONL + Parquet output |
 | `scales.py` | Questionnaire items as harness items (`likert`), scoring, persona fidelity report |
 | `analyse.py` | The trial report |
+| `gate.py` | Phase 1 item gate: keep/drop per item from a pre-run (entropy, top share, tracking against measured labels) |
 
 ## How a call works
 
