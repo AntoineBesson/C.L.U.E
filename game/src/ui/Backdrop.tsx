@@ -6,7 +6,7 @@ const SHAPES = [
   { k: 'q', x: 80, y: 88, s: 38, d: 1, c: 'var(--grape)' },
   { k: 'blob', x: 4, y: 70, s: 56, d: 3, c: 'var(--mint)' },
   { k: 'star', x: 14, y: 92, s: 26, d: 5, c: 'var(--sun)' },
-  { k: 'ring', x: 50, y: 4, s: 22, d: 2.5, c: 'var(--mint)' },
+  { k: 'ring', x: 30, y: 46, s: 22, d: 2.5, c: 'var(--mint)' },
 ]
 
 function Shape({ k, c }: { k: string; c: string }) {

@@ -40,6 +40,26 @@ npm run build
    the game asks **"Are you sure?"**. The player can confirm or go back once.
    Whether the prompt was shown, and whether the answer changed, is stored for
    every card, so the effect of the prompt can be measured.
+4. For choice, binary and slider cards, the player then **predicts the
+   crowd**: how players split across the options, or the average slider
+   value. Text cards skip this step.
+
+## Scoring and the reveal
+
+Logic lives in plain modules, separate from the UI:
+
+- `game/src/scoring.ts`: the answer is never scored. Prediction points use the
+  Bayesian Truth Serum prediction score, `100 * exp(Σ x_j log(y_j / x_j))`
+  (100 for an exact guess). A bonus, `50 * log(x_k / ȳ_k)` clipped at 0, rewards
+  an answer that turned out more common than the crowd predicted. Slider
+  cards score `100 - |guess - mean|`. Clipping the bonus at 0 trades a little
+  of BTS's incentive guarantee for never showing negative points.
+- `game/src/profile.ts`: a rough trait profile (average keyed direction of
+  the chosen options, ±1/√n) and "one in N" from the surprisal of the
+  player's answers under the crowd split, assuming independent answers. Both
+  are placeholders for the models in the spec.
+- Crowd numbers come from `crowd` on each item in `items/seed.json`. They are
+  marked `"source": "placeholder"` until agent or human data replaces them.
 
 ## Consent and what is recorded
 
@@ -76,3 +96,18 @@ should be sent to a server before the DPIA and the ethics review are done.
   "answeredAt": "..."
 }
 ```
+
+## Look and feel
+
+The visual layer lives in `game/src/ui/` and `game/src/styles.css` and never
+touches what is recorded:
+
+- **Clu**, the mascot (`ui/Mascot.tsx`): an original SVG blob with moods for
+  the consent screen, the "Are you sure?" prompt, the crowd guess and the reveal.
+- **Sounds** (`ui/sound.ts`): short Web Audio blips synthesised in code, no
+  audio files. The speaker button in the top bar mutes them (saved in this
+  browser as `clue.ui.muted`).
+- **Motion**: card entrances, option pops, confetti and count-up numbers. All
+  of it switches off under the system "reduce motion" setting.
+- Fonts: Fredoka and Nunito (SIL Open Font License), bundled through
+  `@fontsource`, so nothing is fetched from a font CDN.

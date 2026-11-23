@@ -7,11 +7,52 @@
     "answer": {
       "type": "choice",
       "options": [
-        { "key": "A", "text": "Let it go; the team benefits either way.", "keyed": { "care": 1 } },
-        { "key": "B", "text": "Tell your manager privately that it was your idea.", "keyed": { "proportionality": 1 } },
-        { "key": "C", "text": "Stay quiet, and use it against them later.", "keyed": { "machiavellianism": 1 } },
-        { "key": "D", "text": "Talk to the colleague first, before anyone else.", "keyed": { "loyalty": 1 } }
+        {
+          "key": "A",
+          "text": "Let it go; the team benefits either way.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Tell your manager privately that it was your idea.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Stay quiet, and use it against them later.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Talk to the colleague first, before anyone else.",
+          "keyed": {
+            "loyalty": 1
+          }
+        }
       ]
+    },
+    "crowd": {
+      "kind": "shares",
+      "source": "placeholder",
+      "n": 0,
+      "answerShare": {
+        "A": 0.22,
+        "B": 0.38,
+        "C": 0.08,
+        "D": 0.32
+      },
+      "predictedShare": {
+        "A": 0.25,
+        "B": 0.33,
+        "C": 0.12,
+        "D": 0.26
+      }
     },
     "lang": "en",
     "source": "hand-written"
@@ -24,9 +65,34 @@
     "answer": {
       "type": "binary",
       "options": [
-        { "key": "A", "text": "Go back and return it.", "keyed": { "honesty_humility": 1 } },
-        { "key": "B", "text": "Keep it; it was their mistake.", "keyed": { "honesty_humility": -1 } }
+        {
+          "key": "A",
+          "text": "Go back and return it.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Keep it; it was their mistake.",
+          "keyed": {
+            "honesty_humility": -1
+          }
+        }
       ]
+    },
+    "crowd": {
+      "kind": "shares",
+      "source": "placeholder",
+      "n": 0,
+      "answerShare": {
+        "A": 0.71,
+        "B": 0.29
+      },
+      "predictedShare": {
+        "A": 0.52,
+        "B": 0.43
+      }
     },
     "lang": "en",
     "source": "hand-written"
@@ -41,7 +107,16 @@
       "prompt": "How likely are you to cover for them?",
       "minLabel": "Never",
       "maxLabel": "Certainly",
-      "keyed": { "loyalty": 1, "honesty_humility": -1 }
+      "keyed": {
+        "loyalty": 1,
+        "honesty_humility": -1
+      }
+    },
+    "crowd": {
+      "kind": "mean",
+      "source": "placeholder",
+      "n": 0,
+      "mean": 41
     },
     "lang": "en",
     "source": "hand-written"
@@ -54,10 +129,43 @@
     "answer": {
       "type": "choice",
       "options": [
-        { "key": "A", "text": "Move them in anyway.", "keyed": { "care": 1 } },
-        { "key": "B", "text": "Find a good care home and visit often.", "keyed": { "conscientiousness": 1 } },
-        { "key": "C", "text": "Ask your siblings to share the load equally.", "keyed": { "equality": 1 } }
+        {
+          "key": "A",
+          "text": "Move them in anyway.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Find a good care home and visit often.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Ask your siblings to share the load equally.",
+          "keyed": {
+            "equality": 1
+          }
+        }
       ]
+    },
+    "crowd": {
+      "kind": "shares",
+      "source": "placeholder",
+      "n": 0,
+      "answerShare": {
+        "A": 0.31,
+        "B": 0.41,
+        "C": 0.28
+      },
+      "predictedShare": {
+        "A": 0.27,
+        "B": 0.38,
+        "C": 0.3
+      }
     },
     "lang": "en",
     "source": "hand-written"
@@ -70,9 +178,34 @@
     "answer": {
       "type": "binary",
       "options": [
-        { "key": "A", "text": "Pull the lever.", "keyed": { "instrumental_harm": 1 } },
-        { "key": "B", "text": "Do nothing.", "keyed": { "instrumental_harm": -1 } }
+        {
+          "key": "A",
+          "text": "Pull the lever.",
+          "keyed": {
+            "instrumental_harm": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Do nothing.",
+          "keyed": {
+            "instrumental_harm": -1
+          }
+        }
       ]
+    },
+    "crowd": {
+      "kind": "shares",
+      "source": "placeholder",
+      "n": 0,
+      "answerShare": {
+        "A": 0.68,
+        "B": 0.32
+      },
+      "predictedShare": {
+        "A": 0.58,
+        "B": 0.38
+      }
     },
     "lang": "en",
     "source": "hand-written"

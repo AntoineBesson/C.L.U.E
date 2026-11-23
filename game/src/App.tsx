@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { Card } from './components/Card'
 import { ConsentScreen } from './components/ConsentScreen'
 import { EndScreen } from './components/EndScreen'
+import { Prediction } from './components/Prediction'
 import { CONFIG } from './config'
 import { pickSession } from './items'
+import { defaultPrediction } from './scoring'
 import { Backdrop } from './ui/Backdrop'
 import { Progress, TopBar } from './ui/TopBar'
 import { getConsent, getPlayerId, randomId, saveConsent, saveResponse } from './storage'
@@ -36,6 +38,14 @@ export default function App() {
 function Game() {
   const [consent, setConsent] = useState<Consent | null>(validConsent)
   const [session, setSession] = useState<Session>(newSession)
+  /** Answer given, waiting for the crowd prediction. */
+  const [pending, setPending] = useState<ResponseRecord | null>(null)
+
+  function record(r: ResponseRecord) {
+    saveResponse(r)
+    setPending(null)
+    setSession((s) => ({ ...s, responses: [...s.responses, r] }))
+  }
 
   if (!consent) {
     return (
@@ -57,6 +67,7 @@ function Game() {
       <>
       <TopBar />
       <EndScreen
+        items={session.items}
         responses={session.responses}
         tracking={consent.uncertaintyTracking}
         onPlayAgain={() => setSession(newSession())}
@@ -76,17 +87,22 @@ function Game() {
       <Progress index={index} total={session.items.length} />
     </TopBar>
     <main>
+      {pending ? (
+        <Prediction
+          key={`p-${session.id}-${item.id}`}
+          item={item}
+          onDone={(prediction) => record({ ...pending, prediction })}
+        />
+      ) : (
       <Card
         key={`${session.id}-${item.id}`}
         item={item}
         tracking={consent.uncertaintyTracking}
         playerId={getPlayerId()}
         sessionId={session.id}
-        onDone={(r) => {
-          saveResponse(r)
-          setSession((s) => ({ ...s, responses: [...s.responses, r] }))
-        }}
+        onDone={(r) => (defaultPrediction(item) ? setPending(r) : record(r))}
       />
+      )}
     </main>
     </>
   )
