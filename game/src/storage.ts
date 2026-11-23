@@ -1,7 +1,9 @@
+import { deletePlayer, putConsent, sendResponse } from './api'
 import type { Consent, ResponseRecord } from './types'
 
 /**
- * Prototype storage: the player's own browser only. Nothing is sent anywhere.
+ * The player's browser is the primary copy. When VITE_API_URL is set, consent,
+ * answers and deletion are also sent to the server (see api.ts).
  * Every access is guarded: storage can be blocked or empty (private windows).
  */
 const KEYS = {
@@ -46,6 +48,7 @@ export function getConsent(): Consent | null {
 
 export function saveConsent(c: Consent) {
   write(KEYS.consent, c)
+  void putConsent(getPlayerId(), c)
 }
 
 export function getResponses(): ResponseRecord[] {
@@ -54,6 +57,7 @@ export function getResponses(): ResponseRecord[] {
 
 export function saveResponse(r: ResponseRecord) {
   write(KEYS.responses, [...getResponses(), r])
+  void sendResponse(r)
 }
 
 export function exportData(): string {
@@ -65,6 +69,8 @@ export function exportData(): string {
 }
 
 export function deleteAllData() {
+  const id = read<string>(KEYS.playerId)
+  if (id) void deletePlayer(id)
   try {
     Object.values(KEYS).forEach((k) => localStorage.removeItem(k))
   } catch {

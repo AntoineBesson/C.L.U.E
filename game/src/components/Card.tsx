@@ -59,6 +59,7 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
         changedAfterPrompt: askConfirm && firstValue.current !== null && firstValue.current !== final,
         msOnPrompt: Math.round(promptMs.current),
       },
+      prediction: null,
       signals: rec ? rec.summary() : null,
       presentedAt,
       answeredAt: new Date().toISOString(),

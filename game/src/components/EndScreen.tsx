@@ -1,15 +1,18 @@
 import { useState } from 'react'
+import { estimateTraits, uniqueness } from '../profile'
+import { scoreCard } from '../scoring'
 import { deleteAllData, exportData } from '../storage'
-import type { ResponseRecord } from '../types'
+import type { Item, ResponseRecord } from '../types'
 
 interface Props {
+  items: Item[]
   responses: ResponseRecord[]
   tracking: boolean
   onPlayAgain: () => void
   onDeleted: () => void
 }
 
-export function EndScreen({ responses, tracking, onPlayAgain, onDeleted }: Props) {
+export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }: Props) {
   const [confirmDelete, setConfirmDelete] = useState(false)
   const prompted = responses.filter((r) => r.confirm.shown)
   const changed = prompted.filter((r) => r.confirm.changedAfterPrompt).length
@@ -17,6 +20,12 @@ export function EndScreen({ responses, tracking, onPlayAgain, onDeleted }: Props
   const avgSeconds = signals.length
     ? signals.reduce((sum, s) => sum + (s.msToFirstValidate ?? s.msTotal), 0) / signals.length / 1000
     : null
+  const byId = new Map(items.map((i) => [i.id, i]))
+  const scores = responses.map((r) => scoreCard(byId.get(r.itemId)!, r)).filter((s) => s !== null)
+  const points = scores.reduce((sum, s) => sum + s.prediction + s.bonus, 0)
+  const traits = estimateTraits(items, responses)
+  const unique = uniqueness(items, responses)
+  const placeholder = items.some((i) => i.crowd?.source === 'placeholder')
   const totalChanges = signals.reduce((sum, s) => sum + s.answerChanges, 0)
 
   function download() {
@@ -33,8 +42,40 @@ export function EndScreen({ responses, tracking, onPlayAgain, onDeleted }: Props
       <div className="panel">
       <h1>That&rsquo;s today&rsquo;s set</h1>
       <p className="lede">
-        You answered {responses.length} dilemmas. The profile reveal will appear here once the models exist.
+        You answered {responses.length} dilemmas and scored <strong>{points}</strong> points for reading the crowd.
+        {placeholder && ' (Crowd numbers are placeholders until real players have played.)'}
       </p>
+
+      <h2>Your score</h2>
+      <ul>
+        {scores.map((s) => (
+          <li key={s.itemId}>
+            Prediction {s.prediction}/100
+            {s.bonus > 0 && <> + {s.bonus} truth bonus</>}
+            {s.sameAsYou !== null && <> · {Math.round(s.sameAsYou * 100)}% answered like you</>}
+          </li>
+        ))}
+      </ul>
+
+      <h2>What {responses.length} answers say about you</h2>
+      <p className="hint">
+        A rough first guess from which options you picked. Wide bars mean little evidence; this gets sharper with
+        every day you play.
+      </p>
+      <ul className="traits">
+        {traits.map((t) => (
+          <li key={t.trait}>
+            {t.label}: {t.value >= 0 ? 'leans high' : 'leans low'} ({t.value.toFixed(2)} ± {t.spread.toFixed(2)},{' '}
+            {t.evidence} answer{t.evidence === 1 ? '' : 's'})
+          </li>
+        ))}
+      </ul>
+      {unique.answers > 0 && (
+        <p>
+          From {unique.answers} answers alone, about <strong>one player in {unique.oneIn.toLocaleString()}</strong>{' '}
+          would have answered exactly like you ({unique.bits.toFixed(1)} bits). Every extra answer narrows it down.
+        </p>
+      )}
 
       <h2>What your answers already show</h2>
       <ul>

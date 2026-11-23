@@ -13,7 +13,8 @@ Spec*. Changes to it are logged in [`docs/decisions/`](docs/decisions/).
 
 | Path | What |
 | --- | --- |
-| `game/` | The playable prototype: Vite + React + TypeScript, static, no backend yet |
+| `game/` | The playable game: Vite + React + TypeScript, static |
+| `server/` | API and Postgres schema: consent, answers, daily set, crowd stats, export/delete ([README](server/README.md)) |
 | `items/` | The question bank (`seed.json`), shared by the game and the agent harness |
 | `docs/decisions/` | Design decisions and why they were made |
 
@@ -40,6 +41,26 @@ npm run build
    the game asks **"Are you sure?"**. The player can confirm or go back once.
    Whether the prompt was shown, and whether the answer changed, is stored for
    every card, so the effect of the prompt can be measured.
+4. For choice, binary and slider cards, the player then **predicts the
+   crowd**: how players split across the options, or the average slider
+   value. Text cards skip this step.
+
+## Scoring and the reveal
+
+Logic lives in plain modules, separate from the UI:
+
+- `game/src/scoring.ts`: the answer is never scored. Prediction points use the
+  Bayesian Truth Serum prediction score, `100 * exp(Σ x_j log(y_j / x_j))`
+  (100 for an exact guess). A bonus, `50 * log(x_k / ȳ_k)` clipped at 0, rewards
+  an answer that turned out more common than the crowd predicted. Slider
+  cards score `100 - |guess - mean|`. Clipping the bonus at 0 trades a little
+  of BTS's incentive guarantee for never showing negative points.
+- `game/src/profile.ts`: a rough trait profile (average keyed direction of
+  the chosen options, ±1/√n) and "one in N" from the surprisal of the
+  player's answers under the crowd split, assuming independent answers. Both
+  are placeholders for the models in the spec.
+- Crowd numbers come from `crowd` on each item in `items/seed.json`. They are
+  marked `"source": "placeholder"` until agent or human data replaces them.
 
 ## Consent and what is recorded
 
@@ -55,9 +76,11 @@ mouse coordinates are never stored. See
 [decision 0001](docs/decisions/0001-uncertainty-tracking.md) for why, and what
 would change it.
 
-In this prototype all data stays in the player's browser (`localStorage`),
-with **Export my data** and **Delete my data** on the end screen. Nothing
-should be sent to a server before the DPIA and the ethics review are done.
+By default all data stays in the player's browser (`localStorage`), with
+**Export my data** and **Delete my data** on the end screen. When the game is
+built with `VITE_API_URL`, it also sends consent, answers and deletions to the
+server, which accepts them only when `COLLECTION_ENABLED=true`. Keep that off
+until the DPIA and the ethics review are done.
 
 ## Response record
 
