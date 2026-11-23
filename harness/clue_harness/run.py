@@ -110,6 +110,7 @@ def _call(backend: Backend, cache: Cache, system: str, user: str, context: dict,
             if _is_rate_limit(e) and budget:
                 # Per-minute and upstream limits clear quickly; a daily cap does not.
                 if attempt < retries - 1:
+                    print(f"rate limited, waiting: {str(e)[:200]}", file=sys.stderr)
                     time.sleep(30 * (attempt + 1))
                     continue
                 budget.stop()
