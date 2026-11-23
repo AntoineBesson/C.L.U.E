@@ -33,10 +33,18 @@ raw rows in `answers.jsonl`.
    "nice" answer (q0012, q0021 on Haiku), and q0022 (the ex's new partner,
    slider), which tracks emotionality only weakly.
 
+6. **Against measured scores** (MFQ-2 and OUS, see
+   [../phase0-scales](../phase0-scales/README.md)): labelling each agent with
+   its own questionnaire scores instead of its targets leaves Sonnet's
+   tracking about the same or slightly higher (impartial beneficence 0.57 →
+   0.66, care 0.31 → 0.51, purity 0.36 → 0.47). On Haiku it drops on several
+   traits (instrumental harm 0.42 → 0.14, authority 0.31 → 0.07), in line with
+   its compressed questionnaire answers.
+
 ## Caveats
 
-- Targets stand in for labels. Swap in measured questionnaire scores when the
-  scales are in the harness.
+- Measured labels exist only for the eight MFQ-2 and OUS traits; the other
+  nine still use targets.
 - One model family, two sizes. The spec's smoke run wants two families;
   OpenRouter or a Kaggle vLLM backend is next.
 - One sample per answer at the default temperature (current Claude models no

@@ -51,6 +51,21 @@ For each option or slider keyed to a trait: the correlation, across personas, be
 | conscientiousness | 7 | +0.14 | 71% | +0.23 | 83% |
 | openness | 3 | +0.08 | 67% | +0.20 | 67% |
 
+### Against measured questionnaire scores
+
+The same per-trait correlations, with each agent's label taken from its own questionnaire answers (z-scored within each model) instead of the target it was written with. This is how the spec labels agents. Only traits covered by the scales run so far appear.
+
+| Trait | claude-cli:claude-haiku-5-5 r vs targets | claude-cli:claude-haiku-5-5 r vs measured | claude-cli:claude-sonnet-5-5 r vs targets | claude-cli:claude-sonnet-5-5 r vs measured |
+| --- | --- | --- | --- | --- |
+| care | +0.16 | +0.12 | +0.31 | +0.51 |
+| equality | -0.01 | +0.15 | +0.14 | +0.19 |
+| proportionality | +0.15 | +0.01 | +0.22 | +0.19 |
+| loyalty | +0.03 | -0.05 | +0.31 | +0.30 |
+| authority | +0.31 | +0.07 | +0.60 | +0.64 |
+| purity | -0.03 | +0.01 | +0.36 | +0.47 |
+| instrumental_harm | +0.42 | +0.14 | +0.54 | +0.54 |
+| impartial_beneficence | +0.30 | +0.29 | +0.57 | +0.66 |
+
 ## Per item
 
 Entropy in bits (maximum 2 for four options, 1 for two). Top share above 70% means the spec would drop the item. Alignment below 0 means the item's options did not track their keys for that model. Slider items show the standard deviation of answers instead of entropy.
