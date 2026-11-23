@@ -366,38 +366,38 @@
   },
   {
     "id": "q0011",
-    "domain": "family",
-    "intensity": 2,
-    "scenario": "At a family dinner, an older relative makes a remark you find old-fashioned and a little hurtful.",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "Your friend wants to go out on a Monday night. You have an important meeting at 8 am on Tuesday.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Let it pass to keep the peace.",
+          "text": "Go. Tuesday-you can deal with it.",
           "keyed": {
-            "agreeableness": 1
+            "extraversion": 1
           }
         },
         {
           "key": "B",
-          "text": "Disagree with them politely, right there.",
+          "text": "Say yes, then cancel at 9 pm with a mysterious headache.",
           "keyed": {
-            "openness": 1
+            "honesty_humility": -1
           }
         },
         {
           "key": "C",
-          "text": "Talk to them about it privately later.",
+          "text": "Go for one drink, and actually leave after one drink.",
           "keyed": {
-            "care": 1
+            "conscientiousness": 1
           }
         },
         {
           "key": "D",
-          "text": "Let it go; they are your elder.",
+          "text": "Go, but make your friend promise to drag you home by midnight.",
           "keyed": {
-            "authority": 1
+            "agreeableness": 1
           }
         }
       ]
@@ -475,38 +475,38 @@
   },
   {
     "id": "q0014",
-    "domain": "sacrificial",
-    "intensity": 3,
-    "scenario": "To stop an outbreak in your town, officials want a strict quarantine that would cost a small group of families their jobs.",
+    "domain": "everyday",
+    "intensity": 1,
+    "scenario": "Someone in your flat keeps eating your yoghurts. You have no proof, but you are 90% sure who it is.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Support it; far more people are protected.",
+          "text": "Plant a disgusting yoghurt at the front of the fridge and wait.",
           "keyed": {
-            "instrumental_harm": 1
+            "machiavellianism": 1
           }
         },
         {
           "key": "B",
-          "text": "Support it only if those families are fully compensated.",
+          "text": "Suggest a shared food budget so everyone pays the same.",
           "keyed": {
             "equality": 1
           }
         },
         {
           "key": "C",
-          "text": "Oppose it; the cost to those families is too high.",
+          "text": "Ask them kindly whether they are short on money.",
           "keyed": {
             "care": 1
           }
         },
         {
           "key": "D",
-          "text": "Shrug it off; it does not affect you.",
+          "text": "Eat their leftovers in return, without a word.",
           "keyed": {
-            "psychopathy": 1
+            "proportionality": 1
           }
         }
       ]
