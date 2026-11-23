@@ -266,19 +266,22 @@ def _measured_section(w, rows, items, personas, models, measured) -> None:
 
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--run", type=Path, required=True)
+    p.add_argument("--run", type=Path, nargs="+", required=True, help="one or more runs; questionnaire answers in them are skipped")
     p.add_argument("--personas", type=Path, required=True)
     p.add_argument("--items", type=Path, required=True)
-    p.add_argument("--scales-run", type=Path, help="run with questionnaire answers, for measured labels")
+    p.add_argument("--scales-run", type=Path, nargs="*", default=[], help="runs with questionnaire answers, for measured labels")
     p.add_argument("--scales", type=Path, nargs="*", default=[], help="questionnaire files used in --scales-run")
     args = p.parse_args(argv)
-    rows = [json.loads(line) for line in (args.run / "answers.jsonl").read_text().splitlines() if line.strip()]
+    def load(run: Path) -> list[dict]:
+        return [json.loads(line) for line in (run / "answers.jsonl").read_text().splitlines() if line.strip()]
+
+    rows = [r for run in args.run for r in load(run) if r["answer_type"] != "likert"]
     measured = None
     if args.scales_run:
         from .scales import load_scale, score, standardise
 
         scale_items = [i for s in args.scales for i in load_scale(s)]
-        srows = [json.loads(line) for line in (args.scales_run / "answers.jsonl").read_text().splitlines() if line.strip()]
+        srows = [r for run in args.scales_run for r in load(run) if r["answer_type"] == "likert"]
         measured = standardise(score(srows, scale_items))
     print(report(rows, json.loads(args.items.read_text()), json.loads(args.personas.read_text()), measured))
 

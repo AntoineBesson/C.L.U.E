@@ -115,12 +115,13 @@ def fidelity_report(rows: list[dict], items: list[dict], personas: list[dict]) -
 
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--run", type=Path, required=True)
+    p.add_argument("--run", type=Path, nargs="+", required=True)
     p.add_argument("--personas", type=Path, required=True)
     p.add_argument("--scales", type=Path, nargs="+", required=True)
     args = p.parse_args(argv)
     items = [i for s in args.scales for i in load_scale(s)]
-    rows = [json.loads(line) for line in (args.run / "answers.jsonl").read_text().splitlines() if line.strip()]
+    rows = [json.loads(line) for run in args.run for line in (run / "answers.jsonl").read_text().splitlines()
+            if line.strip() and json.loads(line)["answer_type"] == "likert"]
     print(fidelity_report(rows, items, json.loads(args.personas.read_text())))
 
 
