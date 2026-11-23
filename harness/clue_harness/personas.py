@@ -362,7 +362,10 @@ def generate(n: int, seed: int, archetype_share: float = 0.1) -> list[dict]:
     """n personas: about archetype_share extreme archetypes, the rest sampled from the prior."""
     rng = random.Random(seed)
     np_rng = np.random.default_rng(seed)
-    corr = correlation_matrix()
+    # Cholesky rather than multivariate_normal: its SVD can differ across
+    # platforms, and the committed personas must be reproducible anywhere.
+    chol = np.linalg.cholesky(correlation_matrix())
+    draw = lambda: chol @ np_rng.standard_normal(len(TRAITS))  # noqa: E731
     # At least one of each archetype once there are enough personas.
     n_arch = max(round(n * archetype_share), len(ARCHETYPES)) if n >= 10 else 0
     arch_names = list(ARCHETYPES)
@@ -372,13 +375,13 @@ def generate(n: int, seed: int, archetype_share: float = 0.1) -> list[dict]:
         if i > n - n_arch:
             name = arch_names[(i - (n - n_arch) - 1) % len(arch_names)]
             # Archetype levels plus a little noise; other traits drawn small.
-            z = np_rng.multivariate_normal(np.zeros(len(TRAITS)), corr) * 0.4
+            z = draw() * 0.4
             traits = dict(zip(TRAITS, z.tolist()))
             for t, v in ARCHETYPES[name].items():
                 traits[t] = v + float(np_rng.normal(0, 0.2))
         else:
             name = "sampled"
-            z = np_rng.multivariate_normal(np.zeros(len(TRAITS)), corr)
+            z = draw()
             traits = dict(zip(TRAITS, z.tolist()))
         personas.append(make_persona(i, traits, name, rng, decks))
     return personas
