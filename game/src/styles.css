@@ -104,3 +104,10 @@ textarea {
 @media (max-width: 420px) {
   .options.binary { grid-template-columns: 1fr; }
 }
+
+.share { display: grid; grid-template-columns: 1fr 120px 3.5em; gap: 8px; align-items: center; margin-bottom: 10px; }
+.share input { width: 100%; accent-color: var(--accent); }
+.share output { text-align: right; font-weight: 600; }
+.prediction > input[type='range'] { width: 100%; accent-color: var(--accent); }
+.prediction .primary { width: 100%; margin-top: 12px; }
+@media (max-width: 420px) { .share { grid-template-columns: 1fr 3.5em; } .share input { grid-column: 1 / -1; grid-row: 2; } }

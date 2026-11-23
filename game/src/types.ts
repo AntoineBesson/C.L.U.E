@@ -39,7 +39,31 @@ export interface TextAnswer {
 export type AnswerSpec = ChoiceAnswer | BinaryAnswer | SliderAnswer | TextAnswer
 export type AnswerType = AnswerSpec['type']
 
+/**
+ * What other players did on this item. Until the pilot runs, these are
+ * placeholder numbers (source "placeholder"), later replaced by agent or
+ * human statistics.
+ */
+export type CrowdStats =
+  | {
+      kind: 'shares'
+      source: 'placeholder' | 'agents' | 'humans'
+      n: number
+      /** Share of players who chose each option (sums to 1). */
+      answerShare: Record<string, number>
+      /** Geometric mean of players' predicted shares, per option (BTS). */
+      predictedShare: Record<string, number>
+    }
+  | {
+      kind: 'mean'
+      source: 'placeholder' | 'agents' | 'humans'
+      n: number
+      /** Mean slider answer. */
+      mean: number
+    }
+
 export interface Item {
+  crowd?: CrowdStats
   id: string
   domain: string
   intensity: 1 | 2 | 3
@@ -92,6 +116,10 @@ export interface ConfirmRecord {
   msOnPrompt: number
 }
 
+export type CrowdPrediction =
+  | { kind: 'shares'; shares: Record<string, number> }
+  | { kind: 'mean'; mean: number }
+
 export interface ResponseRecord {
   playerId: string
   sessionId: string
@@ -104,6 +132,8 @@ export interface ResponseRecord {
   /** Option keys in the order shown (choice/binary). */
   optionOrder: string[] | null
   confirm: ConfirmRecord
+  /** The player's guess of how others answered. Null for text items. */
+  prediction: CrowdPrediction | null
   /** Present only when the player opted in to uncertainty tracking. */
   signals: UncertaintySignals | null
   presentedAt: string
