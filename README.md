@@ -15,7 +15,7 @@ Spec*. Changes to it are logged in [`docs/decisions/`](docs/decisions/).
 | --- | --- |
 | `game/` | The playable game: Vite + React + TypeScript, static |
 | `server/` | API and Postgres schema: consent, answers, daily set, crowd stats, export/delete ([README](server/README.md)) |
-| `items/` | The question bank (`seed.json`), shared by the game and the agent harness |
+| `items/` | The question bank (`seed.json`), shared by the game and the agent harness, and the validated scales (`scales/`) |
 | `docs/decisions/` | Design decisions and why they were made |
 
 Still to come, per the spec: `agents/` (persona specs), `harness/` (LLM
