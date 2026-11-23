@@ -18,6 +18,8 @@ LETTERS = "ABCD"
 CHOICE_SUFFIX = "Answer with a single letter."
 CHOICE_STRICT = "Reply with exactly one letter ({letters}) and nothing else. Do not explain."
 SLIDER_SUFFIX = "Answer with a single whole number from 0 to 100."
+LIKERT_SUFFIX = "Answer with a single number from {lo} to {hi}."
+LIKERT_STRICT = "Reply with exactly one whole number between {lo} and {hi} and nothing else. Do not explain."
 SLIDER_STRICT = "Reply with exactly one whole number between 0 and 100 and nothing else. Do not explain."
 
 
@@ -27,7 +29,7 @@ def stable_seed(*parts: str) -> int:
 
 def playable(item: dict) -> bool:
     """Items the harness can score: keyed choice, binary and slider items (not free text)."""
-    return item["answer"]["type"] in ("choice", "binary", "slider")
+    return item["answer"]["type"] in ("choice", "binary", "slider", "likert")
 
 
 def option_order(item: dict, persona_id: str) -> list[str] | None:
@@ -55,6 +57,11 @@ def render(item: dict, order: list[str] | None, strict: bool = False) -> str:
         lines.append(a["prompt"])
         lines.append(f"0 = {a['minLabel']}, 100 = {a['maxLabel']}.")
         lines += ["", SLIDER_STRICT if strict else SLIDER_SUFFIX]
+    elif a["type"] == "likert":
+        lines = [a["instructions"], "", f'"{item["scenario"]}"', ""]
+        lines += [f"{a['min'] + i} = {label}" for i, label in enumerate(a["labels"])]
+        suffix = LIKERT_STRICT if strict else LIKERT_SUFFIX
+        lines += ["", suffix.format(lo=a["min"], hi=a["max"])]
     else:
         raise ValueError(f"{item['id']}: answer type {a['type']} is not played by agents")
     return "\n".join(lines)
@@ -81,4 +88,10 @@ def parse(item: dict, order: list[str] | None, raw: str) -> str | int | None:
             return None
         v = int(m.group(1))
         return v if 0 <= v <= 100 else None
+    if a["type"] == "likert":
+        m = _NUMBER_RE.match(text)
+        if not m:
+            return None
+        v = int(m.group(1))
+        return v if a["min"] <= v <= a["max"] else None
     return None

@@ -108,7 +108,8 @@ def entropy_bits(counts: list[int]) -> float:
     return -sum(c / n * math.log2(c / n) for c in counts if c)
 
 
-def report(rows: list[dict], items_list: list[dict], personas_list: list[dict]) -> str:
+def report(rows: list[dict], items_list: list[dict], personas_list: list[dict],
+           measured: dict[tuple[str, str], dict[str, float]] | None = None) -> str:
     items = {i["id"]: i for i in items_list}
     personas = {p["persona_id"]: p for p in personas_list}
     models = sorted({r["model"] for r in rows})
@@ -183,6 +184,9 @@ def report(rows: list[dict], items_list: list[dict], personas_list: list[dict]) 
         w(f"| {t} | {n} | " + " | ".join(cells) + " |")
     w("")
 
+    if measured:
+        _measured_section(w, rows, items, personas, models, measured)
+
     # Per item
     w("## Per item\n")
     w("Entropy in bits (maximum 2 for four options, 1 for two). Top share above 70% means the spec would drop the item. "
@@ -233,14 +237,50 @@ def report(rows: list[dict], items_list: list[dict], personas_list: list[dict]) 
     return "\n".join(L)
 
 
+def _measured_section(w, rows, items, personas, models, measured) -> None:
+    """Per-trait tracking against measured questionnaire scores instead of targets."""
+    traits = [t for t in TRAITS if any(t in v for v in measured.values())]
+    w("### Against measured questionnaire scores\n")
+    w("The same per-trait correlations, with each agent's label taken from its own questionnaire answers "
+      "(z-scored within each model) instead of the target it was written with. This is how the spec labels agents. "
+      "Only traits covered by the scales run so far appear.\n")
+    w("| Trait | " + " | ".join(f"{m} r vs targets | {m} r vs measured" for m in models) + " |")
+    w("| --- | " + " | ".join("--- | ---" for _ in models) + " |")
+    per_target = {m: trait_correlations([r for r in rows if r["model"] == m], items, personas) for m in models}
+    per_measured = {}
+    for m in models:
+        labelled = {}
+        for pid, p in personas.items():
+            lab = dict(p["target_traits"])
+            lab.update(measured.get((m, pid), {}))
+            labelled[pid] = {**p, "target_traits": lab}
+        per_measured[m] = trait_correlations([r for r in rows if r["model"] == m], items, labelled)
+    for t in traits:
+        cells = []
+        for m in models:
+            a, b = per_target[m].get(t, []), per_measured[m].get(t, [])
+            cells.append(f"{np.mean(a):+.2f} | {np.mean(b):+.2f}" if a and b else "n/a | n/a")
+        w(f"| {t} | " + " | ".join(cells) + " |")
+    w("")
+
+
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--run", type=Path, required=True)
     p.add_argument("--personas", type=Path, required=True)
     p.add_argument("--items", type=Path, required=True)
+    p.add_argument("--scales-run", type=Path, help="run with questionnaire answers, for measured labels")
+    p.add_argument("--scales", type=Path, nargs="*", default=[], help="questionnaire files used in --scales-run")
     args = p.parse_args(argv)
     rows = [json.loads(line) for line in (args.run / "answers.jsonl").read_text().splitlines() if line.strip()]
-    print(report(rows, json.loads(args.items.read_text()), json.loads(args.personas.read_text())))
+    measured = None
+    if args.scales_run:
+        from .scales import load_scale, score, standardise
+
+        scale_items = [i for s in args.scales for i in load_scale(s)]
+        srows = [json.loads(line) for line in (args.scales_run / "answers.jsonl").read_text().splitlines() if line.strip()]
+        measured = standardise(score(srows, scale_items))
+    print(report(rows, json.loads(args.items.read_text()), json.loads(args.personas.read_text()), measured))
 
 
 if __name__ == "__main__":

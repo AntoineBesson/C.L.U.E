@@ -103,7 +103,7 @@ def answer_one(backend: Backend, cache: Cache, persona: dict, item: dict) -> dic
         "order": order,
         "chosen_key": value if isinstance(value, str) else None,
         "chosen_position": order.index(value) if isinstance(value, str) and order else None,
-        "value": value if isinstance(value, int) else None,
+        "value": value if isinstance(value, int) and not isinstance(value, bool) else None,
         "probs": probs,
         "sampling": reply.get("sampling", "sample"),
         "invalid": value is None,
@@ -149,14 +149,18 @@ def run(personas: list[dict], items: list[dict], backend_specs: list[str], out: 
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--personas", type=Path, required=True)
-    p.add_argument("--items", type=Path, required=True)
+    p.add_argument("--items", type=Path, help="question bank (items/seed.json)")
+    p.add_argument("--scales", type=Path, nargs="*", default=[], help="questionnaire files (items/scales/*.json)")
     p.add_argument("--backend", action="append", required=True, help="repeat for several models")
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--workers", type=int, default=8)
     p.add_argument("--limit-personas", type=int)
     args = p.parse_args(argv)
     personas = json.loads(args.personas.read_text())[: args.limit_personas]
-    items = json.loads(args.items.read_text())
+    from .scales import load_scale
+
+    items = json.loads(args.items.read_text()) if args.items else []
+    items += [i for path in args.scales for i in load_scale(path)]
     run(personas, items, args.backend, args.out, args.workers)
 
 

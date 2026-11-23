@@ -96,3 +96,23 @@ def test_mock_run_tracks_traits_and_shuffle_does_not(tmp_path):
         noise.append(r)
     assert abs(np.mean([a for *_, a in alignment_rows(noise, items, personas)])) < 0.15
     assert (tmp_path / "answers.jsonl").exists()
+
+
+def test_scale_items_render_and_score(tmp_path):
+    from clue_harness.scales import load_scale, score, standardise
+
+    scale_items = [i for f in ("mfq2", "ous") for i in load_scale(ROOT / "items" / "scales" / f"{f}.json")]
+    assert len(scale_items) == 45 and all(i["trait"] in TRAITS for i in scale_items)
+    item = scale_items[0]
+    text = prompts.render(item, None)
+    assert item["scenario"] in text and "1 = " in text and "5 = " in text
+    assert prompts.parse(item, None, "4") == 4 and prompts.parse(item, None, "6") is None
+    rows = run(PERSONAS, scale_items, ["mock"], tmp_path, workers=4)
+    scores = score(rows, scale_items)
+    assert len(scores) == 20 and all(len(v) == 8 for v in scores.values())
+    z = standardise(scores)
+    care = [z[("mock", p["persona_id"])]["care"] for p in PERSONAS]
+    assert abs(np.mean(care)) < 1e-9
+    # The mock answers along the targets, so measured scores should track them.
+    target = [p["target_traits"]["care"] for p in PERSONAS]
+    assert np.corrcoef(target, care)[0, 1] > 0.7

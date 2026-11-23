@@ -10,7 +10,7 @@ read them (logprobs). Backends:
 - ``claude-cli:<model>`` Claude through a headless Claude Code (``claude -p``) with
   tools, MCP servers and settings turned off. Handy for development runs where
   Claude Code is already signed in; use the API for bulk runs.
-- ``openrouter:<model>`` Any OpenRouter model (``OPENROUTER_API_KEY``), with top
+- ``openrouter:<model>`` Any OpenRouter model (``OPENROUTER_API_KEY`` or a network secret), with top
   logprobs requested where the provider supports them. Not run yet.
 - ``mock``                A deterministic fake player that picks the option whose
   keyed traits best fit the persona. For tests and for checking the analysis.
@@ -109,7 +109,10 @@ class OpenRouterBackend(Backend):
     def __init__(self, model: str):
         self.name = f"openrouter:{model}"
         self.model = model
-        self.key = os.environ["OPENROUTER_API_KEY"]
+        # The key can come from OPENROUTER_API_KEY, or be added to requests by the
+        # environment's network secret for openrouter.ai, in which case the
+        # harness never sees it.
+        self.key = os.environ.get("OPENROUTER_API_KEY")
 
     def answer(self, system: str, user: str, context: dict) -> Reply:
         body = {
@@ -124,7 +127,7 @@ class OpenRouterBackend(Backend):
         req = urllib.request.Request(
             self.URL,
             data=json.dumps(body).encode(),
-            headers={"Authorization": f"Bearer {self.key}", "Content-Type": "application/json"},
+            headers={"Content-Type": "application/json", **({"Authorization": f"Bearer {self.key}"} if self.key else {})},
         )
         with urllib.request.urlopen(req, timeout=120) as r:
             data = json.load(r)
@@ -153,6 +156,11 @@ class MockBackend(Backend):
         item, order, traits = context["item"], context["order"], context["persona"]["target_traits"]
         rng = random.Random(f"{context['persona']['persona_id']}|{item['id']}")
         a = item["answer"]
+        if a["type"] == "likert":
+            z = traits.get(context["item"]["trait"], 0) * (-1 if context["item"]["reversed"] else 1)
+            mid = (a["min"] + a["max"]) / 2
+            v = round(mid + z * (a["max"] - a["min"]) / 4 + rng.gauss(0, 0.5))
+            return Reply(text=str(max(a["min"], min(a["max"], v))))
         if a["type"] == "slider":
             score = sum(w * traits.get(t, 0) for t, w in a["keyed"].items())
             return Reply(text=str(max(0, min(100, round(50 + 20 * score + rng.gauss(0, 10))))))
