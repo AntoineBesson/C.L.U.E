@@ -31,14 +31,23 @@ class BudgetExhausted(Exception):
 
 
 class Budget:
-    """Caps new (uncached) backend calls, e.g. to fit a free tier's daily quota."""
+    """Caps new (uncached) backend calls, e.g. to fit a free tier's daily quota,
+    and spaces them to stay under a requests-per-minute limit."""
 
-    def __init__(self, max_calls: int | None):
+    def __init__(self, max_calls: int | None, rpm: float | None = None):
         self.left = max_calls
         self.lock = threading.Lock()
         self.stopped = False
+        self.interval = 60.0 / rpm if rpm else 0.0
+        self.next_at = 0.0
 
     def take(self) -> None:
+        if self.interval:
+            with self.lock:
+                now = time.monotonic()
+                wait = max(0.0, self.next_at - now)
+                self.next_at = max(now, self.next_at) + self.interval
+            time.sleep(wait)
         with self.lock:
             if self.stopped:
                 raise BudgetExhausted("stopped")
@@ -99,6 +108,10 @@ def _call(backend: Backend, cache: Cache, system: str, user: str, context: dict,
             break
         except Exception as e:  # network, rate limits, CLI hiccups
             if _is_rate_limit(e) and budget:
+                # Per-minute and upstream limits clear quickly; a daily cap does not.
+                if attempt < retries - 1:
+                    time.sleep(30 * (attempt + 1))
+                    continue
                 budget.stop()
                 raise BudgetExhausted(f"provider limit: {e}") from e
             if attempt == retries - 1:
@@ -128,7 +141,9 @@ def answer_one(backend: Backend, cache: Cache, persona: dict, item: dict, budget
             break
     probs = None
     if reply.get("probs") and order:
-        probs = {order[prompts.LETTERS.index(L)]: p for L, p in reply["probs"].items() if prompts.LETTERS.index(L) < len(order)}
+        shown = {order[prompts.LETTERS.index(L)]: p for L, p in reply["probs"].items() if prompts.LETTERS.index(L) < len(order)}
+        total = sum(shown.values())
+        probs = {k: v / total for k, v in shown.items()} if total > 0 else None
     return {
         "agent_id": f"{persona['persona_id']}@{backend.name}",
         "persona_id": persona["persona_id"],
@@ -151,7 +166,7 @@ def answer_one(backend: Backend, cache: Cache, persona: dict, item: dict, budget
 
 
 def run(personas: list[dict], items: list[dict], backend_specs: list[str], out: Path, workers: int = 8,
-        max_calls: int | None = None) -> list[dict]:
+        max_calls: int | None = None, rpm: float | None = None) -> list[dict]:
     """Answer every (persona, item) on every backend. With max_calls, stop after that many
     new calls per backend; cached answers are free, so rerunning resumes the run."""
     out.mkdir(parents=True, exist_ok=True)
@@ -160,7 +175,7 @@ def run(personas: list[dict], items: list[dict], backend_specs: list[str], out: 
     rows: list[dict] = []
     for spec in backend_specs:
         backend = make_backend(spec)
-        budget = Budget(max_calls)
+        budget = Budget(max_calls, rpm)
         jobs = [(p, i) for p in personas for i in items]
         done = skipped = 0
         with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -204,6 +219,7 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--persona-ids", nargs="*", help="only these personas")
     p.add_argument("--item-ids", nargs="*", help="only these items")
     p.add_argument("--max-calls", type=int, help="stop after this many new calls per backend (free tiers)")
+    p.add_argument("--rpm", type=float, help="space calls to stay under this many requests per minute")
     args = p.parse_args(argv)
     personas = json.loads(args.personas.read_text())[: args.limit_personas]
     from .scales import load_scale
@@ -214,7 +230,7 @@ def main(argv: list[str] | None = None) -> None:
         personas = [p for p in personas if p["persona_id"] in args.persona_ids]
     if args.item_ids:
         items = [i for i in items if i["id"] in args.item_ids]
-    run(personas, items, args.backend, args.out, args.workers, args.max_calls)
+    run(personas, items, args.backend, args.out, args.workers, args.max_calls, args.rpm)
 
 
 if __name__ == "__main__":

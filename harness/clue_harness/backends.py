@@ -23,6 +23,8 @@ import math
 import os
 import random
 import subprocess
+import threading
+import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
@@ -114,33 +116,75 @@ class OpenRouterBackend(Backend):
         # harness never sees it.
         self.key = os.environ.get("OPENROUTER_API_KEY")
 
+        # Reasoning off where the model allows it; some models (e.g. Mistral
+        # Large 4) refuse that, and then get the lowest effort with the
+        # reasoning text left out of the reply.
+        self.reasoning: dict = {"enabled": False}
+        self.max_tokens = 8
+        self.logprobs = True
+        self.lock = threading.Lock()
+
+    def _post(self, body: dict) -> dict:
+        req = urllib.request.Request(
+            self.URL,
+            data=json.dumps(body).encode(),
+            headers={
+                "Content-Type": "application/json",
+                "User-Agent": "clue-harness/0.1",
+                **({"Authorization": f"Bearer {self.key}"} if self.key else {}),
+            },
+        )
+        with urllib.request.urlopen(req, timeout=180) as r:
+            return json.load(r)
+
     def answer(self, system: str, user: str, context: dict) -> Reply:
         body = {
             "model": self.model,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
-            "max_tokens": 8,
             "temperature": 1,
-            "logprobs": True,
-            "top_logprobs": 10,
-            "reasoning": {"enabled": False},
         }
-        req = urllib.request.Request(
-            self.URL,
-            data=json.dumps(body).encode(),
-            headers={"Content-Type": "application/json", **({"Authorization": f"Bearer {self.key}"} if self.key else {})},
-        )
-        with urllib.request.urlopen(req, timeout=120) as r:
-            data = json.load(r)
+        # Learn what the model refuses (logprobs, reasoning off) on the first
+        # call, then keep those settings for the rest of the run.
+        for _ in range(4):
+            sent_logprobs, sent_reasoning = self.logprobs, self.reasoning
+            extra = {"max_tokens": self.max_tokens, "reasoning": sent_reasoning}
+            if sent_logprobs:
+                # Route only to providers that return logprobs.
+                extra.update(logprobs=True, top_logprobs=10, provider={"require_parameters": True})
+            try:
+                data = self._post({**body, **extra})
+                break
+            except urllib.error.HTTPError as e:
+                detail = e.read().decode(errors="replace")
+                with self.lock:
+                    if (sent_logprobs, sent_reasoning) != (self.logprobs, self.reasoning):
+                        continue  # another thread already adapted the settings
+                    if sent_logprobs and (
+                        (e.code == 400 and "logprobs" in detail.lower())
+                        or (e.code == 404 and "no endpoints found" in detail.lower())
+                    ):
+                        self.logprobs = False
+                        continue
+                    if e.code == 400 and "reasoning" in detail and sent_reasoning.get("enabled") is False:
+                        self.reasoning, self.max_tokens = {"effort": "low", "exclude": True}, 2048
+                        continue
+                e.msg = f"{e.msg}: {detail[:300]}"
+                raise
+        else:
+            raise RuntimeError(f"{self.name}: request kept being refused")
         choice = data["choices"][0]
         text = choice["message"].get("content") or ""
         probs = None
         lp = (choice.get("logprobs") or {}).get("content") or []
-        if lp:
-            first = {t["token"].strip(): math.exp(t["logprob"]) for t in lp[0].get("top_logprobs", [])}
-            letters = {k: v for k, v in first.items() if k in ("A", "B", "C", "D")}
-            if letters:
-                s = sum(letters.values())
-                probs = {k: v / s for k, v in letters.items()}
+        if lp and self.reasoning.get("enabled") is False:
+            # First content token's top alternatives; the runner keeps only the
+            # letters actually shown and renormalises.
+            first: dict[str, float] = {}
+            for t in lp[0].get("top_logprobs", []):
+                tok = t["token"].strip()
+                if tok in ("A", "B", "C", "D"):
+                    first[tok] = first.get(tok, 0.0) + math.exp(t["logprob"])
+            probs = first or None
         return Reply(text=text, probs=probs, usage=data.get("usage", {}), sampling="logprobs" if probs else "sample")
 
 
