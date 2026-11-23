@@ -6,3 +6,4 @@ dist/
 # Never commit collected player data
 data/raw/
 *.parquet
+!.env.example

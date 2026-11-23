@@ -13,7 +13,8 @@ Spec*. Changes to it are logged in [`docs/decisions/`](docs/decisions/).
 
 | Path | What |
 | --- | --- |
-| `game/` | The playable prototype: Vite + React + TypeScript, static, no backend yet |
+| `game/` | The playable game: Vite + React + TypeScript, static |
+| `server/` | API and Postgres schema: consent, answers, daily set, crowd stats, export/delete ([README](server/README.md)) |
 | `items/` | The question bank (`seed.json`), shared by the game and the agent harness |
 | `docs/decisions/` | Design decisions and why they were made |
 
@@ -75,9 +76,11 @@ mouse coordinates are never stored. See
 [decision 0001](docs/decisions/0001-uncertainty-tracking.md) for why, and what
 would change it.
 
-In this prototype all data stays in the player's browser (`localStorage`),
-with **Export my data** and **Delete my data** on the end screen. Nothing
-should be sent to a server before the DPIA and the ethics review are done.
+By default all data stays in the player's browser (`localStorage`), with
+**Export my data** and **Delete my data** on the end screen. When the game is
+built with `VITE_API_URL`, it also sends consent, answers and deletions to the
+server, which accepts them only when `COLLECTION_ENABLED=true`. Keep that off
+until the DPIA and the ethics review are done.
 
 ## Response record
 
