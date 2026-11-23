@@ -3,6 +3,12 @@ import { CONFIG } from '../config'
 import { shuffle } from '../items'
 import { SignalRecorder } from '../tracking/SignalRecorder'
 import type { AnswerValue, ChoiceOption, Item, ResponseRecord } from '../types'
+import { Mascot } from '../ui/Mascot'
+import { sfx } from '../ui/sound'
+
+const DOMAIN_LABELS: Record<string, string> = {
+  work: 'Work', money: 'Money', friends: 'Friends', family: 'Family', online: 'Online', sacrificial: 'Tough call',
+}
 
 interface Props {
   item: Item
@@ -33,6 +39,10 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
   const promptMs = useRef(0)
   const promptOpenedAt = useRef(0)
   const cardRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    sfx.whoosh()
+  }, [])
 
   useEffect(() => {
     if (!rec) return
@@ -72,8 +82,10 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
     // Ask once per card: after "Let me think again", the next Validate is final.
     if (askConfirm && reconsidered.current === 0) {
       promptOpenedAt.current = performance.now()
+      sfx.hmm()
       setPhase('confirming')
     } else {
+      sfx.lock()
       finish(value)
     }
   }
@@ -85,7 +97,7 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
   return (
     <div
       ref={cardRef}
-      className="panel card"
+      className={phase === 'confirming' ? 'panel card is-confirming' : 'panel card'}
       onPointerMove={
         rec
           ? (e) => {
@@ -95,22 +107,35 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
           : undefined
       }
     >
+      <div className="card-tags">
+        <span className={`chip domain-${item.domain}`}>{DOMAIN_LABELS[item.domain] ?? item.domain}</span>
+        <span className="chip heat" aria-label={`Intensity ${item.intensity} of 3`}>
+          {[1, 2, 3].map((n) => (
+            <i key={n} className={n <= item.intensity ? 'on' : ''} />
+          ))}
+        </span>
+      </div>
       <p className="scenario">{item.scenario}</p>
 
       {options && (
         <div className={spec.type === 'binary' ? 'options binary' : 'options'}>
-          {options.map((o) => (
+          {options.map((o, i) => (
             <button
               key={o.key}
-              className={value === o.key ? 'option selected' : 'option'}
+              className={value === o.key ? `option c${i} selected` : `option c${i}`}
+              style={{ '--i': i } as React.CSSProperties}
               disabled={phase !== 'answering'}
               onPointerEnter={() => rec?.hoverOption(o.key)}
               onClick={() => {
                 rec?.selectOption(o.key, typeof value === 'string' ? value : null)
+                if (value !== o.key) sfx.pop()
                 setValue(o.key)
               }}
             >
-              {o.text}
+              <span className="badge" aria-hidden="true">
+                {String.fromCharCode(65 + i)}
+              </span>
+              <span className="option-text">{o.text}</span>
             </button>
           ))}
         </div>
@@ -119,6 +144,11 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
       {spec.type === 'slider' && (
         <div className="slider">
           <p className="prompt">{spec.prompt}</p>
+          <div className="slider-bubble" aria-hidden="true">
+            <span style={{ left: `${typeof value === 'number' ? value : 50}%` }} className={value === null ? 'unset' : ''}>
+              {value === null ? '?' : value}
+            </span>
+          </div>
           <input
             type="range"
             min={0}
@@ -127,8 +157,10 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
             value={typeof value === 'number' ? value : 50}
             disabled={phase !== 'answering'}
             aria-label={spec.prompt}
+            style={{ '--pct': `${typeof value === 'number' ? value : 50}%` } as React.CSSProperties}
             onChange={(e) => {
               const v = Number(e.target.value)
+              if (v % 10 === 0) sfx.tick()
               rec?.sliderInput(v)
               setValue(v)
             }}
@@ -168,23 +200,28 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
               setValue(e.target.value)
             }}
           />
+          <p className="counter" aria-hidden="true">
+            {typeof value === 'string' ? value.length : 0}/{spec.maxLength}
+          </p>
           <p className="hint">Please don&rsquo;t write names or anything that could identify you or someone else.</p>
         </div>
       )}
 
       {phase === 'answering' && (
-        <button className="primary" disabled={!canValidate} onClick={validate}>
+        <button className="primary big" disabled={!canValidate} onClick={validate}>
           Validate
         </button>
       )}
 
       {phase === 'confirming' && value !== null && (
         <div className="confirm" role="alertdialog" aria-label="Are you sure?">
+          <Mascot mood="unsure" size={72} />
           <p>Are you sure?</p>
           <div className="confirm-actions">
             <button
               onClick={() => {
                 closePrompt()
+                sfx.back()
                 reconsidered.current++
                 setPhase('answering')
               }}
@@ -195,6 +232,7 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
               className="primary"
               onClick={() => {
                 closePrompt()
+                sfx.lock()
                 finish(value)
               }}
             >

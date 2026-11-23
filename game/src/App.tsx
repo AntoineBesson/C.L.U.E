@@ -4,6 +4,8 @@ import { ConsentScreen } from './components/ConsentScreen'
 import { EndScreen } from './components/EndScreen'
 import { CONFIG } from './config'
 import { pickSession } from './items'
+import { Backdrop } from './ui/Backdrop'
+import { Progress, TopBar } from './ui/TopBar'
 import { getConsent, getPlayerId, randomId, saveConsent, saveResponse } from './storage'
 import type { Consent, Item, ResponseRecord } from './types'
 
@@ -23,23 +25,37 @@ function validConsent(): Consent | null {
 }
 
 export default function App() {
+  return (
+    <>
+      <Backdrop />
+      <Game />
+    </>
+  )
+}
+
+function Game() {
   const [consent, setConsent] = useState<Consent | null>(validConsent)
   const [session, setSession] = useState<Session>(newSession)
 
   if (!consent) {
     return (
+      <>
+      <TopBar />
       <ConsentScreen
         onAccept={(c) => {
           saveConsent(c)
           setConsent(c)
         }}
       />
+      </>
     )
   }
 
   const index = session.responses.length
   if (index >= session.items.length) {
     return (
+      <>
+      <TopBar />
       <EndScreen
         responses={session.responses}
         tracking={consent.uncertaintyTracking}
@@ -49,15 +65,17 @@ export default function App() {
           setSession(newSession())
         }}
       />
+      </>
     )
   }
 
   const item = session.items[index]
   return (
+    <>
+    <TopBar>
+      <Progress index={index} total={session.items.length} />
+    </TopBar>
     <main>
-      <p className="progress">
-        Card {index + 1} of {session.items.length}
-      </p>
       <Card
         key={`${session.id}-${item.id}`}
         item={item}
@@ -70,5 +88,6 @@ export default function App() {
         }}
       />
     </main>
+    </>
   )
 }

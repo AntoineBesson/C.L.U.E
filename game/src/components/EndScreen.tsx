@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { deleteAllData, exportData } from '../storage'
 import type { ResponseRecord } from '../types'
+import { Confetti } from '../ui/Confetti'
+import { Mascot } from '../ui/Mascot'
+import { sfx } from '../ui/sound'
 
 interface Props {
   responses: ResponseRecord[]
@@ -11,6 +14,7 @@ interface Props {
 
 export function EndScreen({ responses, tracking, onPlayAgain, onDeleted }: Props) {
   const [confirmDelete, setConfirmDelete] = useState(false)
+  useEffect(() => sfx.fanfare(), [])
   const prompted = responses.filter((r) => r.confirm.shown)
   const changed = prompted.filter((r) => r.confirm.changedAfterPrompt).length
   const signals = responses.map((r) => r.signals).filter((s) => s !== null)
@@ -30,8 +34,12 @@ export function EndScreen({ responses, tracking, onPlayAgain, onDeleted }: Props
 
   return (
     <main>
-      <div className="panel">
-      <h1>That&rsquo;s today&rsquo;s set</h1>
+      <Confetti />
+      <div className="panel end">
+      <div className="hero">
+        <Mascot mood="happy" size={92} />
+        <h1>That&rsquo;s today&rsquo;s set!</h1>
+      </div>
       <p className="lede">
         You answered {responses.length} dilemmas. The profile reveal will appear here once the models exist.
       </p>

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { CONFIG } from '../config'
 import type { Consent } from '../types'
+import { Mascot } from '../ui/Mascot'
+import { sfx } from '../ui/sound'
 
 export function ConsentScreen({ onAccept }: { onAccept: (c: Consent) => void }) {
   const [adult, setAdult] = useState(false)
@@ -10,7 +12,13 @@ export function ConsentScreen({ onAccept }: { onAccept: (c: Consent) => void }) 
   return (
     <main>
       <div className="panel consent">
-      <h1>C.L.U.E.</h1>
+      <div className="hero">
+        <Mascot mood="curious" size={92} />
+        <div>
+          <h1>Ready to play?</h1>
+          <p className="tagline">Tricky dilemmas. No right answers.</p>
+        </div>
+      </div>
       <p className="lede">
         A short research game about everyday dilemmas. Before you play, here is exactly what it records.
       </p>
@@ -49,7 +57,9 @@ export function ConsentScreen({ onAccept }: { onAccept: (c: Consent) => void }) 
       </label>
 
       <fieldset className="optin">
-        <legend>Optional: hesitation tracking</legend>
+        <legend>
+          <span className="tag">Optional</span> Hesitation tracking
+        </legend>
         <p>
           If you agree, the game also notes <strong>how</strong> you reached each answer, as a few numbers per
           card: how long before your first click, how many times you changed your answer, how many characters you
@@ -65,10 +75,15 @@ export function ConsentScreen({ onAccept }: { onAccept: (c: Consent) => void }) 
         </label>
       </fieldset>
 
+      <p className="optin-status" aria-live="polite">
+        Hesitation tracking: <strong>{tracking ? 'on' : 'off'}</strong>
+      </p>
+
       <button
-        className="primary"
+        className="primary big"
         disabled={!adult || !research}
-        onClick={() =>
+        onClick={() => {
+          sfx.lock()
           onAccept({
             version: CONFIG.consentVersion,
             givenAt: new Date().toISOString(),
@@ -76,7 +91,7 @@ export function ConsentScreen({ onAccept }: { onAccept: (c: Consent) => void }) 
             research: true,
             uncertaintyTracking: tracking,
           })
-        }
+        }}
       >
         Start playing
       </button>
