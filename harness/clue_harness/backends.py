@@ -10,7 +10,7 @@ read them (logprobs). Backends:
 - ``claude-cli:<model>`` Claude through a headless Claude Code (``claude -p``) with
   tools, MCP servers and settings turned off. Handy for development runs where
   Claude Code is already signed in; use the API for bulk runs.
-- ``openrouter:<model>`` Any OpenRouter model (``OPENROUTER_API_KEY``), with top
+- ``openrouter:<model>`` Any OpenRouter model (``OPENROUTER_API_KEY`` or a network secret), with top
   logprobs requested where the provider supports them. Not run yet.
 - ``mock``                A deterministic fake player that picks the option whose
   keyed traits best fit the persona. For tests and for checking the analysis.
@@ -23,6 +23,8 @@ import math
 import os
 import random
 import subprocess
+import threading
+import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
@@ -109,35 +111,80 @@ class OpenRouterBackend(Backend):
     def __init__(self, model: str):
         self.name = f"openrouter:{model}"
         self.model = model
-        self.key = os.environ["OPENROUTER_API_KEY"]
+        # The key can come from OPENROUTER_API_KEY, or be added to requests by the
+        # environment's network secret for openrouter.ai, in which case the
+        # harness never sees it.
+        self.key = os.environ.get("OPENROUTER_API_KEY")
+
+        # Reasoning off where the model allows it; some models (e.g. Mistral
+        # Large 4) refuse that, and then get the lowest effort with the
+        # reasoning text left out of the reply.
+        self.reasoning: dict = {"enabled": False}
+        self.max_tokens = 8
+        self.logprobs = True
+        self.lock = threading.Lock()
+
+    def _post(self, body: dict) -> dict:
+        req = urllib.request.Request(
+            self.URL,
+            data=json.dumps(body).encode(),
+            headers={
+                "Content-Type": "application/json",
+                "User-Agent": "clue-harness/0.1",
+                **({"Authorization": f"Bearer {self.key}"} if self.key else {}),
+            },
+        )
+        with urllib.request.urlopen(req, timeout=180) as r:
+            return json.load(r)
 
     def answer(self, system: str, user: str, context: dict) -> Reply:
         body = {
             "model": self.model,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
-            "max_tokens": 8,
             "temperature": 1,
-            "logprobs": True,
-            "top_logprobs": 10,
-            "reasoning": {"enabled": False},
         }
-        req = urllib.request.Request(
-            self.URL,
-            data=json.dumps(body).encode(),
-            headers={"Authorization": f"Bearer {self.key}", "Content-Type": "application/json"},
-        )
-        with urllib.request.urlopen(req, timeout=120) as r:
-            data = json.load(r)
+        # Learn what the model refuses (logprobs, reasoning off) on the first
+        # call, then keep those settings for the rest of the run.
+        for _ in range(4):
+            sent_logprobs, sent_reasoning = self.logprobs, self.reasoning
+            extra = {"max_tokens": self.max_tokens, "reasoning": sent_reasoning}
+            if sent_logprobs:
+                # Route only to providers that return logprobs.
+                extra.update(logprobs=True, top_logprobs=10, provider={"require_parameters": True})
+            try:
+                data = self._post({**body, **extra})
+                break
+            except urllib.error.HTTPError as e:
+                detail = e.read().decode(errors="replace")
+                with self.lock:
+                    if (sent_logprobs, sent_reasoning) != (self.logprobs, self.reasoning):
+                        continue  # another thread already adapted the settings
+                    if sent_logprobs and (
+                        (e.code == 400 and "logprobs" in detail.lower())
+                        or (e.code == 404 and "no endpoints found" in detail.lower())
+                    ):
+                        self.logprobs = False
+                        continue
+                    if e.code == 400 and "reasoning" in detail and sent_reasoning.get("enabled") is False:
+                        self.reasoning, self.max_tokens = {"effort": "low", "exclude": True}, 2048
+                        continue
+                e.msg = f"{e.msg}: {detail[:300]}"
+                raise
+        else:
+            raise RuntimeError(f"{self.name}: request kept being refused")
         choice = data["choices"][0]
         text = choice["message"].get("content") or ""
         probs = None
         lp = (choice.get("logprobs") or {}).get("content") or []
-        if lp:
-            first = {t["token"].strip(): math.exp(t["logprob"]) for t in lp[0].get("top_logprobs", [])}
-            letters = {k: v for k, v in first.items() if k in ("A", "B", "C", "D")}
-            if letters:
-                s = sum(letters.values())
-                probs = {k: v / s for k, v in letters.items()}
+        if lp and self.reasoning.get("enabled") is False:
+            # First content token's top alternatives; the runner keeps only the
+            # letters actually shown and renormalises.
+            first: dict[str, float] = {}
+            for t in lp[0].get("top_logprobs", []):
+                tok = t["token"].strip()
+                if tok in ("A", "B", "C", "D"):
+                    first[tok] = first.get(tok, 0.0) + math.exp(t["logprob"])
+            probs = first or None
         return Reply(text=text, probs=probs, usage=data.get("usage", {}), sampling="logprobs" if probs else "sample")
 
 
@@ -153,6 +200,11 @@ class MockBackend(Backend):
         item, order, traits = context["item"], context["order"], context["persona"]["target_traits"]
         rng = random.Random(f"{context['persona']['persona_id']}|{item['id']}")
         a = item["answer"]
+        if a["type"] == "likert":
+            z = traits.get(context["item"]["trait"], 0) * (-1 if context["item"]["reversed"] else 1)
+            mid = (a["min"] + a["max"]) / 2
+            v = round(mid + z * (a["max"] - a["min"]) / 4 + rng.gauss(0, 0.5))
+            return Reply(text=str(max(a["min"], min(a["max"], v))))
         if a["type"] == "slider":
             score = sum(w * traits.get(t, 0) for t, w in a["keyed"].items())
             return Reply(text=str(max(0, min(100, round(50 + 20 * score + rng.gauss(0, 10))))))
