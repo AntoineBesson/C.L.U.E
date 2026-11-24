@@ -87,7 +87,7 @@ def item_stats(item: dict, rows: list[dict], labels: dict, n_perm: int = 2000, s
             per_model[m] = max(sum(r["chosen_key"] == k for r in mr) for k in keys) / len(mr)
         s["top_share_by_model"] = per_model
         if s["entropy"] <= s["entropy_bar"]:
-            reasons.append(f"entropy {s['entropy']:.2f} <= {s['entropy_bar']:.1f} bits")
+            reasons.append(f"entropy {s['entropy']:.2f} <= {s['entropy_bar']:.2f} bits")
         worst = max(per_model.items(), key=lambda kv: kv[1])
         if s["top_share"] > TOP_SHARE:
             reasons.append(f"top option {s['top_share']:.0%} pooled")
