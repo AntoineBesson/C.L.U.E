@@ -23,6 +23,35 @@ LIKERT_STRICT = "Reply with exactly one whole number between {lo} and {hi} and n
 SLIDER_STRICT = "Reply with exactly one whole number between 0 and 100 and nothing else. Do not explain."
 
 
+GUESS_PROMPT = (
+    "Now guess how other people answered that last question. Out of 100 people, how many "
+    "picked each option? Reply only in the form {example} (the numbers add up to 100)."
+)
+GUESS_STRICT = "Reply with exactly {example} using your own numbers, adding up to 100, and nothing else."
+_EXAMPLES = {2: "A=60, B=40", 3: "A=40, B=35, C=25", 4: "A=40, B=30, C=20, D=10"}
+
+
+def guess_prompt(order: list[str], strict: bool = False) -> str:
+    return (GUESS_STRICT if strict else GUESS_PROMPT).format(example=_EXAMPLES[len(order)])
+
+
+_GUESS_RE = re.compile(r"\b([A-D])\s*[=:]\s*(\d{1,3})(?:\.\d+)?\s*%?")
+
+
+def parse_guess(order: list[str], raw: str) -> dict[str, float] | None:
+    """Map 'A=40, B=30, ...' to option key -> share (normalised). None unless every shown letter has a number."""
+    found: dict[str, float] = {}
+    for letter, n in _GUESS_RE.findall((raw or "").upper()):
+        found.setdefault(letter, float(n))
+    letters = LETTERS[: len(order)]
+    if set(found) != set(letters):
+        return None
+    total = sum(found.values())
+    if total <= 0:
+        return None
+    return {order[LETTERS.index(L)]: found[L] / total for L in letters}
+
+
 def stable_seed(*parts: str) -> int:
     return int.from_bytes(hashlib.sha256("|".join(parts).encode()).digest()[:8], "big")
 
