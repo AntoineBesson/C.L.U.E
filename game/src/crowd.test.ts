@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fingerprint, SIMULATED, simulatedFor, withSimulatedCrowd } from './crowd'
+import { fingerprint, SIMULATED, simulatedFor, withSimulatedCrowd, type SimulatedEntry } from './crowd'
 import { DRAFTS, ITEMS, mergeServerSet, pickSession } from './items'
 import { addEntry, placeOf, sanitiseName, scoreSet, type LeaderboardEntry } from './leaderboard'
 import type { Item, ResponseRecord } from './types'
@@ -32,10 +32,17 @@ describe('simulated crowd', () => {
     }
   })
 
-  it('has no truth-bonus predictions for agents', () => {
-    for (const e of Object.values(SIMULATED.items)) {
-      if (e.crowd.kind === 'shares') expect(e.crowd.predictedShare).toBeUndefined()
+  it('has truth-bonus predictions only where agents guessed the crowd', () => {
+    let withGuesses = 0
+    for (const e of Object.values(SIMULATED.items) as (SimulatedEntry & { guesses?: number })[]) {
+      if (e.crowd.kind !== 'shares') continue
+      if (e.crowd.predictedShare) {
+        withGuesses++
+        expect(e.guesses).toBeGreaterThan(0)
+        expect(Object.keys(e.crowd.predictedShare).sort()).toEqual(Object.keys(e.crowd.answerShare).sort())
+      } else expect(e.guesses).toBeUndefined()
     }
+    expect(withGuesses).toBeGreaterThan(0)
   })
 })
 

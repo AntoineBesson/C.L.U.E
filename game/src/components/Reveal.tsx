@@ -19,7 +19,8 @@ export function Reveal({ item, response, onNext, last, hot = 0 }: {
   const score = scoreCard(item, response)
   const crowd = item.crowd
   const a = item.answer
-  const pts = score ? score.prediction + score.bonus : 0
+  const pts = score ? score.prediction : 0
+  const bonus = score?.bonus ?? 0
   useEffect(() => {
     if (pts >= 75) sfx.fanfare()
     else sfx.lock()
@@ -43,6 +44,11 @@ export function Reveal({ item, response, onNext, last, hot = 0 }: {
         </div>
       </div>
       {note && <p className="insight">{note}</p>}
+      {bonus > 0 && (
+        <p className="bonus-chip">
+          +{bonus} truth bonus: your answer was more common than the crowd itself expected.
+        </p>
+      )}
       {hot >= 2 && (
         <p className="hot" role="status">
           🔥 {hot} great reads in a row{hot >= 4 ? '. Unstoppable!' : '!'}
@@ -98,7 +104,7 @@ export function Reveal({ item, response, onNext, last, hot = 0 }: {
       {score.sameAsYou !== null && (
         <p className="hint">
           {Math.round(score.sameAsYou * 100)}% answered like you.
-          {score.bonus > 0 && <> Your answer was more common than predicted: +{score.bonus} truth bonus.</>}
+
         </p>
       )}
       <button className="primary big" onClick={onNext} autoFocus>

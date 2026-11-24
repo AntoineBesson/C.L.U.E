@@ -13,6 +13,13 @@
    "commit": "972140b",
    "items": 47,
    "agents": 100
+  },
+  {
+   "run": "sets-pilot",
+   "commit": "2fa28a9",
+   "items": 25,
+   "guesses": true,
+   "agents": 50
   }
  ],
  "items": {
@@ -32,9 +39,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.1394,
+     "B": 0.339,
+     "C": 0.1067,
+     "D": 0.3647
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0002": {
    "fingerprint": "aa04d39f",
@@ -50,9 +65,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.7369,
+     "B": 0.2381
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0003": {
    "fingerprint": "b819f0a3",
@@ -85,9 +106,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2246,
+     "B": 0.3945,
+     "C": 0.1491,
+     "D": 0.1664
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0005": {
    "fingerprint": "72371f7d",
@@ -103,9 +132,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.72,
+     "B": 0.2638
+    }
    },
-   "gate": false
+   "gate": false,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0007": {
    "fingerprint": "74e98f0a",
@@ -123,9 +158,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2599,
+     "B": 0.4065,
+     "C": 0.2254,
+     "D": 0.0561
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0008": {
    "fingerprint": "fd956416",
@@ -143,9 +186,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.4003,
+     "B": 0.2861,
+     "C": 0.1552,
+     "D": 0.1012
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0009": {
    "fingerprint": "969863a9",
@@ -163,9 +214,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2028,
+     "B": 0.1944,
+     "C": 0.2393,
+     "D": 0.281
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0010": {
    "fingerprint": "ee3b5a8d",
@@ -198,9 +257,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.1573,
+     "B": 0.1464,
+     "C": 0.31,
+     "D": 0.3015
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0012": {
    "fingerprint": "ce541aab",
@@ -218,9 +285,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2765,
+     "B": 0.2096,
+     "C": 0.1121,
+     "D": 0.3235
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0013": {
    "fingerprint": "36b3738d",
@@ -236,9 +311,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.5368,
+     "B": 0.4383
+    }
    },
-   "gate": false
+   "gate": false,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0014": {
    "fingerprint": "9a66fda3",
@@ -256,9 +337,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2024,
+     "B": 0.2107,
+     "C": 0.155,
+     "D": 0.3155
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0015": {
    "fingerprint": "7fb5f603",
@@ -274,9 +363,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3019,
+     "B": 0.6507
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0016": {
    "fingerprint": "1ac9c9cc",
@@ -294,9 +389,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2965,
+     "B": 0.3202,
+     "C": 0.1997,
+     "D": 0.1239
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0017": {
    "fingerprint": "71047167",
@@ -329,9 +432,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2413,
+     "B": 0.1861,
+     "C": 0.2105,
+     "D": 0.2709
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0019": {
    "fingerprint": "7bec8415",
@@ -349,9 +460,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.4308,
+     "B": 0.2093,
+     "C": 0.2301,
+     "D": 0.0755
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0020": {
    "fingerprint": "9fcf6812",
@@ -367,9 +486,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.4267,
+     "B": 0.4964
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0021": {
    "fingerprint": "301748d8",
@@ -387,9 +512,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.424,
+     "B": 0.0996,
+     "C": 0.2484,
+     "D": 0.1758
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0022": {
    "fingerprint": "c0ee7d33",
@@ -407,9 +540,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3116,
+     "B": 0.2261,
+     "C": 0.1851,
+     "D": 0.1812
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0023": {
    "fingerprint": "dc5725ff",
@@ -442,9 +583,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2908,
+     "B": 0.242,
+     "C": 0.1109,
+     "D": 0.2633
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0025": {
    "fingerprint": "c7271b04",
@@ -460,9 +609,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.5717,
+     "B": 0.3303
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0026": {
    "fingerprint": "5bffb166",
@@ -480,9 +635,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.349,
+     "B": 0.397,
+     "C": 0.1016,
+     "D": 0.1007
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0027": {
    "fingerprint": "2ac58a1b",
@@ -500,9 +663,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.4218,
+     "B": 0.2175,
+     "C": 0.0899,
+     "D": 0.1816
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0028": {
    "fingerprint": "0cabe29c",
@@ -535,9 +706,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.1879,
+     "B": 0.3562,
+     "C": 0.1337,
+     "D": 0.2395
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0030": {
    "fingerprint": "b8319cc2",
@@ -555,9 +734,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3954,
+     "B": 0.1508,
+     "C": 0.2795,
+     "D": 0.1102
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0031": {
    "fingerprint": "8ba9f85e",
@@ -575,9 +762,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3902,
+     "B": 0.3362,
+     "C": 0.1355,
+     "D": 0.0915
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0032": {
    "fingerprint": "461a2c7f",

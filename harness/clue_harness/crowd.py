@@ -2,6 +2,7 @@
 
     python -m clue_harness.crowd \\
         --run ../runs/phase1-prerun@bb974b5 --run ../runs/phase1-batch01@972140b \\
+        --guesses ../runs/sets-pilot@2fa28a9 \\
         --items ../items/seed.json ../items/drafts/batch-01.json \\
         > ../items/crowd/simulated.json
 
@@ -16,20 +17,26 @@ replace earlier ones for the same item. The run's ``gate.json``, when present,
 says whether the item passed the Phase 1 gate; the game only plays draft items
 that passed.
 
-Agents did not guess the crowd, so there is no ``predictedShare``: the game's
-truth bonus stays off until human guesses exist.
+``--guesses`` runs (same ``dir@commit`` form) are runs where agents also
+guessed how others split (``clue_harness.sets``). They add ``predictedShare``,
+the geometric mean of the agents' guesses per option (as the server computes
+it for players), to items whose text still matches. That turns the game's
+truth bonus back on. They do not replace the answer shares, which come from
+the larger isolated runs.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import math
 import subprocess
 import sys
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 
+EPS = 0.01  # as the game and server: a guess of 0 counts as 1%
 FNV_OFFSET = 0x811C9DC5
 FNV_PRIME = 0x01000193
 
@@ -109,7 +116,24 @@ def split(item: dict, rows: list[dict]) -> dict | None:
     return None
 
 
-def build(runs: list[tuple[Path, str | None]], item_files: list[Path]) -> dict:
+def predicted(item: dict, rows: list[dict]) -> tuple[dict[str, float], int] | None:
+    """Geometric mean of the agents' guessed shares per option, and how many guesses."""
+    a = item["answer"]
+    if a["type"] not in ("choice", "binary"):
+        return None
+    keys = [o["key"] for o in a["options"]]
+    guesses = [r["guess"] for r in rows if isinstance(r.get("guess"), dict) and not r.get("guess_invalid")]
+    if not guesses:
+        return None
+    out = {}
+    for k in keys:
+        logs = [math.log(max(float(g.get(k, 0)), EPS)) for g in guesses]
+        out[k] = round(math.exp(sum(logs) / len(logs)), 4)
+    return out, len(guesses)
+
+
+def build(runs: list[tuple[Path, str | None]], item_files: list[Path],
+          guess_runs: list[tuple[Path, str | None]] = ()) -> dict:
     out: dict[str, dict] = {}
     used = []
     for run, ref in runs:
@@ -134,6 +158,24 @@ def build(runs: list[tuple[Path, str | None]], item_files: list[Path]) -> dict:
             n_items += 1
         used.append({"run": run.name, "commit": ref, "items": n_items,
                      "agents": len({r["agent_id"] for r in load_answers(run)})})
+    for run, ref in guess_runs:
+        items = items_at(ref, item_files)
+        by_item = defaultdict(list)
+        for r in load_answers(run):
+            by_item[r["item_id"]].append(r)
+        n_items = 0
+        for iid, rows in by_item.items():
+            item, entry = items.get(iid), out.get(iid)
+            if item is None or entry is None or entry["fingerprint"] != fingerprint(item):
+                continue  # no answer split, or the guesses were about another wording
+            got = predicted(item, rows)
+            if got is None or entry["crowd"]["kind"] != "shares":
+                continue
+            entry["crowd"]["predictedShare"], entry["guesses"] = got
+            entry["guessRun"] = run.name
+            n_items += 1
+        used.append({"run": run.name, "commit": ref, "items": n_items, "guesses": True,
+                     "agents": len({r["agent_id"] for r in load_answers(run)})})
     return {
         "generated": date.today().isoformat(),
         "note": "Simulated crowd: AI players (personas x models), not real people.",
@@ -145,13 +187,16 @@ def build(runs: list[tuple[Path, str | None]], item_files: list[Path]) -> dict:
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--run", action="append", required=True, help="run dir, optionally @<git commit> it ran at")
+    ap.add_argument("--guesses", action="append", default=[], help="run dir with crowd guesses, optionally @<commit>")
     ap.add_argument("--items", nargs="+", type=Path, required=True)
     args = ap.parse_args(argv)
-    runs = []
-    for spec in args.run:
+
+    def parse(spec: str) -> tuple[Path, str | None]:
         path, _, ref = spec.partition("@")
-        runs.append((Path(path), ref or None))
-    json.dump(build(runs, args.items), sys.stdout, indent=1, ensure_ascii=False)
+        return Path(path), ref or None
+
+    out = build([parse(s) for s in args.run], args.items, [parse(s) for s in args.guesses])
+    json.dump(out, sys.stdout, indent=1, ensure_ascii=False)
     sys.stdout.write("\n")
 
 

@@ -55,7 +55,7 @@ export type CrowdStats =
       answerShare: Record<string, number>
       /**
        * Geometric mean of players' predicted shares, per option (BTS).
-       * Absent for the simulated crowd: AI players did not guess.
+       * For the simulated crowd, from runs where AI players also guessed; absent otherwise.
        */
       predictedShare?: Record<string, number>
       /** Models behind a simulated crowd. */

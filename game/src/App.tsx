@@ -216,7 +216,7 @@ function Solo({ consent, initial, onMenu, onNewSession, onDeleted }: {
     const hot = hotHand(
       session.responses.flatMap((r) => {
         const sc = scoreCard(byId.get(r.itemId)!, r)
-        return sc ? [sc.prediction + sc.bonus] : []
+        return sc ? [sc.prediction] : []
       }),
     )
     return (

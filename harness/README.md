@@ -32,7 +32,7 @@ python -m clue_harness.analyse --run ../runs/phase0-smoke \
 # Simulated crowd for the game. Each run is given with the commit it ran at, so a
 # split is dropped automatically once its item is reworded. Re-run after each new run.
 python -m clue_harness.crowd --run ../runs/phase1-prerun@bb974b5 --run ../runs/phase1-batch01@972140b \
-    --items ../items/seed.json ../items/drafts/batch-01.json > ../items/crowd/simulated.json
+    --guesses ../runs/sets-pilot@2fa28a9 --items ../items/seed.json ../items/drafts/batch-01.json > ../items/crowd/simulated.json
 python -m clue_harness.personas --n 50 --seed 2027 --first-id 101 > ../agents/personas-phase1.json
 ```
 

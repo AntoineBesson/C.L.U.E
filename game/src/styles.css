@@ -882,3 +882,4 @@ kbd {
 .streak-badge.on { background: var(--sun); }
 .streak-badge.on small { color: var(--ink); }
 .set-verdict { font: 700 1.1rem var(--display); color: var(--sun); margin: 8px 0 0; }
+.bonus-chip { margin: 0 0 10px; padding: 8px 12px; border-radius: 12px; background: var(--mint); font-weight: 700; font-size: 0.9rem; }
