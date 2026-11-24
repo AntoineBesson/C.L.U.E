@@ -158,7 +158,7 @@ def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--run", type=Path, nargs="+", required=True, help="runs holding the dilemma (and scale) answers")
     p.add_argument("--personas", type=Path, required=True)
-    p.add_argument("--items", type=Path, required=True)
+    p.add_argument("--items", type=Path, nargs="+", required=True, help="bank files; only items answered in the runs are gated")
     p.add_argument("--scales", type=Path, nargs="*", default=[], help="questionnaire files, for measured labels")
     p.add_argument("--json", type=Path, help="also write the per-item stats here")
     p.add_argument("--n-perm", type=int, default=2000)
@@ -172,7 +172,8 @@ def main(argv: list[str] | None = None) -> None:
         srows = [r for r in rows if r["answer_type"] == "likert"]
         measured = standardise(score(srows, scale_items)) if srows else None
     personas = {p["persona_id"]: p for p in json.loads(args.personas.read_text())}
-    text, stats = report(rows, json.loads(args.items.read_text()), personas, measured, args.n_perm)
+    items = [i for path in args.items for i in json.loads(path.read_text())]
+    text, stats = report(rows, items, personas, measured, args.n_perm)
     print(text)
     if args.json:
         args.json.write_text(json.dumps(stats, indent=2) + "\n")

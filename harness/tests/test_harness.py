@@ -131,3 +131,19 @@ def test_gate_keeps_tracking_items_and_drops_a_dominated_one(tmp_path):
     by_id = {s["id"]: s for s in stats}
     assert not by_id[choice["id"]]["keep"]
     assert sum(s["keep"] for s in stats) >= 0.8 * len(stats)
+
+
+def test_draft_items_follow_the_bank_rules():
+    """Drafts (items/drafts/*.json) follow the same rules as the bank, with ids unused in seed.json."""
+    seen = {i["id"] for i in ITEMS}
+    for path in sorted((ROOT / "items" / "drafts").glob("*.json")):
+        for item in json.loads(path.read_text()):
+            assert item["id"] not in seen, item["id"]
+            seen.add(item["id"])
+            assert len(item["scenario"].split()) <= 60
+            assert item["intensity"] in (1, 2, 3)
+            a = item["answer"]
+            assert a["type"] in ("choice", "binary")
+            assert len(a["options"]) == (2 if a["type"] == "binary" else 4)
+            for o in a["options"]:
+                assert len(o["keyed"]) == 1 and set(o["keyed"]) <= set(TRAITS) and set(o["keyed"].values()) <= {1, -1}
