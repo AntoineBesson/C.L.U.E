@@ -1,0 +1,403 @@
+{
+  "q0001": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.06,
+      "B": 0.28,
+      "C": 0.18,
+      "D": 0.48
+    },
+    "predictedShare": {
+      "A": 0.154,
+      "B": 0.356,
+      "C": 0.114,
+      "D": 0.376
+    }
+  },
+  "q0002": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.72,
+      "B": 0.28
+    },
+    "predictedShare": {
+      "A": 0.745,
+      "B": 0.255
+    }
+  },
+  "q0004": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.48,
+      "B": 0.38,
+      "C": 0.04,
+      "D": 0.1
+    },
+    "predictedShare": {
+      "A": 0.247,
+      "B": 0.409,
+      "C": 0.161,
+      "D": 0.183
+    }
+  },
+  "q0005": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.82,
+      "B": 0.18
+    },
+    "predictedShare": {
+      "A": 0.724,
+      "B": 0.276
+    }
+  },
+  "q0007": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.14,
+      "B": 0.7,
+      "C": 0.16,
+      "D": 0.0
+    },
+    "predictedShare": {
+      "A": 0.275,
+      "B": 0.42,
+      "C": 0.241,
+      "D": 0.064
+    }
+  },
+  "q0008": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.28,
+      "B": 0.58,
+      "C": 0.12,
+      "D": 0.02
+    },
+    "predictedShare": {
+      "A": 0.419,
+      "B": 0.305,
+      "C": 0.169,
+      "D": 0.107
+    }
+  },
+  "q0009": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.18,
+      "B": 0.18,
+      "C": 0.22,
+      "D": 0.42
+    },
+    "predictedShare": {
+      "A": 0.229,
+      "B": 0.207,
+      "C": 0.261,
+      "D": 0.303
+    }
+  },
+  "q0011": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.36,
+      "B": 0.0,
+      "C": 0.5,
+      "D": 0.14
+    },
+    "predictedShare": {
+      "A": 0.176,
+      "B": 0.164,
+      "C": 0.342,
+      "D": 0.318
+    }
+  },
+  "q0012": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.3,
+      "B": 0.26,
+      "C": 0.1,
+      "D": 0.34
+    },
+    "predictedShare": {
+      "A": 0.301,
+      "B": 0.225,
+      "C": 0.123,
+      "D": 0.351
+    }
+  },
+  "q0013": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.46,
+      "B": 0.54
+    },
+    "predictedShare": {
+      "A": 0.549,
+      "B": 0.451
+    }
+  },
+  "q0014": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.38,
+      "B": 0.24,
+      "C": 0.14,
+      "D": 0.24
+    },
+    "predictedShare": {
+      "A": 0.242,
+      "B": 0.237,
+      "C": 0.179,
+      "D": 0.342
+    }
+  },
+  "q0015": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.3,
+      "B": 0.7
+    },
+    "predictedShare": {
+      "A": 0.329,
+      "B": 0.671
+    }
+  },
+  "q0016": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.56,
+      "B": 0.36,
+      "C": 0.08,
+      "D": 0.0
+    },
+    "predictedShare": {
+      "A": 0.316,
+      "B": 0.333,
+      "C": 0.214,
+      "D": 0.137
+    }
+  },
+  "q0018": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.22,
+      "B": 0.48,
+      "C": 0.1,
+      "D": 0.2
+    },
+    "predictedShare": {
+      "A": 0.267,
+      "B": 0.206,
+      "C": 0.235,
+      "D": 0.292
+    }
+  },
+  "q0019": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.44,
+      "B": 0.32,
+      "C": 0.12,
+      "D": 0.12
+    },
+    "predictedShare": {
+      "A": 0.446,
+      "B": 0.224,
+      "C": 0.248,
+      "D": 0.082
+    }
+  },
+  "q0020": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.6,
+      "B": 0.4
+    },
+    "predictedShare": {
+      "A": 0.465,
+      "B": 0.535
+    }
+  },
+  "q0021": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.44,
+      "B": 0.0,
+      "C": 0.54,
+      "D": 0.02
+    },
+    "predictedShare": {
+      "A": 0.439,
+      "B": 0.106,
+      "C": 0.268,
+      "D": 0.187
+    }
+  },
+  "q0022": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.2,
+      "B": 0.34,
+      "C": 0.14,
+      "D": 0.32
+    },
+    "predictedShare": {
+      "A": 0.337,
+      "B": 0.249,
+      "C": 0.216,
+      "D": 0.198
+    }
+  },
+  "q0024": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.3,
+      "B": 0.3,
+      "C": 0.16,
+      "D": 0.24
+    },
+    "predictedShare": {
+      "A": 0.315,
+      "B": 0.272,
+      "C": 0.123,
+      "D": 0.29
+    }
+  },
+  "q0025": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.6,
+      "B": 0.4
+    },
+    "predictedShare": {
+      "A": 0.624,
+      "B": 0.376
+    }
+  },
+  "q0026": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.6,
+      "B": 0.32,
+      "C": 0.08,
+      "D": 0.0
+    },
+    "predictedShare": {
+      "A": 0.369,
+      "B": 0.414,
+      "C": 0.111,
+      "D": 0.106
+    }
+  },
+  "q0027": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.66,
+      "B": 0.24,
+      "C": 0.06,
+      "D": 0.04
+    },
+    "predictedShare": {
+      "A": 0.447,
+      "B": 0.251,
+      "C": 0.099,
+      "D": 0.203
+    }
+  },
+  "q0029": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.24,
+      "B": 0.38,
+      "C": 0.1,
+      "D": 0.28
+    },
+    "predictedShare": {
+      "A": 0.203,
+      "B": 0.379,
+      "C": 0.156,
+      "D": 0.262
+    }
+  },
+  "q0030": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.56,
+      "B": 0.12,
+      "C": 0.26,
+      "D": 0.06
+    },
+    "predictedShare": {
+      "A": 0.415,
+      "B": 0.17,
+      "C": 0.296,
+      "D": 0.119
+    }
+  },
+  "q0031": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 50,
+    "answerShare": {
+      "A": 0.26,
+      "B": 0.62,
+      "C": 0.02,
+      "D": 0.1
+    },
+    "predictedShare": {
+      "A": 0.406,
+      "B": 0.349,
+      "C": 0.145,
+      "D": 0.1
+    }
+  }
+}
