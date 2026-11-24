@@ -614,3 +614,109 @@ textarea {
   }
   .confetti { display: none; }
 }
+
+/* ---------- per-card reveal ---------- */
+.reveal .predict-head { align-items: center; }
+.reveal-score { margin-left: auto; display: flex; align-items: baseline; gap: 2px; }
+.reveal-score .count { font: 700 2.4rem/1 var(--display); color: var(--coral-dark); }
+.reveal-score span:last-child { font: 600 0.9rem var(--display); color: var(--muted); }
+.reveal-bars { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 12px; }
+.reveal-row {
+  --c: var(--sun);
+  --cd: var(--sun-dark);
+  padding: 10px 12px 8px;
+  border-radius: 14px;
+  background: var(--paper-2);
+  animation: pop-in 0.35s both;
+  animation-delay: calc(var(--i, 0) * 0.08s);
+}
+.reveal-row.c0 { --c: var(--coral); --cd: var(--coral-dark); }
+.reveal-row.c1 { --c: var(--sky); --cd: var(--sky-dark); }
+.reveal-row.c2 { --c: var(--mint); --cd: var(--mint-dark); }
+.reveal-row.c3 { --c: var(--grape); --cd: var(--grape-dark); }
+.reveal-row.mine { outline: 3px solid var(--cd); }
+.reveal-row .share-top output { font: 700 1.2rem var(--display); color: var(--cd); }
+.you-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font: 600 0.72rem var(--display);
+  vertical-align: middle;
+}
+.reveal-track { position: relative; height: 14px; margin: 8px 0 4px; border-radius: 999px; background: #fff; }
+.reveal-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 999px;
+  background: var(--c);
+  transform-origin: left;
+  animation: grow 0.7s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+.reveal-guess {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  width: 4px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+.reveal-meta { font-size: 0.78rem; color: var(--muted); font-weight: 700; }
+.reveal-slider { margin: 18px 6px 8px; }
+.reveal-track.wide { height: 12px; background: var(--paper-2); margin-bottom: 8px; }
+.reveal-mark { position: absolute; top: 50%; transform: translate(-50%, -50%); border-radius: 999px; }
+.reveal-mark.crowd { width: 8px; height: 30px; background: var(--coral); border-radius: 4px; }
+.reveal-mark.guess { width: 6px; height: 24px; background: var(--ink); border-radius: 3px; }
+.reveal-mark.you { width: 16px; height: 16px; background: var(--grape); border: 3px solid #fff; }
+.reveal-legend { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-weight: 700; color: var(--muted); font-size: 0.85rem; }
+.reveal-legend li { display: flex; align-items: baseline; gap: 5px; }
+.reveal-legend li::before { content: ''; width: 10px; height: 10px; border-radius: 3px; align-self: center; }
+.reveal-legend .crowd::before { background: var(--coral); }
+.reveal-legend .guess::before { background: var(--ink); }
+.reveal-legend .you::before { background: var(--grape); border-radius: 999px; }
+.reveal-legend b { font: 700 1.1rem var(--display); color: var(--ink); }
+.reveal .primary { width: 100%; margin-top: 10px; }
+@keyframes grow { from { transform: scaleX(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-row, .reveal-fill { animation: none; }
+}
+
+/* ---------- leaderboard ---------- */
+.leaderboard { margin: 18px 0; }
+.leaderboard h2 { margin-bottom: 4px; }
+.board-form { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+.board-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  font: 600 1rem var(--body);
+  background: #fff;
+}
+.board { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 6px; counter-reset: place; }
+.board li {
+  display: grid;
+  grid-template-columns: 2.2em 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--paper-2);
+}
+.board li.me { background: var(--sun); font-weight: 800; }
+.board li.bot { background: transparent; border: 2px dashed var(--line); color: var(--muted); }
+.board .place { font: 700 1.05rem var(--display); color: var(--grape-dark); }
+.board .who { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board .who small { display: block; font-weight: 600; font-size: 0.75rem; color: var(--muted); }
+.board .avg { font: 700 1.2rem var(--display); }
+.board .avg small { font: 600 0.75rem var(--body); color: var(--muted); }
+
+/* ---------- bank finished ---------- */
+.done-bank { text-align: center; }
+.done-bank .mascot { margin: 0 auto 8px; }
+.done-bank .actions { justify-content: center; }
+.board li.bot .who { white-space: normal; }

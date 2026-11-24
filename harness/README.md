@@ -28,6 +28,11 @@ python -m clue_harness.analyse --run ../runs/phase0-smoke \
     > ../runs/phase0-smoke/report.md
 
 # Phase 1 pre-run (100 agents) and item gate: see runs/phase1-prerun/run.sh
+
+# Simulated crowd for the game. Each run is given with the commit it ran at, so a
+# split is dropped automatically once its item is reworded. Re-run after each new run.
+python -m clue_harness.crowd --run ../runs/phase1-prerun@bb974b5 --run ../runs/phase1-batch01@972140b \
+    --items ../items/seed.json ../items/drafts/batch-01.json > ../items/crowd/simulated.json
 python -m clue_harness.personas --n 50 --seed 2027 --first-id 101 > ../agents/personas-phase1.json
 ```
 
@@ -43,6 +48,7 @@ python -m clue_harness.personas --n 50 --seed 2027 --first-id 101 > ../agents/pe
 | `scales.py` | Questionnaire items as harness items (`likert`), scoring, persona fidelity report |
 | `analyse.py` | The trial report |
 | `gate.py` | Phase 1 item gate: keep/drop per item from a pre-run (entropy, top share, tracking against measured labels) |
+| `crowd.py` | Simulated crowd for the game (`items/crowd/simulated.json`): pooled agent answers per item, fingerprinted against the item text the run used |
 
 ## How a call works
 

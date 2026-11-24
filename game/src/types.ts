@@ -40,26 +40,34 @@ export type AnswerSpec = ChoiceAnswer | BinaryAnswer | SliderAnswer | TextAnswer
 export type AnswerType = AnswerSpec['type']
 
 /**
- * What other players did on this item. Until the pilot runs, these are
- * placeholder numbers (source "placeholder"), later replaced by agent or
- * human statistics.
+ * What other players did on this item: hand-written placeholders, the AI
+ * players' answers ("agents", a simulated crowd, see crowd.ts), or real
+ * players once the pilot runs ("humans").
  */
+export type CrowdSource = 'placeholder' | 'agents' | 'humans'
+
 export type CrowdStats =
   | {
       kind: 'shares'
-      source: 'placeholder' | 'agents' | 'humans'
+      source: CrowdSource
       n: number
       /** Share of players who chose each option (sums to 1). */
       answerShare: Record<string, number>
-      /** Geometric mean of players' predicted shares, per option (BTS). */
-      predictedShare: Record<string, number>
+      /**
+       * Geometric mean of players' predicted shares, per option (BTS).
+       * Absent for the simulated crowd: AI players did not guess.
+       */
+      predictedShare?: Record<string, number>
+      /** Models behind a simulated crowd. */
+      models?: string[]
     }
   | {
       kind: 'mean'
-      source: 'placeholder' | 'agents' | 'humans'
+      source: CrowdSource
       n: number
       /** Mean slider answer. */
       mean: number
+      models?: string[]
     }
 
 export interface Item {
