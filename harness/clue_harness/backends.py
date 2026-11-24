@@ -43,6 +43,13 @@ class Backend:
     def answer(self, system: str, user: str, context: dict) -> Reply:  # pragma: no cover
         raise NotImplementedError
 
+    def chat(self, system: str, messages: list[dict], context: dict) -> Reply:
+        """A conversation (alternating user/assistant turns, ending on a user turn).
+        Single-turn backends only take a one-message conversation."""
+        if len(messages) == 1:
+            return self.answer(system, messages[0]["content"], context)
+        raise NotImplementedError(f"{self.name} does not support multi-turn sets")
+
 
 class AnthropicBackend(Backend):
     def __init__(self, model: str):
@@ -53,6 +60,9 @@ class AnthropicBackend(Backend):
         self.client = anthropic.Anthropic()
 
     def answer(self, system: str, user: str, context: dict) -> Reply:
+        return self.chat(system, [{"role": "user", "content": user}], context)
+
+    def chat(self, system: str, messages: list[dict], context: dict) -> Reply:
         kwargs: dict = {}
         if self.model.startswith("claude-haiku-5"):
             # Haiku 5.5 accepts disabled thinking at effort high or below.
@@ -64,7 +74,7 @@ class AnthropicBackend(Backend):
             model=self.model,
             max_tokens=256,
             system=system,
-            messages=[{"role": "user", "content": user}],
+            messages=messages,
             **kwargs,
         )
         if msg.stop_reason == "refusal":
@@ -138,16 +148,21 @@ class OpenRouterBackend(Backend):
             return json.load(r)
 
     def answer(self, system: str, user: str, context: dict) -> Reply:
+        return self.chat(system, [{"role": "user", "content": user}], context)
+
+    def chat(self, system: str, messages: list[dict], context: dict) -> Reply:
         body = {
             "model": self.model,
-            "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+            "messages": [{"role": "system", "content": system}, *messages],
             "temperature": 1,
         }
+        # A crowd guess ("A=40, B=30, C=20, D=10") needs more room than one letter.
+        want_tokens = context.get("max_tokens", 8)
         # Learn what the model refuses (logprobs, reasoning off) on the first
         # call, then keep those settings for the rest of the run.
         for _ in range(4):
             sent_logprobs, sent_reasoning = self.logprobs, self.reasoning
-            extra = {"max_tokens": self.max_tokens, "reasoning": sent_reasoning}
+            extra = {"max_tokens": max(self.max_tokens, want_tokens), "reasoning": sent_reasoning}
             if sent_logprobs:
                 # Route only to providers that return logprobs.
                 extra.update(logprobs=True, top_logprobs=10, provider={"require_parameters": True})
@@ -176,7 +191,7 @@ class OpenRouterBackend(Backend):
         text = choice["message"].get("content") or ""
         probs = None
         lp = (choice.get("logprobs") or {}).get("content") or []
-        if lp and self.reasoning.get("enabled") is False:
+        if lp and self.reasoning.get("enabled") is False and not context.get("guess"):
             # First content token's top alternatives; the runner keeps only the
             # letters actually shown and renormalises.
             first: dict[str, float] = {}
@@ -195,6 +210,17 @@ class MockBackend(Backend):
 
     def __init__(self, sharpness: float = 2.0):
         self.sharpness = sharpness
+
+    def chat(self, system: str, messages: list[dict], context: dict) -> Reply:
+        if context.get("guess"):
+            # Uniform guess pulled toward the mock's own pick (a false-consensus effect).
+            order, own = context["order"], context.get("own_key")
+            rng = random.Random(f"{context['persona']['persona_id']}|{context['item']['id']}|guess")
+            w = [1.0 + (1.0 if k == own else 0.0) + rng.random() * 0.5 for k in order]
+            n = [round(100 * x / sum(w)) for x in w]
+            n[-1] = 100 - sum(n[:-1])
+            return Reply(text=", ".join(f"{'ABCD'[i]}={v}" for i, v in enumerate(n)))
+        return self.answer(system, messages[-1]["content"], context)
 
     def answer(self, system: str, user: str, context: dict) -> Reply:
         item, order, traits = context["item"], context["order"], context["persona"]["target_traits"]

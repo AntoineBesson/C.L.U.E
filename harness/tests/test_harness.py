@@ -147,3 +147,15 @@ def test_draft_items_follow_the_bank_rules():
             assert len(a["options"]) == (2 if a["type"] == "binary" else 4)
             for o in a["options"]:
                 assert len(o["keyed"]) == 1 and set(o["keyed"]) <= set(TRAITS) and set(o["keyed"].values()) <= {1, -1}
+
+
+def test_sets_mode_plays_cards_in_one_conversation_and_guesses(tmp_path):
+    from clue_harness.sets import make_sets, run_sets
+    from clue_harness.prompts import parse_guess
+
+    sets = make_sets("p001", ITEMS, 4)
+    assert all(len(s) <= 4 for s in sets) and len({i["id"] for s in sets for i in s}) == sum(len(s) for s in sets)
+    rows = run_sets(PERSONAS[:3], ITEMS, ["mock"], tmp_path, set_size=4, guess=True, workers=2)
+    assert rows and not any(r["invalid"] or r["guess_invalid"] for r in rows)
+    assert all(abs(sum(r["guess"].values()) - 1) < 1e-9 for r in rows)
+    assert parse_guess(["x", "y", "z"], "A=40, B=60") is None
