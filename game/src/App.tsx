@@ -10,7 +10,8 @@ import { Room } from './components/Room'
 import { CONFIG } from './config'
 import { ITEMS, mergeServerSet, pickSession } from './items'
 import { packItems, RANDOM_PACK, type Pack } from './packs'
-import { defaultPrediction } from './scoring'
+import { defaultPrediction, scoreCard } from './scoring'
+import { hotHand } from './streak'
 import { Backdrop } from './ui/Backdrop'
 import { Mascot } from './ui/Mascot'
 import { Progress, TopBar } from './ui/TopBar'
@@ -211,6 +212,13 @@ function Solo({ consent, initial, onMenu, onNewSession, onDeleted }: {
 
   if (revealing) {
     const item = session.items.find((i) => i.id === revealing.itemId)!
+    const byId = new Map(session.items.map((i) => [i.id, i]))
+    const hot = hotHand(
+      session.responses.flatMap((r) => {
+        const sc = scoreCard(byId.get(r.itemId)!, r)
+        return sc ? [sc.prediction + sc.bonus] : []
+      }),
+    )
     return (
       <>
         <TopBar>
@@ -222,6 +230,7 @@ function Solo({ consent, initial, onMenu, onNewSession, onDeleted }: {
             item={item}
             response={revealing}
             last={index >= session.items.length}
+            hot={hot}
             onNext={() => setRevealing(null)}
           />
         </main>

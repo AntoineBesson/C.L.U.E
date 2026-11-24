@@ -836,3 +836,49 @@ button.icon-x { width: 40px; height: 40px; padding: 0; border-radius: 12px; font
 .room-points .who small { display: block; font-size: 0.75rem; color: var(--muted); font-weight: 600; }
 .room-points .pts { font: 700 1.2rem var(--display); }
 .room-points .tot { font: 600 0.8rem var(--display); color: var(--muted); }
+
+/* ---------- keyboard hints (only where there is a keyboard and a mouse) ---------- */
+.kbd-hint { display: none; margin: 10px 0 0; text-align: center; font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+@media (hover: hover) and (pointer: fine) {
+  .kbd-hint { display: block; }
+}
+kbd {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0 5px;
+  border: 1.5px solid var(--line);
+  border-bottom-width: 3px;
+  border-radius: 6px;
+  background: #fff;
+  font: 700 0.75rem var(--display);
+  color: var(--ink);
+  text-align: center;
+}
+
+/* ---------- feedback words, streaks ---------- */
+.insight { margin: 4px 0 10px; padding: 10px 12px; border-radius: 12px; background: var(--ink); color: var(--paper); font-weight: 700; }
+.hot {
+  margin: 0 0 10px;
+  width: fit-content;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--sun);
+  font: 700 0.9rem var(--display);
+  animation: pop-in 0.4s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--paper-2);
+  font-weight: 700;
+}
+.streak-badge .flame { font-size: 1.6rem; line-height: 1; }
+.streak-badge strong { font: 700 1.15rem var(--display); display: block; }
+.streak-badge small { color: var(--muted); font-weight: 600; }
+.streak-badge.on { background: var(--sun); }
+.streak-badge.on small { color: var(--ink); }
+.set-verdict { font: 700 1.1rem var(--display); color: var(--sun); margin: 8px 0 0; }

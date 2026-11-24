@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { crowdLabel } from '../crowd'
+import { insight, verdict as pickVerdict } from '../feedback'
 import { normalise, scoreCard } from '../scoring'
 import type { Item, ResponseRecord } from '../types'
 import { CountUp } from '../ui/CountUp'
@@ -7,11 +8,13 @@ import { Mascot } from '../ui/Mascot'
 import { sfx } from '../ui/sound'
 
 /** Right after the guess: how the crowd actually split, next to the player's guess. */
-export function Reveal({ item, response, onNext, last }: {
+export function Reveal({ item, response, onNext, last, hot = 0 }: {
   item: Item
   response: ResponseRecord
   onNext: () => void
   last: boolean
+  /** Great reads in a row, this one included. */
+  hot?: number
 }) {
   const score = scoreCard(item, response)
   const crowd = item.crowd
@@ -21,10 +24,9 @@ export function Reveal({ item, response, onNext, last }: {
     if (pts >= 75) sfx.fanfare()
     else sfx.lock()
   }, [pts])
+  const [verdict] = useState(() => pickVerdict(pts))
+  const [note] = useState(() => (crowd && response.prediction ? insight(item, response.prediction, crowd) : null))
   if (!crowd || !score) return null
-
-  const verdict =
-    pts >= 90 ? 'Spot on!' : pts >= 75 ? 'Great read!' : pts >= 55 ? 'Not bad.' : pts >= 35 ? 'Hmm, close-ish.' : 'The crowd surprised you!'
 
   const p = response.prediction
   return (
@@ -40,6 +42,12 @@ export function Reveal({ item, response, onNext, last }: {
           <span>/100</span>
         </div>
       </div>
+      {note && <p className="insight">{note}</p>}
+      {hot >= 2 && (
+        <p className="hot" role="status">
+          🔥 {hot} great reads in a row{hot >= 4 ? '. Unstoppable!' : '!'}
+        </p>
+      )}
       <p className="scenario small">{item.scenario}</p>
 
       {crowd.kind === 'shares' && p?.kind === 'shares' && (a.type === 'choice' || a.type === 'binary') && (

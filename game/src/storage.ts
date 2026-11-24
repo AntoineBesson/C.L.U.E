@@ -1,5 +1,6 @@
 import { deletePlayer, putConsent, sendResponse } from './api'
 import type { LeaderboardEntry } from './leaderboard'
+import { dayOf, EMPTY_STREAK, played, type Streak } from './streak'
 import type { Consent, ResponseRecord } from './types'
 
 /**
@@ -20,6 +21,8 @@ const KEYS = {
   roomSeen: 'clue.roomSeen',
   /** Local guess-the-crowd leaderboard (never sent anywhere). */
   leaderboard: 'clue.leaderboard',
+  /** Daily play streak. */
+  streak: 'clue.streak',
   /** Last name typed for the leaderboard. */
   nickname: 'clue.nickname',
 }
@@ -67,8 +70,13 @@ export function getResponses(): ResponseRecord[] {
   return read<ResponseRecord[]>(KEYS.responses) ?? []
 }
 
+export function getStreak(): Streak {
+  return read<Streak>(KEYS.streak) ?? EMPTY_STREAK
+}
+
 export function saveResponse(r: ResponseRecord) {
   write(KEYS.responses, [...getResponses(), r])
+  write(KEYS.streak, played(getStreak(), dayOf(new Date())))
   void sendResponse(r)
 }
 
@@ -140,6 +148,7 @@ export function exportData(): string {
       skippedItems: read<string[]>(KEYS.skipped) ?? [],
       roomSeenItems: read<string[]>(KEYS.roomSeen) ?? [],
       leaderboard: getLeaderboard(),
+      streak: getStreak(),
     },
     null,
     2,

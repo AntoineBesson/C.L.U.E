@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { ITEMS } from '../items'
 import { availablePacks, packItems, RANDOM_PACK, type Pack } from '../packs'
-import { getSeenIds } from '../storage'
+import { getSeenIds, getStreak } from '../storage'
+import { asOf, dayOf, doneToday } from '../streak'
 import { Mascot } from '../ui/Mascot'
 import { sfx } from '../ui/sound'
 
@@ -13,6 +14,11 @@ export function Menu({ initialPack, onSolo, onRoom }: {
 }) {
   const [pack, setPack] = useState<Pack>(initialPack)
   const [seen] = useState(getSeenIds)
+  const [streak] = useState(() => {
+    const today = dayOf(new Date())
+    const s = asOf(getStreak(), today)
+    return { ...s, today: doneToday(s, today) }
+  })
   const left = (p: Pack) => packItems(p, ITEMS).filter((i) => !seen.has(i.id)).length
 
   return (
@@ -25,6 +31,8 @@ export function Menu({ initialPack, onSolo, onRoom }: {
             <p className="tagline">Choose a theme, or let chance decide.</p>
           </div>
         </div>
+
+        <StreakBadge current={streak.current} best={streak.best} today={streak.today} />
 
         <div className="packs" role="radiogroup" aria-label="Question pack">
           {availablePacks(ITEMS).map((p) => {
@@ -62,5 +70,30 @@ export function Menu({ initialPack, onSolo, onRoom }: {
         </div>
       </div>
     </main>
+  )
+}
+
+function StreakBadge({ current, best, today }: { current: number; best: number; today: boolean }) {
+  if (current === 0) {
+    return (
+      <div className="streak-badge">
+        <span className="flame" aria-hidden="true">🕯️</span>
+        <span>
+          <strong>Start a streak</strong>
+          <small>{best > 1 ? `Your best: ${best} days in a row. ` : ''}Play a solo set every day to build it.</small>
+        </span>
+      </div>
+    )
+  }
+  return (
+    <div className={today ? 'streak-badge on' : 'streak-badge'}>
+      <span className="flame" aria-hidden="true">🔥</span>
+      <span>
+        <strong>
+          {current}-day streak{current >= best && current > 1 ? ' (your best!)' : ''}
+        </strong>
+        <small>{today ? 'Done for today. See you tomorrow!' : `Play today to make it ${current + 1}.`}</small>
+      </span>
+    </div>
   )
 }
