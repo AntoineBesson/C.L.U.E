@@ -14,6 +14,10 @@ const KEYS = {
   /** Ids of every card shown on this device, so none comes back. */
   seen: 'clue.seenItems',
   seenResetAt: 'clue.seenResetAt',
+  /** Cards skipped in solo play (ids only). */
+  skipped: 'clue.skipped',
+  /** Cards already played in pass-and-play rooms on this device (ids only, no answers). */
+  roomSeen: 'clue.roomSeen',
   /** Local guess-the-crowd leaderboard (never sent anywhere). */
   leaderboard: 'clue.leaderboard',
   /** Last name typed for the leaderboard. */
@@ -68,10 +72,12 @@ export function saveResponse(r: ResponseRecord) {
   void sendResponse(r)
 }
 
-/** Cards already shown on this device: those marked when shown, plus every answer since the last reset. */
+/** Cards already shown on this device: those marked when shown, plus every answer since that card was last reset. */
 export function getSeenIds(): Set<string> {
-  const since = read<string>(KEYS.seenResetAt) ?? ''
-  const answered = getResponses().filter((r) => r.answeredAt > since).map((r) => r.itemId)
+  const resetAt = read<Record<string, string>>(KEYS.seenResetAt) ?? {}
+  const answered = getResponses()
+    .filter((r) => r.answeredAt > (resetAt[r.itemId] ?? ''))
+    .map((r) => r.itemId)
   return new Set([...(read<string[]>(KEYS.seen) ?? []), ...answered])
 }
 
@@ -80,10 +86,32 @@ export function markSeen(itemId: string) {
   if (!seen.includes(itemId)) write(KEYS.seen, [...seen, itemId])
 }
 
-/** Lets the bank be played again once every card has been seen. Answers are kept. */
-export function resetSeen() {
-  write(KEYS.seen, [])
-  write(KEYS.seenResetAt, new Date().toISOString())
+/** Lets these cards be played again (a finished pack). Answers are kept. */
+export function resetSeen(itemIds: string[]) {
+  const drop = new Set(itemIds)
+  const now = new Date().toISOString()
+  write(KEYS.seen, (read<string[]>(KEYS.seen) ?? []).filter((id) => !drop.has(id)))
+  const resetAt = read<Record<string, string>>(KEYS.seenResetAt) ?? {}
+  write(KEYS.seenResetAt, { ...resetAt, ...Object.fromEntries(itemIds.map((id) => [id, now])) })
+}
+
+export function markSkipped(itemId: string) {
+  const skipped = read<string[]>(KEYS.skipped) ?? []
+  if (!skipped.includes(itemId)) write(KEYS.skipped, [...skipped, itemId])
+}
+
+export function getRoomSeen(): Set<string> {
+  return new Set(read<string[]>(KEYS.roomSeen) ?? [])
+}
+
+export function markRoomSeen(itemId: string) {
+  const seen = read<string[]>(KEYS.roomSeen) ?? []
+  if (!seen.includes(itemId)) write(KEYS.roomSeen, [...seen, itemId])
+}
+
+export function resetRoomSeen(itemIds: string[]) {
+  const drop = new Set(itemIds)
+  write(KEYS.roomSeen, [...getRoomSeen()].filter((id) => !drop.has(id)))
 }
 
 export function getLeaderboard(): LeaderboardEntry[] {
@@ -109,6 +137,8 @@ export function exportData(): string {
       consent: getConsent(),
       responses: getResponses(),
       seenItems: read<string[]>(KEYS.seen) ?? [],
+      skippedItems: read<string[]>(KEYS.skipped) ?? [],
+      roomSeenItems: read<string[]>(KEYS.roomSeen) ?? [],
       leaderboard: getLeaderboard(),
     },
     null,

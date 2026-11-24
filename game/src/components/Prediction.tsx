@@ -5,7 +5,20 @@ import { Mascot } from '../ui/Mascot'
 import { sfx } from '../ui/sound'
 
 /** "How did everyone else answer?" Shown after the player's own answer. */
-export function Prediction({ item, onDone }: { item: Item; onDone: (p: CrowdPrediction) => void }) {
+export function Prediction({
+  item,
+  onDone,
+  who = 'other players',
+  kicker = 'Bonus round',
+  title = 'Guess the crowd',
+}: {
+  item: Item
+  onDone: (p: CrowdPrediction) => void
+  /** Who is being guessed, e.g. "other players" or "the room". */
+  who?: string
+  kicker?: string
+  title?: string
+}) {
   const [pred, setPred] = useState<CrowdPrediction>(() => defaultPrediction(item)!)
   const a = item.answer
   useEffect(() => sfx.whoosh(), [])
@@ -14,8 +27,8 @@ export function Prediction({ item, onDone }: { item: Item; onDone: (p: CrowdPred
     <div className="predict-head">
       <Mascot mood="curious" size={64} />
       <div>
-        <p className="kicker">Bonus round</p>
-        <h2>Guess the crowd</h2>
+        <p className="kicker">{kicker}</p>
+        <h2>{title}</h2>
       </div>
     </div>
   )
@@ -30,7 +43,7 @@ export function Prediction({ item, onDone }: { item: Item; onDone: (p: CrowdPred
       <div className="panel card prediction">
         {header}
         <p className="scenario small">{item.scenario}</p>
-        <p className="prompt">What will other players answer on average?</p>
+        <p className="prompt">What will {who} answer on average?</p>
         <div className="slider">
           <div className="slider-bubble" aria-hidden="true">
             <span style={{ left: `${pred.mean}%` }}>{pred.mean}</span>
@@ -67,7 +80,7 @@ export function Prediction({ item, onDone }: { item: Item; onDone: (p: CrowdPred
       <div className="panel card prediction">
         {header}
         <p className="scenario small">{item.scenario}</p>
-        <p className="prompt">How do you think other players split?</p>
+        <p className="prompt">How do you think {who} split?</p>
         <div className="shares">
           {a.options.map((o, i) => {
             const pct = Math.round(shares[o.key] * 100)

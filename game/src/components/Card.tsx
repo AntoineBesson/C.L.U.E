@@ -7,7 +7,7 @@ import { Mascot } from '../ui/Mascot'
 import { sfx } from '../ui/sound'
 
 const DOMAIN_LABELS: Record<string, string> = {
-  work: 'Work', money: 'Money', friends: 'Friends', family: 'Family', online: 'Online', sacrificial: 'Tough call',
+  work: 'Work', money: 'Money', friends: 'Friends', family: 'Family', online: 'Online', everyday: 'Everyday', sacrificial: 'Tough call',
 }
 
 interface Props {
@@ -16,11 +16,13 @@ interface Props {
   playerId: string
   sessionId: string
   onDone: (r: ResponseRecord) => void
+  /** When given, a "Skip" button lets the player pass on this card. */
+  onSkip?: () => void
 }
 
 type Phase = 'answering' | 'confirming'
 
-export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
+export function Card({ item, tracking, playerId, sessionId, onDone, onSkip }: Props) {
   const spec = item.answer
   const [presentedAt] = useState(() => new Date().toISOString())
   const [options] = useState<ChoiceOption[] | null>(() =>
@@ -211,6 +213,17 @@ export function Card({ item, tracking, playerId, sessionId, onDone }: Props) {
       {phase === 'answering' && (
         <button className="primary big" disabled={!canValidate} onClick={validate}>
           Validate
+        </button>
+      )}
+      {phase === 'answering' && onSkip && (
+        <button
+          className="link-btn skip"
+          onClick={() => {
+            sfx.back()
+            onSkip()
+          }}
+        >
+          Skip this one
         </button>
       )}
 

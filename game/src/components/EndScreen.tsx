@@ -16,11 +16,14 @@ interface Props {
   tracking: boolean
   /** Unseen dilemmas left in the bank. */
   remaining: number
+  /** Theme played, or null for the random mix. */
+  packLabel: string | null
   onPlayAgain: () => void
+  onMenu: () => void
   onDeleted: () => void
 }
 
-export function EndScreen({ items, responses, tracking, remaining, onPlayAgain, onDeleted }: Props) {
+export function EndScreen({ items, responses, tracking, remaining, packLabel, onPlayAgain, onMenu, onDeleted }: Props) {
   const [confirmDelete, setConfirmDelete] = useState(false)
   useEffect(() => sfx.fanfare(), [])
   const prompted = responses.filter((r) => r.confirm.shown)
@@ -147,8 +150,11 @@ export function EndScreen({ items, responses, tracking, remaining, onPlayAgain, 
 
       <div className="actions">
         <button className="primary big" onClick={onPlayAgain}>
-          {remaining > 0 ? `Play another set (${remaining} new dilemma${remaining === 1 ? '' : 's'} left)` : 'Play again'}
+          {remaining > 0
+            ? `Another ${packLabel ?? ''} set (${remaining} new left)`.replace('  ', ' ')
+            : 'Play again'}
         </button>
+        <button onClick={onMenu}>Menu: themes and rooms</button>
         <button onClick={download}>Export my data</button>
         {!confirmDelete ? (
           <button className="danger" onClick={() => setConfirmDelete(true)}>
