@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { estimateTraits, uniqueness } from '../profile'
-import { scoreCard } from '../scoring'
+import { SIMULATED_AGENTS } from '../crowd'
+import { scoreSet } from '../leaderboard'
 import { deleteAllData, exportData } from '../storage'
 import type { Item, ResponseRecord } from '../types'
+import { Leaderboard } from './Leaderboard'
 import { Confetti } from '../ui/Confetti'
 import { CountUp } from '../ui/CountUp'
 import { Mascot } from '../ui/Mascot'
@@ -12,11 +14,16 @@ interface Props {
   items: Item[]
   responses: ResponseRecord[]
   tracking: boolean
+  /** Unseen dilemmas left in the bank. */
+  remaining: number
+  /** Theme played, or null for the random mix. */
+  packLabel: string | null
   onPlayAgain: () => void
+  onMenu: () => void
   onDeleted: () => void
 }
 
-export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }: Props) {
+export function EndScreen({ items, responses, tracking, remaining, packLabel, onPlayAgain, onMenu, onDeleted }: Props) {
   const [confirmDelete, setConfirmDelete] = useState(false)
   useEffect(() => sfx.fanfare(), [])
   const prompted = responses.filter((r) => r.confirm.shown)
@@ -25,12 +32,12 @@ export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }
   const avgSeconds = signals.length
     ? signals.reduce((sum, s) => sum + (s.msToFirstValidate ?? s.msTotal), 0) / signals.length / 1000
     : null
-  const byId = new Map(items.map((i) => [i.id, i]))
-  const scores = responses.map((r) => scoreCard(byId.get(r.itemId)!, r)).filter((s) => s !== null)
-  const points = scores.reduce((sum, s) => sum + s.prediction + s.bonus, 0)
+  const set = scoreSet(items, responses)
+  const { scores, total: points } = set
   const traits = estimateTraits(items, responses)
   const unique = uniqueness(items, responses)
   const placeholder = items.some((i) => i.crowd?.source === 'placeholder')
+  const simulated = items.some((i) => i.crowd?.source === 'agents')
   const totalChanges = signals.reduce((sum, s) => sum + s.answerChanges, 0)
 
   function download() {
@@ -59,9 +66,13 @@ export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }
           <CountUp value={points} />
           <span>points for reading the crowd</span>
         </div>
-        {placeholder && (
-          <p className="hint">Crowd numbers are placeholders until real players have played.</p>
+        {simulated && (
+          <p className="hint">
+            Simulated crowd: {SIMULATED_AGENTS} AI players with varied personalities stand in for real players until
+            the study opens.
+          </p>
         )}
+        {placeholder && <p className="hint">Some crowd numbers are made up until players have answered them.</p>}
         <ol className="score-tiles">
           {scores.map((s, i) => (
             <li key={s.itemId} style={{ '--i': i } as React.CSSProperties}>
@@ -76,6 +87,8 @@ export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }
           ))}
         </ol>
       </div>
+
+      <Leaderboard set={set} />
 
       <h2>What {responses.length} answers say about you</h2>
       <p className="hint">
@@ -137,8 +150,11 @@ export function EndScreen({ items, responses, tracking, onPlayAgain, onDeleted }
 
       <div className="actions">
         <button className="primary big" onClick={onPlayAgain}>
-          Play another set
+          {remaining > 0
+            ? `Another ${packLabel ?? ''} set (${remaining} new left)`.replace('  ', ' ')
+            : 'Play again'}
         </button>
+        <button onClick={onMenu}>Menu: themes and rooms</button>
         <button onClick={download}>Export my data</button>
         {!confirmDelete ? (
           <button className="danger" onClick={() => setConfirmDelete(true)}>

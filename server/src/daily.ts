@@ -27,8 +27,8 @@ export function itemTraits(item: Item): string[] {
 /**
  * Adaptive picks. Placeholder for the spec's expected-entropy-reduction rule:
  * prefer unseen items that touch the traits this player has the least
- * evidence on. Ties break on a per-player, per-day order. When unseen items
- * run out, already-answered ones fill the gap.
+ * evidence on. Ties break on a per-player, per-day order. Answered items
+ * never come back: when unseen items run out, the set is shorter.
  */
 export function drawAdaptive(
   items: Item[],
@@ -51,16 +51,11 @@ export function drawAdaptive(
     // Text items carry no keyed evidence; keep them last but still reachable.
     return ts.length ? ts.reduce((s, t) => s + 1 / (1 + (evidence[t] ?? 0)), 0) / ts.length : 0
   }
-  const unseen = candidates
+  return candidates
     .map((item, order) => ({ item, order, g: gain(item) }))
     .sort((x, y) => y.g - x.g || x.order - y.order)
     .map((c) => c.item.id)
-  // A small bank runs out: top up with items seen before (also gives test-retest pairs).
-  const repeats = seededOrder(
-    items.filter((i) => answeredIds.has(i.id) && !exclude.has(i.id)),
-    playerSeed,
-  ).map((i) => i.id)
-  return [...unseen, ...repeats].slice(0, count)
+    .slice(0, count)
 }
 
 /** Calendar day in Europe/Paris, as YYYY-MM-DD. */

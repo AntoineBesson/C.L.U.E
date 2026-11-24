@@ -47,6 +47,7 @@ export function predictionPoints(predicted: Record<string, number>, actual: Reco
  * a "surprisingly common" answer earns points, any other answer earns none.
  */
 export function btsBonus(choice: string, crowd: Extract<CrowdStats, { kind: 'shares' }>): number {
+  if (!crowd.predictedShare) return 0
   const x = crowd.answerShare[choice] ?? 0
   const y = crowd.predictedShare[choice] ?? 0
   if (x <= 0) return 0

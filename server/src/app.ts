@@ -76,13 +76,17 @@ export function buildApp(config: Config, store: Store, opts: { logger?: boolean 
       answered = await store.answeredItemIds(id.data)
       seed = `${id.data}:${day}`
     }
-    const adaptive = drawAdaptive(items, answered, new Set(shared), seed, config.adaptivePerDay)
+    // A player never gets a card twice: shared cards they already answered are
+    // skipped, and adaptive picks fill their places.
+    const sharedFresh = shared.filter((id) => !answered.has(id))
+    const want = config.adaptivePerDay + shared.length - sharedFresh.length
+    const adaptive = drawAdaptive(items, answered, new Set(shared), seed, want)
     const byId = new Map(items.map((i) => [i.id, i]))
     // Crowd stats are left out on purpose: they are revealed only after answering.
     const strip = ({ crowd: _crowd, ...rest }: Item) => rest
     return {
       day,
-      shared: shared.flatMap((id) => (byId.has(id) ? [strip(byId.get(id)!)] : [])),
+      shared: sharedFresh.flatMap((id) => (byId.has(id) ? [strip(byId.get(id)!)] : [])),
       adaptive: adaptive.map((id) => strip(byId.get(id)!)),
     }
   })

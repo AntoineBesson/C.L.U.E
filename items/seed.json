@@ -125,56 +125,49 @@
     "id": "q0004",
     "domain": "family",
     "intensity": 2,
-    "scenario": "Your parent can no longer live alone. Moving them in with you would strain your relationship and your job.",
+    "scenario": "Your father can no longer live alone. Moving him in would strain your relationship and your job, and the only good care home nearby would use up his savings.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Move them in anyway.",
+          "text": "Move him in, whatever it costs your job and your relationship.",
           "keyed": {
             "care": 1
           }
         },
         {
           "key": "B",
-          "text": "Find a good care home and visit often.",
+          "text": "Arrange daily home help and draw up a rota to check on him.",
           "keyed": {
             "conscientiousness": 1
           }
         },
         {
           "key": "C",
-          "text": "Ask your siblings to share the load equally.",
+          "text": "Insist that each sibling takes him in for a month in turn.",
           "keyed": {
             "equality": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Choose the cheaper home further away; it keeps more of his savings in the family.",
+          "keyed": {
+            "machiavellianism": 1
           }
         }
       ]
     },
-    "crowd": {
-      "kind": "shares",
-      "source": "placeholder",
-      "n": 0,
-      "answerShare": {
-        "A": 0.31,
-        "B": 0.41,
-        "C": 0.28
-      },
-      "predictedShare": {
-        "A": 0.27,
-        "B": 0.38,
-        "C": 0.3
-      }
-    },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0005",
     "domain": "sacrificial",
     "intensity": 3,
-    "scenario": "A runaway trolley will hit five workers. You can pull a lever to send it onto a side track, where it will hit one worker instead.",
+    "scenario": "A runaway trolley will hit five workers. You are a passer-by next to a lever that would send it onto a side track, killing the one worker there. If you pull it, you will be the one held responsible for that death.",
     "answer": {
       "type": "binary",
       "options": [
@@ -208,7 +201,8 @@
       }
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0006",
@@ -315,7 +309,7 @@
       "options": [
         {
           "key": "A",
-          "text": "Share some of it with the colleagues at your table.",
+          "text": "Split it evenly with everyone at your table; you all bought tickets together.",
           "keyed": {
             "equality": 1
           }
@@ -344,7 +338,8 @@
       ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-23"
   },
   {
     "id": "q0010",
@@ -409,48 +404,49 @@
     "id": "q0012",
     "domain": "online",
     "intensity": 1,
-    "scenario": "Someone you barely know posts a photo of you from a party without asking. You look fine, but you did not want it online.",
+    "scenario": "A colleague posts a photo of you from the team party without asking. You look fine, but you did not want it online. They are well liked, and you started the job two weeks ago.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Message them politely and ask them to take it down.",
+          "text": "Leave it up; a fuss in your second week would sour things.",
           "keyed": {
             "agreeableness": 1
           }
         },
         {
           "key": "B",
-          "text": "Post an unflattering photo of them in return.",
+          "text": "Comment under it, with a joke, that you would rather not be tagged.",
           "keyed": {
-            "proportionality": 1
+            "extraversion": 1
           }
         },
         {
           "key": "C",
-          "text": "Leave it; it is not a big deal.",
+          "text": "Ask your manager to remind the team of the photo policy.",
           "keyed": {
-            "emotionality": -1
+            "authority": 1
           }
         },
         {
           "key": "D",
-          "text": "Comment publicly that you did not agree to it.",
+          "text": "Ask them privately to take it down, then worry it made you look difficult.",
           "keyed": {
-            "extraversion": 1
+            "emotionality": 1
           }
         }
       ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0013",
     "domain": "sacrificial",
     "intensity": 3,
-    "scenario": "A hospital has one ventilator left. Two patients need it: a 30-year-old with a good chance of recovery, and a 70-year-old who arrived first.",
+    "scenario": "A hospital has one ventilator left. A 30-year-old has a 60% chance of recovery with it; a 70-year-old who was put on the list first has a 40% chance. The hospital's rule is first come, first served.",
     "answer": {
       "type": "binary",
       "options": [
@@ -471,7 +467,8 @@
       ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0014",
@@ -504,7 +501,7 @@
         },
         {
           "key": "D",
-          "text": "Eat their leftovers in return, without a word.",
+          "text": "Tell them they owe you the yoghurts and ask them to replace them.",
           "keyed": {
             "proportionality": 1
           }
@@ -512,7 +509,8 @@
       ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-23"
   },
   {
     "id": "q0015",
@@ -616,7 +614,7 @@
         },
         {
           "key": "B",
-          "text": "Suggest a cheaper plan for everyone.",
+          "text": "Ask the friends who earn more to pay a bigger share, so everyone ends up paying the same effort.",
           "keyed": {
             "equality": 1
           }
@@ -638,7 +636,8 @@
       ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-23"
   },
   {
     "id": "q0019",
@@ -685,13 +684,13 @@
     "id": "q0020",
     "domain": "money",
     "intensity": 1,
-    "scenario": "You can buy a second-hand mattress in perfect condition for a tenth of the price of a new one.",
+    "scenario": "A stranger is selling the mattress they slept on for five years. It has been professionally cleaned and costs a fifth of the price of a new one.",
     "answer": {
       "type": "binary",
       "options": [
         {
           "key": "A",
-          "text": "Buy the second-hand one.",
+          "text": "Buy the used one.",
           "keyed": {
             "purity": -1
           }
@@ -706,13 +705,14 @@
       ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-23"
   },
   {
     "id": "q0021",
     "domain": "work",
     "intensity": 1,
-    "scenario": "A colleague is clearly struggling emotionally but has not said anything.",
+    "scenario": "A colleague you barely know has seemed upset for weeks but says nothing. Last time you asked someone at work if they were okay, they were offended.",
     "answer": {
       "type": "choice",
       "options": [
@@ -747,7 +747,8 @@
       ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0022",
@@ -755,16 +756,41 @@
     "intensity": 1,
     "scenario": "You come across the public profile of your ex's new partner.",
     "answer": {
-      "type": "slider",
-      "prompt": "How long would you spend looking through it?",
-      "minLabel": "Not at all",
-      "maxLabel": "A long time",
-      "keyed": {
-        "emotionality": 1
-      }
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Look through it, and feel unsettled for the rest of the evening.",
+          "keyed": {
+            "emotionality": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Glance at it and move on; it does not bother you.",
+          "keyed": {
+            "emotionality": -1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Look through it to check whether they are better looking than you.",
+          "keyed": {
+            "narcissism": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Close it straight away; you decided not to look.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        }
+      ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0023",
@@ -794,7 +820,7 @@
       "options": [
         {
           "key": "A",
-          "text": "Draw lots so everyone has the same chance.",
+          "text": "Draw lots: nobody's life counts for more than anyone else's.",
           "keyed": {
             "equality": 1
           }
@@ -823,7 +849,8 @@
       ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-23"
   },
   {
     "id": "q0025",
@@ -897,7 +924,7 @@
     "id": "q0027",
     "domain": "everyday",
     "intensity": 2,
-    "scenario": "Leaving a car park, you scratch a parked car. Nobody saw it.",
+    "scenario": "Leaving a car park, you leave a small scratch on a parked car. Nobody saw it. Owning up would cost you your 500-euro insurance excess.",
     "answer": {
       "type": "choice",
       "options": [
@@ -932,7 +959,8 @@
       ]
     },
     "lang": "en",
-    "source": "hand-written"
+    "source": "hand-written",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0028",
@@ -1027,6 +1055,47 @@
           "text": "Tell them honestly that it puts you off.",
           "keyed": {
             "honesty_humility": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0031",
+    "domain": "work",
+    "intensity": 2,
+    "scenario": "Your team of four wins a 2,000 euro bonus. You did about half of the work. Your manager asks you to decide how to split it.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Split it equally: 500 euros each.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Split it by how much work each person did.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Give a bigger share to the teammate who is short of money.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Take 1,000 euros; the project would have failed without you.",
+          "keyed": {
+            "narcissism": 1
           }
         }
       ]

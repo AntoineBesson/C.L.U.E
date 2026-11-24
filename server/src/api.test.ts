@@ -109,11 +109,12 @@ describe.skipIf(!url)('API (Postgres)', () => {
   it('serves a daily set without crowd numbers, and crowd stats on request', async () => {
     const res = await app.inject({ method: 'GET', url: `/items/today?playerId=${player}` })
     const body = res.json()
-    expect(body.shared).toHaveLength(3)
-    expect(body.adaptive).toHaveLength(2)
     expect(JSON.stringify(body)).not.toContain('answerShare')
     const ids = [...body.shared, ...body.adaptive].map((i: Item) => i.id)
     expect(new Set(ids).size).toBe(5)
+    // Cards this player already answered never come back, even if shared today.
+    expect(ids).not.toContain('q0002')
+    expect(ids).not.toContain('q0005')
 
     const crowd = (await app.inject({ method: 'GET', url: '/items/q0002/crowd' })).json()
     expect(crowd.crowd).toMatchObject({ kind: 'shares', source: 'humans', n: 1, answerShare: { A: 1, B: 0 } })

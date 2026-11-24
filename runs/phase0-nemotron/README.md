@@ -1,13 +1,20 @@
-# Nemotron 3 Ultra, free tier (partial, 2026-11-23)
+# Nemotron 3 Ultra, free tier (2026-11-23 to 24)
 
-Second model family through OpenRouter (`nvidia/nemotron-3-ultra-550b-a55b:free`).
-The free tier allows 50 requests a day, so this run stopped after 54 of 1,480
-answers (20 personas × 29 dilemmas + 45 questionnaire items). Rerunning the
-same command resumes from the cache.
+Model family through OpenRouter's free tier (`nvidia/nemotron-3-ultra-550b-a55b:free`):
+20 personas × 29 dilemmas + 45 MFQ-2/OUS items = 1,480 answers, run over two
+days because of the free daily cap (1,000 requests a day once credits were
+bought). Cost $0. Full tables: [report.md](report.md), [fidelity.md](fidelity.md);
+compared with the other models in [phase0-families](../phase0-families).
 
-On the first 42 answers (6 personas including the 3 archetypes × 7
-dilemmas): no invalid answers, alignment 0.64 against 0.13 with shuffled
-personas (p = 0.003; Sonnet 5.5 scores 0.62 and Haiku 5.5 0.22 on the same
-cases), the dark-triad persona played without refusals, and first-position
-picks at 30% against 35% expected. Too few answers for per-trait or per-item
-numbers.
+- 0 invalid answers (10 needed the strict retry); first-position picks 28%
+  against 32% by chance.
+- Dilemma alignment 0.47 (0.02 with shuffled personas, p < 0.001), level with
+  Sonnet 5.5 and Mistral Medium 3.5.
+- MFQ-2/OUS fidelity 0.66 to 0.87 on all 8 traits; dark triad on dilemmas
+  0.54 / 0.57 / 0.54; the dark-triad archetype is played without refusals
+  (alignment 0.85).
+- Passes the Phase 0 gates. Equality and proportionality options do not track
+  here either (+0.01, -0.05), as on the other models.
+
+The run used the bank as merged in #7 (30 items); the later item revisions
+were not played by this model.

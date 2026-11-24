@@ -1,0 +1,1103 @@
+[
+  {
+    "id": "q0004",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.25,
+      "B": 0.44,
+      "C": 0.05,
+      "D": 0.26
+    },
+    "entropy": 1.7425314986695808,
+    "entropy_bar": 1.2,
+    "top_share": 0.44,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.46,
+      "openrouter:qwen/qwen3.8-27b": 0.42
+    },
+    "alignment": 0.3252365161332157,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0005",
+    "type": "binary",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.65,
+      "B": 0.35
+    },
+    "entropy": 0.934068055375491,
+    "entropy_bar": 0.6,
+    "top_share": 0.65,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.64,
+      "openrouter:qwen/qwen3.8-27b": 0.94
+    },
+    "alignment": 0.38550661613890375,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "top option 94% on openrouter:qwen/qwen3.8-27b"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0012",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.23,
+      "B": 0.28,
+      "C": 0.07,
+      "D": 0.42
+    },
+    "entropy": 1.7960893995943712,
+    "entropy_bar": 1.2,
+    "top_share": 0.42,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.36
+    },
+    "alignment": 0.38507569215187437,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0013",
+    "type": "binary",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.43,
+      "B": 0.57
+    },
+    "entropy": 0.9858150371789198,
+    "entropy_bar": 0.6,
+    "top_share": 0.57,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.62,
+      "openrouter:qwen/qwen3.8-27b": 0.52
+    },
+    "alignment": 0.10073383430563304,
+    "p": 0.06046976511744128,
+    "reasons": [
+      "does not track its keys (alignment +0.10, p 0.06)"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0021",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.38,
+      "B": 0.03,
+      "C": 0.49,
+      "D": 0.1
+    },
+    "entropy": 1.5186942265393393,
+    "entropy_bar": 1.2,
+    "top_share": 0.49,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.52,
+      "openrouter:qwen/qwen3.8-27b": 0.46
+    },
+    "alignment": 0.5989222627641445,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0022",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.23,
+      "B": 0.43,
+      "C": 0.15,
+      "D": 0.19
+    },
+    "entropy": 1.8770032784641506,
+    "entropy_bar": 1.2,
+    "top_share": 0.43,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.38
+    },
+    "alignment": 0.5730999999999999,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0027",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.58,
+      "B": 0.36,
+      "C": 0.05,
+      "D": 0.01
+    },
+    "entropy": 1.2689578073371324,
+    "entropy_bar": 1.2,
+    "top_share": 0.58,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.62,
+      "openrouter:qwen/qwen3.8-27b": 0.54
+    },
+    "alignment": 0.5808500000000001,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0032",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.46,
+      "B": 0.27,
+      "C": 0.12,
+      "D": 0.15
+    },
+    "entropy": 1.8029689749765456,
+    "entropy_bar": 1.2,
+    "top_share": 0.46,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.64,
+      "openrouter:qwen/qwen3.8-27b": 0.42
+    },
+    "alignment": 0.2808356449220258,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0033",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.22,
+      "B": 0.64,
+      "C": 0.1,
+      "D": 0.04
+    },
+    "entropy": 1.4105884241857831,
+    "entropy_bar": 1.2,
+    "top_share": 0.64,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.64,
+      "openrouter:qwen/qwen3.8-27b": 0.64
+    },
+    "alignment": 0.6207709462454049,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0034",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.2,
+      "B": 0.15,
+      "C": 0.59,
+      "D": 0.06
+    },
+    "entropy": 1.5675798322892187,
+    "entropy_bar": 1.2,
+    "top_share": 0.59,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.7,
+      "openrouter:qwen/qwen3.8-27b": 0.48
+    },
+    "alignment": 0.5097994517132485,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0035",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.05,
+      "B": 0.48,
+      "C": 0.31,
+      "D": 0.16
+    },
+    "entropy": 1.6711769284642704,
+    "entropy_bar": 1.2,
+    "top_share": 0.48,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.46,
+      "openrouter:qwen/qwen3.8-27b": 0.5
+    },
+    "alignment": 0.4753133466449125,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0036",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.18,
+      "B": 0.72,
+      "C": 0.1,
+      "D": 0.0
+    },
+    "entropy": 1.1187308789879074,
+    "entropy_bar": 1.2,
+    "top_share": 0.72,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.72,
+      "openrouter:qwen/qwen3.8-27b": 0.72
+    },
+    "alignment": 0.146,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "entropy 1.12 <= 1.20 bits",
+      "top option 72% pooled"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0037",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.52,
+      "B": 0.34,
+      "C": 0.13,
+      "D": 0.01
+    },
+    "entropy": 1.4688330069578994,
+    "entropy_bar": 1.2,
+    "top_share": 0.52,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.58,
+      "openrouter:qwen/qwen3.8-27b": 0.46
+    },
+    "alignment": 0.65445,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0038",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.09,
+      "B": 0.54,
+      "C": 0.31,
+      "D": 0.06
+    },
+    "entropy": 1.5600250822134427,
+    "entropy_bar": 1.2,
+    "top_share": 0.54,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.7,
+      "openrouter:qwen/qwen3.8-27b": 0.44
+    },
+    "alignment": 0.5064448326641263,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0039",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.54,
+      "B": 0.11,
+      "C": 0.16,
+      "D": 0.19
+    },
+    "entropy": 1.7085732330020678,
+    "entropy_bar": 1.2,
+    "top_share": 0.54,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.66
+    },
+    "alignment": 0.59884190612209,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0040",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.07,
+      "B": 0.73,
+      "C": 0.14,
+      "D": 0.06
+    },
+    "entropy": 1.240641978116946,
+    "entropy_bar": 1.2,
+    "top_share": 0.73,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.66,
+      "openrouter:qwen/qwen3.8-27b": 0.8
+    },
+    "alignment": 0.4476586353392639,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "top option 73% pooled"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0041",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.64,
+      "B": 0.34,
+      "C": 0.01,
+      "D": 0.01
+    },
+    "entropy": 1.0741188237496093,
+    "entropy_bar": 1.2,
+    "top_share": 0.64,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.62,
+      "openrouter:qwen/qwen3.8-27b": 0.66
+    },
+    "alignment": 0.5093976452061368,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "entropy 1.07 <= 1.20 bits"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0042",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.1,
+      "B": 0.65,
+      "C": 0.13,
+      "D": 0.12
+    },
+    "entropy": 1.4858716383726123,
+    "entropy_bar": 1.2,
+    "top_share": 0.65,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.58,
+      "openrouter:qwen/qwen3.8-27b": 0.72
+    },
+    "alignment": 0.5026983446734475,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "top option 72% on openrouter:qwen/qwen3.8-27b"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0043",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.73,
+      "B": 0.21,
+      "C": 0.04,
+      "D": 0.02
+    },
+    "entropy": 1.1028976030087725,
+    "entropy_bar": 1.2,
+    "top_share": 0.73,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.68,
+      "openrouter:qwen/qwen3.8-27b": 0.78
+    },
+    "alignment": 0.2676326608373317,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "entropy 1.10 <= 1.20 bits",
+      "top option 73% pooled"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0044",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.12,
+      "B": 0.3,
+      "C": 0.48,
+      "D": 0.1
+    },
+    "entropy": 1.7286187011707392,
+    "entropy_bar": 1.2,
+    "top_share": 0.48,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.52,
+      "openrouter:qwen/qwen3.8-27b": 0.44
+    },
+    "alignment": 0.31378237028415534,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0045",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.33,
+      "B": 0.28,
+      "C": 0.31,
+      "D": 0.08
+    },
+    "entropy": 1.8573458959903744,
+    "entropy_bar": 1.2,
+    "top_share": 0.33,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.44,
+      "openrouter:qwen/qwen3.8-27b": 0.34
+    },
+    "alignment": 0.445283910816061,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0046",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.31,
+      "B": 0.31,
+      "C": 0.35,
+      "D": 0.03
+    },
+    "entropy": 1.729456546382489,
+    "entropy_bar": 1.2,
+    "top_share": 0.35,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.36,
+      "openrouter:qwen/qwen3.8-27b": 0.4
+    },
+    "alignment": 0.2773119735271445,
+    "p": 0.0009995002498750624,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0047",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.35,
+      "B": 0.3,
+      "C": 0.3,
+      "D": 0.05
+    },
+    "entropy": 1.7883763717345071,
+    "entropy_bar": 1.2,
+    "top_share": 0.35,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.44
+    },
+    "alignment": 0.5140113544602556,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0048",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.27,
+      "B": 0.29,
+      "C": 0.06,
+      "D": 0.38
+    },
+    "entropy": 1.8019118704517605,
+    "entropy_bar": 1.2,
+    "top_share": 0.38,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.34,
+      "openrouter:qwen/qwen3.8-27b": 0.42
+    },
+    "alignment": 0.4073177045815507,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0049",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.28,
+      "B": 0.2,
+      "C": 0.33,
+      "D": 0.19
+    },
+    "entropy": 1.9616549056785522,
+    "entropy_bar": 1.2,
+    "top_share": 0.33,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.34,
+      "openrouter:qwen/qwen3.8-27b": 0.34
+    },
+    "alignment": 0.5615032550614946,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0050",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.44,
+      "B": 0.11,
+      "C": 0.45,
+      "D": 0.0
+    },
+    "entropy": 1.3898349061758577,
+    "entropy_bar": 1.2,
+    "top_share": 0.45,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.54,
+      "openrouter:qwen/qwen3.8-27b": 0.52
+    },
+    "alignment": 0.02481492964976354,
+    "p": 0.33983008495752126,
+    "reasons": [
+      "does not track its keys (alignment +0.02, p 0.34)"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0051",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.14,
+      "B": 0.39,
+      "C": 0.4,
+      "D": 0.07
+    },
+    "entropy": 1.724233552831406,
+    "entropy_bar": 1.2,
+    "top_share": 0.4,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.4
+    },
+    "alignment": 0.26423358051801854,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0052",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.27,
+      "B": 0.32,
+      "C": 0.2,
+      "D": 0.21
+    },
+    "entropy": 1.973264286429576,
+    "entropy_bar": 1.2,
+    "top_share": 0.32,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.3,
+      "openrouter:qwen/qwen3.8-27b": 0.34
+    },
+    "alignment": 0.5373589709156226,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0053",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.29,
+      "B": 0.49,
+      "C": 0.1,
+      "D": 0.12
+    },
+    "entropy": 1.7214455679960017,
+    "entropy_bar": 1.2,
+    "top_share": 0.49,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.44,
+      "openrouter:qwen/qwen3.8-27b": 0.54
+    },
+    "alignment": 0.41344999999999993,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0054",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.24,
+      "B": 0.14,
+      "C": 0.06,
+      "D": 0.56
+    },
+    "entropy": 1.603218994118055,
+    "entropy_bar": 1.2,
+    "top_share": 0.56,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.6,
+      "openrouter:qwen/qwen3.8-27b": 0.52
+    },
+    "alignment": 0.4925,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0055",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.3,
+      "B": 0.1,
+      "C": 0.52,
+      "D": 0.08
+    },
+    "entropy": 1.635367548170065,
+    "entropy_bar": 1.2,
+    "top_share": 0.52,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.56
+    },
+    "alignment": 0.6576025769970123,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0056",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.5,
+      "B": 0.31,
+      "C": 0.18,
+      "D": 0.01
+    },
+    "entropy": 1.5355407384078148,
+    "entropy_bar": 1.2,
+    "top_share": 0.5,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.46,
+      "openrouter:qwen/qwen3.8-27b": 0.54
+    },
+    "alignment": 0.651366356539507,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0057",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.23,
+      "B": 0.63,
+      "C": 0.11,
+      "D": 0.03
+    },
+    "entropy": 1.409664235004927,
+    "entropy_bar": 1.2,
+    "top_share": 0.63,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.76,
+      "openrouter:qwen/qwen3.8-27b": 0.5
+    },
+    "alignment": 0.4493196127588222,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "top option 76% on openrouter:mistralai/mistral-medium-3-5"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0058",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.71,
+      "B": 0.09,
+      "C": 0.11,
+      "D": 0.09
+    },
+    "entropy": 1.3264117566166815,
+    "entropy_bar": 1.2,
+    "top_share": 0.71,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.8,
+      "openrouter:qwen/qwen3.8-27b": 0.62
+    },
+    "alignment": 0.3919805676768926,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "top option 71% pooled"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0059",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.64,
+      "B": 0.14,
+      "C": 0.11,
+      "D": 0.11
+    },
+    "entropy": 1.5097515445864549,
+    "entropy_bar": 1.2,
+    "top_share": 0.64,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.64,
+      "openrouter:qwen/qwen3.8-27b": 0.64
+    },
+    "alignment": 0.343355820339704,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0060",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.45,
+      "B": 0.38,
+      "C": 0.1,
+      "D": 0.07
+    },
+    "entropy": 1.6496021872850402,
+    "entropy_bar": 1.2,
+    "top_share": 0.45,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.48
+    },
+    "alignment": 0.7737492814075854,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0061",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.23,
+      "B": 0.48,
+      "C": 0.27,
+      "D": 0.02
+    },
+    "entropy": 1.6188353139513203,
+    "entropy_bar": 1.2,
+    "top_share": 0.48,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.54
+    },
+    "alignment": 0.30112344185899115,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0062",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.46,
+      "B": 0.15,
+      "C": 0.07,
+      "D": 0.32
+    },
+    "entropy": 1.7204692561031887,
+    "entropy_bar": 1.2,
+    "top_share": 0.46,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.54,
+      "openrouter:qwen/qwen3.8-27b": 0.38
+    },
+    "alignment": 0.5969681380792448,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0063",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.33,
+      "B": 0.06,
+      "C": 0.48,
+      "D": 0.13
+    },
+    "entropy": 1.6622692166386686,
+    "entropy_bar": 1.2,
+    "top_share": 0.48,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.48
+    },
+    "alignment": 0.5206500000000001,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0064",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.42,
+      "B": 0.38,
+      "C": 0.08,
+      "D": 0.12
+    },
+    "entropy": 1.7146749170125442,
+    "entropy_bar": 1.2,
+    "top_share": 0.42,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.4
+    },
+    "alignment": 0.9662488565104117,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0065",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.48,
+      "B": 0.49,
+      "C": 0.01,
+      "D": 0.02
+    },
+    "entropy": 1.1918663658121176,
+    "entropy_bar": 1.2,
+    "top_share": 0.49,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.5,
+      "openrouter:qwen/qwen3.8-27b": 0.48
+    },
+    "alignment": 0.2477575848039588,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "entropy 1.19 <= 1.20 bits"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0066",
+    "type": "binary",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.39,
+      "B": 0.61
+    },
+    "entropy": 0.9647995485050872,
+    "entropy_bar": 0.6,
+    "top_share": 0.61,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.62,
+      "openrouter:qwen/qwen3.8-27b": 0.6
+    },
+    "alignment": 0.7987792586540948,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0067",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.49,
+      "B": 0.39,
+      "C": 0.06,
+      "D": 0.06
+    },
+    "entropy": 1.521146000715457,
+    "entropy_bar": 1.2,
+    "top_share": 0.49,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.52,
+      "openrouter:qwen/qwen3.8-27b": 0.54
+    },
+    "alignment": 0.17119797988586552,
+    "p": 0.0069965017491254375,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0068",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.36,
+      "B": 0.43,
+      "C": 0.21,
+      "D": 0.0
+    },
+    "entropy": 1.5270026859500503,
+    "entropy_bar": 1.2,
+    "top_share": 0.43,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.44,
+      "openrouter:qwen/qwen3.8-27b": 0.52
+    },
+    "alignment": 0.5653363735071077,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0069",
+    "type": "binary",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.61,
+      "B": 0.39
+    },
+    "entropy": 0.9647995485050872,
+    "entropy_bar": 0.6,
+    "top_share": 0.61,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.66,
+      "openrouter:qwen/qwen3.8-27b": 0.88
+    },
+    "alignment": 0.16043250187285157,
+    "p": 0.009495252373813094,
+    "reasons": [
+      "top option 88% on openrouter:qwen/qwen3.8-27b"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0070",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.41,
+      "B": 0.15,
+      "C": 0.14,
+      "D": 0.3
+    },
+    "entropy": 1.8561294107694124,
+    "entropy_bar": 1.2,
+    "top_share": 0.41,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.44,
+      "openrouter:qwen/qwen3.8-27b": 0.38
+    },
+    "alignment": 0.34407205822168,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0071",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.62,
+      "B": 0.02,
+      "C": 0.02,
+      "D": 0.34
+    },
+    "entropy": 1.1825171113097468,
+    "entropy_bar": 1.2,
+    "top_share": 0.62,
+    "top_share_by_model": {
+      "openrouter:mistralai/mistral-medium-3-5": 0.54,
+      "openrouter:qwen/qwen3.8-27b": 0.7
+    },
+    "alignment": 0.2976601970999657,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "entropy 1.18 <= 1.20 bits"
+    ],
+    "keep": false
+  }
+]

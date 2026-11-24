@@ -39,7 +39,7 @@ describe('computeCrowd', () => {
     ]
     const c = computeCrowd(binary, rows, 3)
     expect(c).toMatchObject({ kind: 'shares', n: 3, answerShare: { A: 0.6667, B: 0.3333 } })
-    expect(c?.kind === 'shares' && c.predictedShare.A).toBe(0.4) // sqrt(0.8 * 0.2)
+    expect(c?.kind === 'shares' && c.predictedShare?.A).toBe(0.4) // sqrt(0.8 * 0.2)
   })
 
   it('averages slider answers and ignores text items', () => {
@@ -63,8 +63,9 @@ describe('daily set', () => {
     const pool = [binary, slider, text]
     // Already answered the honesty item: loyalty (slider) should come first, text last.
     expect(drawAdaptive(pool, new Set(['b']), new Set(), 'p', 2)).toEqual(['s', 't'])
-    // Bank exhausted: repeat an answered item rather than return too few.
-    expect(drawAdaptive(pool, new Set(['b', 's']), new Set(['t']), 'p', 2)).toEqual(expect.arrayContaining(['b', 's']))
+    // Bank exhausted: never repeat an answered item, return fewer instead.
+    expect(drawAdaptive(pool, new Set(['b', 's']), new Set(['t']), 'p', 2)).toEqual([])
+    expect(drawAdaptive(pool, new Set(['b']), new Set(['t']), 'p', 2)).toEqual(['s'])
   })
 
   it('uses the Paris calendar day', () => {

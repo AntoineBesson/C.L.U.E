@@ -20,3 +20,11 @@ it.
 - No politics or religion; no option should be the obviously "nice" one.
 - `crowd` is optional. Seed values marked `"source": "placeholder"` are made
   up and must be replaced by agent or pilot statistics.
+
+## Simulated crowd
+
+`crowd/simulated.json` holds how the 100 AI players answered each item
+(built by `harness/clue_harness/crowd.py`). The game uses it as the crowd in
+guess-the-crowd until real players exist, and labels it as simulated. It also
+plays draft items (`drafts/*.json`) that passed the gate on their current
+wording, so the bank is bigger than `seed.json` alone.

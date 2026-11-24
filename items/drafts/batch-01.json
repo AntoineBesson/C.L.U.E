@@ -1,0 +1,1650 @@
+[
+  {
+    "id": "q0032",
+    "domain": "work",
+    "intensity": 1,
+    "scenario": "Your manager asks you to stay late to finish a report. You promised to help a friend move house tonight.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Keep your promise to your friend; the report can wait.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Stay and finish the report, then apologise to your friend.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Agree, then send a half-done version and blame a computer crash.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Tell your manager no; late requests are their poor planning.",
+          "keyed": {
+            "agreeableness": -1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0033",
+    "domain": "work",
+    "intensity": 2,
+    "scenario": "You find out that a colleague in the same role earns 15% more than you.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ask HR to put everyone in the role on the same pay.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Ask for a raise that matches your results, whatever they earn.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Tell your manager you are clearly worth more than they are.",
+          "keyed": {
+            "narcissism": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Say nothing, but feel undervalued for months.",
+          "keyed": {
+            "emotionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0034",
+    "domain": "work",
+    "intensity": 1,
+    "scenario": "A new colleague keeps asking you questions, and it is slowing down your own work.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Keep helping; you remember being new.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Set a fixed half hour each day for their questions.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Tell them plainly to look things up first.",
+          "keyed": {
+            "agreeableness": -1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Keep helping, and make sure your manager knows how much time it costs you.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0035",
+    "domain": "work",
+    "intensity": 2,
+    "scenario": "Your company quietly skips a safety check to meet a deadline. Nobody has been hurt, and raising it could cost you your job.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Trust management; they know the risks better than you.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Report it to the safety inspector, whatever it costs you.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Raise it inside the team, but never outside the company.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Ignore it; it is not your problem.",
+          "keyed": {
+            "psychopathy": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0036",
+    "domain": "work",
+    "intensity": 1,
+    "scenario": "Your team must choose who presents your project to the board, which decides promotions. You did most of the work, but a colleague is a much better speaker.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Insist on presenting; it is your work and your promotion.",
+          "keyed": {
+            "narcissism": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Let the better speaker present it, even if they get the credit.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Present it together and take all the questions yourself.",
+          "keyed": {
+            "extraversion": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Present it yourself, after rehearsing every evening for a week.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  },
+  {
+    "id": "q0037",
+    "domain": "work",
+    "intensity": 2,
+    "scenario": "You could get a job you really want by overstating one skill on your CV. Employers rarely check.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Keep the CV accurate and apply anyway.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Overstate it; everyone polishes their CV.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Wait a few months and take a course to learn the skill first.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Overstate it, then lie awake worrying you will be found out.",
+          "keyed": {
+            "emotionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0038",
+    "domain": "money",
+    "intensity": 1,
+    "scenario": "A friend pays back a 200-euro loan with 150 euros and says they are short this month.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Shrug it off; 50 euros will not change your life.",
+          "keyed": {
+            "emotionality": -1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Remind them about the other 50 euros on their next payday.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Ask whether they are okay, and offer to wait as long as they need.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Let it go for now, and bring it up when you need a favour.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0039",
+    "domain": "money",
+    "intensity": 2,
+    "scenario": "You win 5,000 euros in a work raffle. A charity says that amount could pay for malaria nets for a whole village.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Give most of it to the charity.",
+          "keyed": {
+            "impartial_beneficence": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Spend it on the family holiday everyone has wanted for years.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Put it all in savings for emergencies.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Buy something people will notice.",
+          "keyed": {
+            "narcissism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0040",
+    "domain": "money",
+    "intensity": 1,
+    "scenario": "You are meeting your partner's friends for the first time at dinner. They split the bill evenly. You only had a salad and water.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Pay an even share; that is how groups do it.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Ask to pay only for what you had.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Pay evenly and make nothing of it, to make a good impression.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Pay evenly, and quietly add a pricey cocktail to the order first.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  },
+  {
+    "id": "q0041",
+    "domain": "money",
+    "intensity": 2,
+    "scenario": "A shop gave you change for 50 euros when you paid with 20. You notice at home. The shop is 40 minutes away.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Make the trip and give the money back.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Keep it; their mistake, their problem.",
+          "keyed": {
+            "psychopathy": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Phone the shop and offer to bring it next time you are nearby.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Keep it; that shop overcharged you last month anyway.",
+          "keyed": {
+            "proportionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  },
+  {
+    "id": "q0042",
+    "domain": "money",
+    "intensity": 1,
+    "scenario": "A friend opening a café asks you to put in 1,000 euros. They need an answer tonight and have no business plan yet.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Invest; you back your friends.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Say no until you have seen a plan, even if they lose the deal.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Invest; being part of something new sounds exciting.",
+          "keyed": {
+            "openness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Say no, and tell them honestly you think it will fail.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  },
+  {
+    "id": "q0043",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "Your best friend is about to get engaged and asks what you think of their partner, whom you dislike. They mostly want your blessing.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Tell them honestly what bothers you.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Give your blessing and keep your doubts to yourself.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Say you will back them, whoever they choose.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Give your blessing now, and slowly plant doubts.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  },
+  {
+    "id": "q0044",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "Two close friends have fallen out, and each wants you on their side.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Side with the friend you have known longer.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Side with whoever was treated worse.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Stay neutral and try to get them talking again.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Invite both to the same party so they have to make up.",
+          "keyed": {
+            "extraversion": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0045",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "A friend's band plays its first gig on a weeknight. They are not good, and tickets cost 20 euros.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Go, and cheer louder than anyone.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Go, and give them honest feedback afterwards.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Skip it; a loud bar on a weeknight is not for you.",
+          "keyed": {
+            "extraversion": -1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Skip it, but tell them you were there at the back.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0046",
+    "domain": "friends",
+    "intensity": 2,
+    "scenario": "A friend tells you they cheated on their partner, who is also your friend.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Keep the secret; it was told in confidence.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Tell the partner; they deserve the truth.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Urge your friend to confess, and support them through it.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Keep your distance from them; it disgusts you.",
+          "keyed": {
+            "purity": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0047",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "Your group always meets at the same bar. A new friend suggests a cooking class instead.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Sign up; something new could be fun.",
+          "keyed": {
+            "openness": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Keep the bar; it is the group's tradition.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Suggest doing both, and organise it yourself.",
+          "keyed": {
+            "extraversion": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Agree, but worry about looking clumsy in front of everyone.",
+          "keyed": {
+            "emotionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0048",
+    "domain": "family",
+    "intensity": 1,
+    "scenario": "Your sibling keeps borrowing your clothes without asking.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Let it go; they are only clothes.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Borrow their things without asking until they get the point.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Ask your parents to set a house rule.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Keep a list of what is missing and ask for each item back.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0049",
+    "domain": "family",
+    "intensity": 2,
+    "scenario": "Your parents want you home for every holiday. So does your partner's family.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Go to your own family; they come first.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Alternate strictly, one family each year.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Skip both and travel somewhere new with your partner.",
+          "keyed": {
+            "openness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Go wherever will cause the smallest argument.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0050",
+    "domain": "family",
+    "intensity": 2,
+    "scenario": "Your aunt leaves her house to you, though your cousin looked after her for years.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Give your cousin the bigger share; they earned it.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Split it evenly with your cousin.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Keep it all; it was left to you.",
+          "keyed": {
+            "honesty_humility": -1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Keep it, but let your cousin live there rent-free as long as they need.",
+          "keyed": {
+            "care": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  },
+  {
+    "id": "q0051",
+    "domain": "family",
+    "intensity": 1,
+    "scenario": "Your teenage nephew asks you to keep a secret from his parents: he has started vaping.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Keep his secret; he trusted you.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Tell his parents; it is their decision.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Keep it, but talk to him about what it does to his health.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Tell him plainly that it is a disgusting habit.",
+          "keyed": {
+            "purity": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0052",
+    "domain": "family",
+    "intensity": 2,
+    "scenario": "Your sister asks you to be the guarantor on her flat. If she misses the rent, you pay.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Sign; she is family.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Sign only after going through her budget together.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Say no; the risk would keep you up at night.",
+          "keyed": {
+            "emotionality": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Sign only once she repays what she still owes you.",
+          "keyed": {
+            "proportionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0053",
+    "domain": "online",
+    "intensity": 1,
+    "scenario": "An old friend shares a news story you know is false. It already has hundreds of likes, many from their family.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Comment with a correction and a source.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Message them privately so they are not embarrassed.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Ignore it; arguing online is not worth it.",
+          "keyed": {
+            "extraversion": -1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Post a witty takedown on your own page.",
+          "keyed": {
+            "narcissism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0054",
+    "domain": "online",
+    "intensity": 1,
+    "scenario": "A joke you posted goes viral and strangers praise you. Part of it was a friend's idea.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Post more to keep the attention coming.",
+          "keyed": {
+            "narcissism": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Feel uneasy and make your account private.",
+          "keyed": {
+            "emotionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Reply to as many people as you can.",
+          "keyed": {
+            "extraversion": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Point out that a friend came up with half of it.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0055",
+    "domain": "online",
+    "intensity": 2,
+    "scenario": "You find a colleague's anonymous account, where they mock your boss.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Keep it to yourself; colleagues stick together.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Tell your boss.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Keep it to yourself, in case it is useful one day.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Tell the colleague you found it and laugh about it together.",
+          "keyed": {
+            "extraversion": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0056",
+    "domain": "online",
+    "intensity": 1,
+    "scenario": "A brand offers you a free product if you post a five-star review. You found it average.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Post an honest three-star review.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Post five stars and keep the product.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Decline; paid reviews break the site's rules.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Post four stars; it is a small kindness.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0057",
+    "domain": "everyday",
+    "intensity": 1,
+    "scenario": "An elderly man with two items cuts in front of you in a long supermarket queue, as if he had not seen you.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Let it go.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Tell him politely to go to the back; everyone else waited.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Ask a member of staff to deal with it.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Make a joke about it loud enough for the queue to hear.",
+          "keyed": {
+            "extraversion": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  },
+  {
+    "id": "q0058",
+    "domain": "everyday",
+    "intensity": 1,
+    "scenario": "Your neighbour's dog barks every evening. You have never met the neighbour; last week you heard him shouting at the postman.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Knock, introduce yourself, and bring it up.",
+          "keyed": {
+            "extraversion": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Report it to the building manager.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Buy earplugs; you do not want a conflict.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Leave an unsigned note under his door.",
+          "keyed": {
+            "extraversion": -1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  },
+  {
+    "id": "q0059",
+    "domain": "everyday",
+    "intensity": 2,
+    "scenario": "You find a wallet with 300 euros and an ID card on a quiet street.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Return it yourself with all the money.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Keep the cash and post the wallet back.",
+          "keyed": {
+            "psychopathy": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Hand it in at the police station.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Return it, and expect a reward for your trouble.",
+          "keyed": {
+            "proportionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0060",
+    "domain": "everyday",
+    "intensity": 1,
+    "scenario": "A friend invites you to try a dish made with insects.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Try it happily.",
+          "keyed": {
+            "openness": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Refuse; the idea disgusts you.",
+          "keyed": {
+            "purity": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Eat a little, to be polite.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Refuse; you would worry about getting ill.",
+          "keyed": {
+            "emotionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0061",
+    "domain": "everyday",
+    "intensity": 1,
+    "scenario": "Your flatmates leave dirty dishes in the sink for days.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Draw up a cleaning rota.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Wash them yourself; it is quicker.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Put their dirty dishes on their beds.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Insist every chore is split exactly evenly, whoever made the mess.",
+          "keyed": {
+            "equality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0062",
+    "domain": "everyday",
+    "intensity": 2,
+    "scenario": "You are offered a well-paid job at a company that runs online betting apps.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Turn it down; the work would feel degrading.",
+          "keyed": {
+            "purity": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Take it, and use it as a stepping stone.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Take it, and give part of your salary to good causes.",
+          "keyed": {
+            "impartial_beneficence": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Take it; money is money.",
+          "keyed": {
+            "honesty_humility": -1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0063",
+    "domain": "everyday",
+    "intensity": 1,
+    "scenario": "At a party, a stranger tells you a long story you find boring.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Listen politely to the end.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Jump in with a better story of your own.",
+          "keyed": {
+            "extraversion": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Say you have to go and walk off mid-story.",
+          "keyed": {
+            "agreeableness": -1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Steer the conversation back to yourself.",
+          "keyed": {
+            "narcissism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0064",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A lifeboat holds eight people. There are nine of you, and it will sink. One passenger is badly injured and unlikely to survive anyway.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Push the injured passenger overboard to save the rest.",
+          "keyed": {
+            "instrumental_harm": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Refuse; nobody gets pushed, whatever happens.",
+          "keyed": {
+            "instrumental_harm": -1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Draw lots among everyone, yourself included.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Let the ship's officer on board decide.",
+          "keyed": {
+            "authority": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0065",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "You run a hospital budget. You can pay for one expensive treatment that saves a child in your ward, or vaccines abroad that will likely save ten adults.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        {
+          "key": "A",
+          "text": "Pay for the vaccines.",
+          "keyed": {
+            "impartial_beneficence": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Pay for the child's treatment.",
+          "keyed": {
+            "care": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  },
+  {
+    "id": "q0066",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "In wartime, you hide with others from soldiers who will kill you all. A baby starts crying. The only way to quiet it in time would smother it.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        {
+          "key": "A",
+          "text": "Smother the baby to save everyone else.",
+          "keyed": {
+            "instrumental_harm": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Refuse, whatever happens.",
+          "keyed": {
+            "instrumental_harm": -1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0067",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "Five miners are trapped. Flooding a side shaft would save them, but would drown one trapped worker who is your close friend.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Flood the shaft.",
+          "keyed": {
+            "impartial_beneficence": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Refuse; you cannot kill your friend.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Leave the decision to the rescue chief.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Ask your friend over the radio what they want you to do.",
+          "keyed": {
+            "care": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0068",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A drug trial could save thousands of lives, but only if 20 volunteers take a serious risk they are not fully told about.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Run the trial as planned.",
+          "keyed": {
+            "instrumental_harm": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Tell the volunteers everything, even if most drop out.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Run it only if the ethics board signs off.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Delay for years to design a safer trial.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0069",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A self-driving car's brakes fail. It can swerve into one pedestrian crossing legally, or stay on course into three people crossing on a red light.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        {
+          "key": "A",
+          "text": "Swerve: one death is better than three.",
+          "keyed": {
+            "impartial_beneficence": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Stay on course: the three took the risk.",
+          "keyed": {
+            "proportionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0070",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A deadly outbreak starts in a village of 500. Sealing it off would likely protect millions, but some villagers would die without outside care.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Seal off the village.",
+          "keyed": {
+            "impartial_beneficence": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Send in doctors, even if it risks spreading the disease.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Do whatever the health ministry orders.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Seal it off, and never stop thinking about it.",
+          "keyed": {
+            "emotionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24"
+  },
+  {
+    "id": "q0071",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "Your father needs a kidney. You are a match, but the operation carries a small risk, and your own two children are very young.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Donate; he is your father.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Decline; the risk to your young family scares you too much.",
+          "keyed": {
+            "emotionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Donate only if your siblings get tested first.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Wait for the transplant list while you look into the risks.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "llm-draft",
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
+  }
+]

@@ -211,7 +211,7 @@ def run(personas: list[dict], items: list[dict], backend_specs: list[str], out: 
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--personas", type=Path, required=True)
-    p.add_argument("--items", type=Path, help="question bank (items/seed.json)")
+    p.add_argument("--items", type=Path, nargs="*", default=[], help="question bank files (items/seed.json, items/drafts/*.json)")
     p.add_argument("--scales", type=Path, nargs="*", default=[], help="questionnaire files (items/scales/*.json)")
     p.add_argument("--backend", action="append", required=True, help="repeat for several models")
     p.add_argument("--out", type=Path, required=True)
@@ -225,12 +225,13 @@ def main(argv: list[str] | None = None) -> None:
     personas = json.loads(args.personas.read_text())[: args.limit_personas]
     from .scales import load_scale
 
-    items = json.loads(args.items.read_text()) if args.items else []
+    items = [i for path in args.items for i in json.loads(path.read_text())]
     items += [i for path in args.scales for i in load_scale(path)]
     if args.persona_ids:
         personas = [p for p in personas if p["persona_id"] in args.persona_ids]
     if args.item_ids:
-        items = [i for i in items if i["id"] in args.item_ids]
+        # Questionnaire items are kept: they label the agents.
+        items = [i for i in items if i["id"] in args.item_ids or i["answer"]["type"] == "likert"]
     run(personas, items, args.backend, args.out, args.workers, args.max_calls, args.rpm)
 
 

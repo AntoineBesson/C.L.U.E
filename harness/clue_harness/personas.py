@@ -7,6 +7,7 @@ Target traits are z-scores. They are used only to write the prompt and, later,
 to report persona fidelity; labels come from the questionnaires.
 
     python -m clue_harness.personas --n 20 --seed 2026 > ../agents/personas.json
+    python -m clue_harness.personas --n 50 --seed 2027 --first-id 101 > ../agents/personas-phase1.json
 """
 
 from __future__ import annotations
@@ -358,8 +359,9 @@ def _article(word: str) -> str:
     return "an" if word[0] in "aeiou" else "a"
 
 
-def generate(n: int, seed: int, archetype_share: float = 0.1) -> list[dict]:
-    """n personas: about archetype_share extreme archetypes, the rest sampled from the prior."""
+def generate(n: int, seed: int, archetype_share: float = 0.1, first_id: int = 1) -> list[dict]:
+    """n personas: about archetype_share extreme archetypes, the rest sampled from the prior.
+    Ids run from p{first_id:03d}, so persona sets for different phases never share an id."""
     rng = random.Random(seed)
     np_rng = np.random.default_rng(seed)
     # Cholesky rather than multivariate_normal: its SVD can differ across
@@ -383,7 +385,7 @@ def generate(n: int, seed: int, archetype_share: float = 0.1) -> list[dict]:
             name = "sampled"
             z = draw()
             traits = dict(zip(TRAITS, z.tolist()))
-        personas.append(make_persona(i, traits, name, rng, decks))
+        personas.append(make_persona(first_id - 1 + i, traits, name, rng, decks))
     return personas
 
 
@@ -404,8 +406,9 @@ def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--n", type=int, default=20)
     p.add_argument("--seed", type=int, default=2026)
+    p.add_argument("--first-id", type=int, default=1, help="number of the first persona id")
     args = p.parse_args(argv)
-    json.dump(generate(args.n, args.seed), sys.stdout, indent=2, ensure_ascii=False)
+    json.dump(generate(args.n, args.seed, first_id=args.first_id), sys.stdout, indent=2, ensure_ascii=False)
     sys.stdout.write("\n")
 
 

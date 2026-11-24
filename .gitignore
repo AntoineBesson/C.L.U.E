@@ -9,6 +9,6 @@ data/raw/
 !.env.example
 
 # Harness call caches (answers.jsonl keeps the results)
-runs/*/cache.jsonl
+runs/**/cache.jsonl
 __pycache__/
 .pytest_cache/
