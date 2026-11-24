@@ -171,43 +171,44 @@
     "id": "q0036",
     "domain": "work",
     "intensity": 1,
-    "scenario": "Your team must choose who presents your project to the board. You did most of the work, but a colleague is a much better speaker.",
+    "scenario": "Your team must choose who presents your project to the board, which decides promotions. You did most of the work, but a colleague is a much better speaker.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Insist on presenting; it is your project.",
+          "text": "Insist on presenting; it is your work and your promotion.",
           "keyed": {
             "narcissism": 1
           }
         },
         {
           "key": "B",
-          "text": "Let the better speaker present it.",
+          "text": "Let the better speaker present it, even if they get the credit.",
           "keyed": {
             "agreeableness": 1
           }
         },
         {
           "key": "C",
-          "text": "Offer to present it together and take the questions yourself.",
+          "text": "Present it together and take all the questions yourself.",
           "keyed": {
             "extraversion": 1
           }
         },
         {
           "key": "D",
-          "text": "Let them present, and dread every slide they might get wrong.",
+          "text": "Present it yourself, after rehearsing every evening for a week.",
           "keyed": {
-            "emotionality": 1
+            "conscientiousness": 1
           }
         }
       ]
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0037",
@@ -339,34 +340,34 @@
     "id": "q0040",
     "domain": "money",
     "intensity": 1,
-    "scenario": "At a group dinner, everyone wants to split the bill evenly. You only had a salad and water.",
+    "scenario": "You are meeting your partner's friends for the first time at dinner. They split the bill evenly. You only had a salad and water.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Pay an even share; everyone paying the same is fair.",
+          "text": "Pay an even share; that is how groups do it.",
           "keyed": {
             "equality": 1
           }
         },
         {
           "key": "B",
-          "text": "Ask to pay only for what you ordered.",
+          "text": "Ask to pay only for what you had.",
           "keyed": {
             "proportionality": 1
           }
         },
         {
           "key": "C",
-          "text": "Pay your share without a word, to keep the evening pleasant.",
+          "text": "Pay evenly and make nothing of it, to make a good impression.",
           "keyed": {
             "agreeableness": 1
           }
         },
         {
           "key": "D",
-          "text": "Pay evenly now, and order the most expensive dish next time.",
+          "text": "Pay evenly, and quietly add a pricey cocktail to the order first.",
           "keyed": {
             "machiavellianism": 1
           }
@@ -375,7 +376,8 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0041",
@@ -401,29 +403,30 @@
         },
         {
           "key": "C",
-          "text": "Keep it, but give it to a charity.",
+          "text": "Phone the shop and offer to bring it next time you are nearby.",
           "keyed": {
-            "impartial_beneficence": 1
+            "conscientiousness": 1
           }
         },
         {
           "key": "D",
-          "text": "Keep it, and feel guilty every time you think of the shop.",
+          "text": "Keep it; that shop overcharged you last month anyway.",
           "keyed": {
-            "emotionality": 1
+            "proportionality": 1
           }
         }
       ]
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0042",
     "domain": "money",
     "intensity": 1,
-    "scenario": "A friend asks you to put 1,000 euros into the café they are opening.",
+    "scenario": "A friend opening a café asks you to put in 1,000 euros. They need an answer tonight and have no business plan yet.",
     "answer": {
       "type": "choice",
       "options": [
@@ -436,7 +439,7 @@
         },
         {
           "key": "B",
-          "text": "Ask to see their business plan and numbers first.",
+          "text": "Say no until you have seen a plan, even if they lose the deal.",
           "keyed": {
             "conscientiousness": 1
           }
@@ -450,22 +453,23 @@
         },
         {
           "key": "D",
-          "text": "Say no; you would lose sleep over the risk.",
+          "text": "Say no, and tell them honestly you think it will fail.",
           "keyed": {
-            "emotionality": 1
+            "honesty_humility": 1
           }
         }
       ]
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0043",
     "domain": "friends",
     "intensity": 1,
-    "scenario": "Your best friend asks your honest opinion of their new partner, whom you dislike.",
+    "scenario": "Your best friend is about to get engaged and asks what you think of their partner, whom you dislike. They mostly want your blessing.",
     "answer": {
       "type": "choice",
       "options": [
@@ -478,7 +482,7 @@
         },
         {
           "key": "B",
-          "text": "Say something kind and keep your doubts to yourself.",
+          "text": "Give your blessing and keep your doubts to yourself.",
           "keyed": {
             "agreeableness": 1
           }
@@ -492,7 +496,7 @@
         },
         {
           "key": "D",
-          "text": "Say nice things now, and slowly plant doubts.",
+          "text": "Give your blessing now, and slowly plant doubts.",
           "keyed": {
             "machiavellianism": 1
           }
@@ -501,7 +505,8 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0044",
@@ -779,23 +784,24 @@
         },
         {
           "key": "C",
-          "text": "Keep it; a will is a will.",
+          "text": "Keep it all; it was left to you.",
           "keyed": {
-            "authority": 1
+            "honesty_humility": -1
           }
         },
         {
           "key": "D",
-          "text": "Keep it, and avoid your cousin until the fuss dies down.",
+          "text": "Keep it, but let your cousin live there rent-free as long as they need.",
           "keyed": {
-            "machiavellianism": 1
+            "care": 1
           }
         }
       ]
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0051",
@@ -1053,7 +1059,7 @@
     "id": "q0057",
     "domain": "everyday",
     "intensity": 1,
-    "scenario": "Someone cuts in front of you in a long supermarket queue.",
+    "scenario": "An elderly man with two items cuts in front of you in a long supermarket queue, as if he had not seen you.",
     "answer": {
       "type": "choice",
       "options": [
@@ -1066,7 +1072,7 @@
         },
         {
           "key": "B",
-          "text": "Tell them to go to the back; everyone else waited.",
+          "text": "Tell him politely to go to the back; everyone else waited.",
           "keyed": {
             "proportionality": 1
           }
@@ -1080,22 +1086,23 @@
         },
         {
           "key": "D",
-          "text": "Say nothing, and stew about it for the rest of the day.",
+          "text": "Make a joke about it loud enough for the queue to hear.",
           "keyed": {
-            "emotionality": 1
+            "extraversion": 1
           }
         }
       ]
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0058",
     "domain": "everyday",
     "intensity": 1,
-    "scenario": "Your neighbour's dog barks every evening. You have never met the neighbour.",
+    "scenario": "Your neighbour's dog barks every evening. You have never met the neighbour; last week you heard him shouting at the postman.",
     "answer": {
       "type": "choice",
       "options": [
@@ -1122,7 +1129,7 @@
         },
         {
           "key": "D",
-          "text": "Leave an unsigned note under their door.",
+          "text": "Leave an unsigned note under his door.",
           "keyed": {
             "extraversion": -1
           }
@@ -1131,7 +1138,8 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0059",
@@ -1391,7 +1399,7 @@
     "intensity": 3,
     "scenario": "You run a hospital budget. You can pay for one expensive treatment that saves a child in your ward, or vaccines abroad that will likely save ten adults.",
     "answer": {
-      "type": "choice",
+      "type": "binary",
       "options": [
         {
           "key": "A",
@@ -1406,26 +1414,13 @@
           "keyed": {
             "care": 1
           }
-        },
-        {
-          "key": "C",
-          "text": "Split the money, even if it saves fewer people.",
-          "keyed": {
-            "equality": 1
-          }
-        },
-        {
-          "key": "D",
-          "text": "Pass the decision to the hospital's ethics committee.",
-          "keyed": {
-            "authority": 1
-          }
         }
       ]
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   },
   {
     "id": "q0066",
@@ -1613,7 +1608,7 @@
     "id": "q0071",
     "domain": "sacrificial",
     "intensity": 3,
-    "scenario": "Your father needs a kidney. You are a match, but the operation carries a small risk and months of recovery.",
+    "scenario": "Your father needs a kidney. You are a match, but the operation carries a small risk, and your own two children are very young.",
     "answer": {
       "type": "choice",
       "options": [
@@ -1626,21 +1621,21 @@
         },
         {
           "key": "B",
-          "text": "Decline; the risk frightens you.",
+          "text": "Decline; the risk to your young family scares you too much.",
           "keyed": {
             "emotionality": 1
           }
         },
         {
           "key": "C",
-          "text": "Donate only if your siblings get tested too.",
+          "text": "Donate only if your siblings get tested first.",
           "keyed": {
             "equality": 1
           }
         },
         {
           "key": "D",
-          "text": "Wait until you have read everything and seen two specialists.",
+          "text": "Wait for the transplant list while you look into the risks.",
           "keyed": {
             "conscientiousness": 1
           }
@@ -1649,6 +1644,7 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-24"
   }
 ]
