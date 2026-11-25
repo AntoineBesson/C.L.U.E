@@ -15,6 +15,12 @@ answer the agent is also asked how 100 people split across the options (the
 game's crowd prediction, scored with the truth bonus). The conversation then
 carries on to the next card.
 
+With ``--grouped``, the whole set goes in one request and the agent replies
+with one line per card ("1: B | A=40, B=30, C=20, D=10"): one request per set
+instead of one per card and one per guess, for models limited by requests per
+day or minute (free tiers, new-account Mistral). Cards still share a context,
+as in a player's day.
+
 One row per (persona, card, backend), as in run.py, plus set_id, position,
 guess (option key -> share) and guess_invalid. Cached and resumable like run.py.
 """
@@ -126,8 +132,54 @@ def play_set(backend: Backend, cache: Cache, persona: dict, set_id: int, cards: 
     return rows
 
 
+def play_group(backend: Backend, cache: Cache, persona: dict, set_id: int, cards: list[dict],
+               guess: bool, budget: Budget | None = None) -> list[dict]:
+    """The whole set in one request: one reply line per card (answer, and guess with --guess)."""
+    system = system_prompt(persona)
+    shown = [(item, prompts.option_order(item, persona["persona_id"])) for item in cards]
+    context = {"persona": persona, "cards": shown, "group_guess": guess,
+               "max_tokens": (40 if guess else 8) * len(cards)}
+    parsed: list[tuple] = [(None, None)] * len(cards)
+    raws, attempts = [], 0
+    for strict in (False, True):
+        attempts += 1
+        user = prompts.render_group(shown, guess, strict=strict)
+        raw = _chat(backend, cache, system, [{"role": "user", "content": user}], context, budget)["text"]
+        raws.append(raw)
+        new = prompts.parse_group(shown, raw, guess)
+        # Keep what the first reply got right; fill gaps from the stricter retry.
+        parsed = [p if p[0] and (p[1] or not guess) else (n if n[0] else p) for p, n in zip(parsed, new)]
+        if all(k and (g or not guess) for k, g in parsed):
+            break
+    rows = []
+    for pos, ((item, order), (key, g)) in enumerate(zip(shown, parsed)):
+        rows.append({
+            "agent_id": f"{persona['persona_id']}@{backend.name}",
+            "persona_id": persona["persona_id"],
+            "archetype": persona["archetype"],
+            "model": backend.name,
+            "mode": f"grouped{len(cards)}",
+            "set_id": set_id,
+            "position": pos,
+            "item_id": item["id"],
+            "answer_type": item["answer"]["type"],
+            "order": order,
+            "chosen_key": key,
+            "chosen_position": order.index(key) if key else None,
+            "value": None,
+            "invalid": key is None,
+            "attempts": attempts,
+            "raw_text": raws[-1],
+            "guess": g,
+            "guess_invalid": guess and g is None,
+            "guess_raw": None,
+        })
+    return rows
+
+
 def run_sets(personas: list[dict], items: list[dict], backend_specs: list[str], out: Path, set_size: int = 4,
-             guess: bool = True, workers: int = 8, max_calls: int | None = None, rpm: float | None = None) -> list[dict]:
+             guess: bool = True, workers: int = 8, max_calls: int | None = None, rpm: float | None = None,
+             grouped: bool = False) -> list[dict]:
     out.mkdir(parents=True, exist_ok=True)
     cache = Cache(out / "cache.jsonl")
     rows: list[dict] = []
@@ -137,7 +189,7 @@ def run_sets(personas: list[dict], items: list[dict], backend_specs: list[str], 
         jobs = [(p, n, cards) for p in personas for n, cards in enumerate(make_sets(p["persona_id"], items, set_size))]
         skipped = 0
         with ThreadPoolExecutor(max_workers=workers) as pool:
-            futures = [pool.submit(play_set, backend, cache, p, n, cards, guess, budget) for p, n, cards in jobs]
+            futures = [pool.submit(play_group if grouped else play_set, backend, cache, p, n, cards, guess, budget) for p, n, cards in jobs]
             for done, f in enumerate(as_completed(futures), 1):
                 try:
                     rows += f.result()
@@ -162,6 +214,8 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--backend", action="append", required=True)
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--set-size", type=int, default=4, help="cards per conversation; 1 = isolated, as in run.py")
+    p.add_argument("--grouped", action="store_true",
+                   help="send each set as one request with one reply line per card (fewer requests for rate-limited models)")
     p.add_argument("--no-guess", action="store_true", help="skip the crowd-split guess after each card")
     p.add_argument("--workers", type=int, default=8)
     p.add_argument("--limit-personas", type=int)
@@ -172,7 +226,8 @@ def main(argv: list[str] | None = None) -> None:
     items = [i for path in args.items for i in json.loads(path.read_text())]
     if args.item_ids:
         items = [i for i in items if i["id"] in args.item_ids]
-    run_sets(personas, items, args.backend, args.out, args.set_size, not args.no_guess, args.workers, args.max_calls, args.rpm)
+    run_sets(personas, items, args.backend, args.out, args.set_size, not args.no_guess, args.workers, args.max_calls, args.rpm,
+             args.grouped)
 
 
 if __name__ == "__main__":

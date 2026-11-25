@@ -42,7 +42,7 @@ python -m clue_harness.personas --n 50 --seed 2027 --first-id 101 > ../agents/pe
 | `run.py` | The runner: retries, strict-suffix retry, resumable cache, JSONL + Parquet output |
 | `scales.py` | Questionnaire items as harness items (`likert`), scoring, persona fidelity report |
 | `analyse.py` | The trial report |
-| `sets.py` | Daily-set mode: cards played in sets within one conversation, with a crowd-split guess after each answer |
+| `sets.py` | Daily-set mode: cards played in sets within one conversation, with a crowd-split guess after each answer; `--grouped` sends a whole set in one request (for request-limited models) |
 | `sets_report.py` | Sets vs isolated answers (context effect, tracking), crowd-guess accuracy, agent `crowd` shares |
 | `gate.py` | Phase 1 item gate: keep/drop per item from a pre-run (entropy, top share, tracking against measured labels) |
 

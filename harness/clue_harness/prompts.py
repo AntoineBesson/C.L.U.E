@@ -52,6 +52,56 @@ def parse_guess(order: list[str], raw: str) -> dict[str, float] | None:
     return {order[LETTERS.index(L)]: found[L] / total for L in letters}
 
 
+GROUP_HEAD = "Here are {n} situations. Answer each one as yourself."
+GROUP_ANSWER = "Reply with one line per situation and nothing else, exactly in this form:\n{lines}"
+GROUP_GUESS = ("For each situation, give your own answer, then guess how 100 people split across its options. "
+               "Reply with one line per situation and nothing else, exactly in this form:\n{lines}")
+GROUP_STRICT = "Every line must start with the situation number, a colon and one letter. Do not explain."
+
+
+def render_group(cards: list[tuple[dict, list[str]]], guess: bool, strict: bool = False) -> str:
+    """Several choice/binary cards in one message, answered (and guessed) in one reply."""
+    parts = [GROUP_HEAD.format(n=len(cards)), ""]
+    for n, (item, order) in enumerate(cards, 1):
+        by_key = {o["key"]: o for o in item["answer"]["options"]}
+        parts += [f"Situation {n}", item["scenario"], "What do you do?"]
+        parts += [f"{L}. {by_key[k]['text']}" for L, k in zip(LETTERS, order)]
+        parts.append("")
+    # Placeholders rather than example numbers, so the format does not anchor answers or guesses.
+    def line(n: int, order: list[str]) -> str:
+        shown = LETTERS[: len(order)]
+        base = f"{n}: <{'/'.join(shown)}>"
+        return base + " | " + ", ".join(f"{L}=<number>" for L in shown) if guess else base
+    lines = "\n".join(line(n, o) for n, (_, o) in enumerate(cards, 1))
+    parts.append((GROUP_GUESS if guess else GROUP_ANSWER).format(lines=lines))
+    if guess:
+        parts.append("The numbers on each line add up to 100.")
+    if strict:
+        parts.append(GROUP_STRICT)
+    return "\n".join(parts)
+
+
+_GROUP_LINE = re.compile(r"^\W*(?:situation|question|q)?\s*(\d{1,2})\s*[:.)=-]?\**\s*[:.)=-]?\s*\**\s*<?\(?([A-Da-d])\)?>?\**(?![A-Za-z])(.*)$", re.I)
+
+
+def parse_group(cards: list[tuple[dict, list[str]]], raw: str, guess: bool) -> list[tuple[str | None, dict | None]]:
+    """Per card: (option key or None, guess or None). Lines may come in any order; extra text is ignored."""
+    out: list[tuple[str | None, dict | None]] = [(None, None)] * len(cards)
+    for line in (raw or "").splitlines():
+        m = _GROUP_LINE.match(line.strip())
+        if not m:
+            continue
+        n = int(m.group(1)) - 1
+        if not 0 <= n < len(cards) or out[n][0] is not None:
+            continue
+        _, order = cards[n]
+        i = LETTERS.index(m.group(2).upper())
+        key = order[i] if i < len(order) else None
+        g = parse_guess(order, m.group(3)) if guess and key else None
+        out[n] = (key, g)
+    return out
+
+
 def stable_seed(*parts: str) -> int:
     return int.from_bytes(hashlib.sha256("|".join(parts).encode()).digest()[:8], "big")
 
