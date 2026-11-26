@@ -27,6 +27,12 @@ python -m clue_harness.analyse --run ../runs/phase0-smoke \
     --scales-run ../runs/phase0-scales --scales ../items/scales/mfq2.json ../items/scales/ous.json \
     > ../runs/phase0-smoke/report.md
 
+# Daily sets with crowd guesses. On request-limited models (free tiers, Mistral) use
+# --grouped: one request per set instead of two per card (runs/grouped-check).
+# The item gate and adaptive replays keep isolated answers (clue_harness.run).
+python -m clue_harness.sets --personas ../agents/personas-phase1.json --items ../items/seed.json \
+    --backend openrouter:nvidia/nemotron-3-ultra-550b-a55b:free --set-size 4 --grouped --out ../runs/sets-nemotron
+
 # Phase 1 pre-run (100 agents) and item gate: see runs/phase1-prerun/run.sh
 python -m clue_harness.personas --n 50 --seed 2027 --first-id 101 > ../agents/personas-phase1.json
 ```
