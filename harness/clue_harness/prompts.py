@@ -102,6 +102,31 @@ def parse_group(cards: list[tuple[dict, list[str]]], raw: str, guess: bool) -> l
     return out
 
 
+GROUP_GUESS_TURN = ("Now guess how other people answered each situation above. Out of 100 people, how many "
+                    "picked each option? Reply with one line per situation and nothing else, exactly in this form:\n{lines}\n"
+                    "The numbers on each line add up to 100.")
+
+
+def render_group_guess(cards: list[tuple[dict, list[str]]], strict: bool = False) -> str:
+    """Second turn of a grouped set: crowd guesses for every card, asked after the answers."""
+    lines = "\n".join(f"{n}: " + ", ".join(f"{L}=<number>" for L in LETTERS[: len(o)])
+                      for n, (_, o) in enumerate(cards, 1))
+    return GROUP_GUESS_TURN.format(lines=lines) + ("\n" + GROUP_STRICT.replace("one letter", "the numbers") if strict else "")
+
+
+_GUESS_LINE = re.compile(r"^\W*(?:situation|question|q)?\s*(\d{1,2})\s*[:.)-]+\**\s*(.*)$", re.I)
+
+
+def parse_group_guess(cards: list[tuple[dict, list[str]]], raw: str) -> list[dict | None]:
+    out: list[dict | None] = [None] * len(cards)
+    for line in (raw or "").splitlines():
+        m = _GUESS_LINE.match(line.strip())
+        if m and 0 < int(m.group(1)) <= len(cards) and out[int(m.group(1)) - 1] is None:
+            n = int(m.group(1)) - 1
+            out[n] = parse_guess(cards[n][1], m.group(2))
+    return out
+
+
 def stable_seed(*parts: str) -> int:
     return int.from_bytes(hashlib.sha256("|".join(parts).encode()).digest()[:8], "big")
 

@@ -212,6 +212,13 @@ class MockBackend(Backend):
         self.sharpness = sharpness
 
     def chat(self, system: str, messages: list[dict], context: dict) -> Reply:
+        if context.get("group_guess_turn"):  # grouped set, second turn: one guess line per card
+            lines = []
+            for n, ((item, order), own) in enumerate(zip(context["cards"], context["own_keys"]), 1):
+                sub = {**context, "item": item, "order": order, "cards": None, "group_guess_turn": False,
+                       "guess": True, "own_key": own}
+                lines.append(f"{n}: " + self.chat(system, messages, sub).text)
+            return Reply(text="\n".join(lines))
         if context.get("cards"):  # grouped set: one line per card
             lines = []
             for n, (item, order) in enumerate(context["cards"], 1):

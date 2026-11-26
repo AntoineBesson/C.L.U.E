@@ -165,10 +165,12 @@ def test_grouped_sets_answer_a_whole_set_in_one_request(tmp_path):
     from clue_harness.sets import run_sets
     from clue_harness import prompts as P
 
-    rows = run_sets(PERSONAS[:3], ITEMS, ["mock"], tmp_path, set_size=4, guess=True, workers=2, grouped=True)
-    assert rows and not any(r["invalid"] or r["guess_invalid"] for r in rows)
-    n_sets = len({(r["persona_id"], r["set_id"]) for r in rows})
-    assert sum(1 for _ in (tmp_path / "cache.jsonl").open()) == n_sets  # one request per set
+    for turn, per_set in (("same", 1), ("separate", 2)):
+        out = tmp_path / turn
+        rows = run_sets(PERSONAS[:3], ITEMS, ["mock"], out, set_size=4, guess=True, workers=2, grouped=True, guess_turn=turn)
+        assert rows and not any(r["invalid"] or r["guess_invalid"] for r in rows)
+        n_sets = len({(r["persona_id"], r["set_id"]) for r in rows})
+        assert sum(1 for _ in (out / "cache.jsonl").open()) == per_set * n_sets
     cards = [(i, P.option_order(i, "p001")) for i in ITEMS if i["answer"]["type"] == "choice"][:2]
     got = P.parse_group(cards, "Sure.\n**2:** b | A=1, B=1, C=1, D=1\n1: <C>", guess=False)
     assert got[0][0] == cards[0][1][2] and got[1][0] == cards[1][1][1]
