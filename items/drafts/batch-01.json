@@ -340,34 +340,34 @@
     "id": "q0040",
     "domain": "money",
     "intensity": 1,
-    "scenario": "You are meeting your partner's friends for the first time at dinner. They split the bill evenly. You only had a salad and water.",
+    "scenario": "You are meeting your partner's friends for the first time at dinner. They split the bill evenly: 45 euros each. You had a 12-euro salad and water.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Pay an even share; that is how groups do it.",
+          "text": "Pay the 45; next time you will just order more.",
           "keyed": {
             "equality": 1
           }
         },
         {
           "key": "B",
-          "text": "Ask to pay only for what you had.",
+          "text": "Point out, in front of everyone, that you only had a salad.",
           "keyed": {
             "proportionality": 1
           }
         },
         {
           "key": "C",
-          "text": "Pay evenly and make nothing of it, to make a good impression.",
+          "text": "Pay and say nothing; you want them to like you.",
           "keyed": {
             "agreeableness": 1
           }
         },
         {
           "key": "D",
-          "text": "Pay evenly, and quietly add a pricey cocktail to the order first.",
+          "text": "Pay, and quietly order a pricey dessert to get your money's worth.",
           "keyed": {
             "machiavellianism": 1
           }
@@ -377,7 +377,7 @@
     "lang": "en",
     "source": "llm-draft",
     "drafted": "2026-11-24",
-    "revised": "2026-11-24"
+    "revised": "2026-11-27"
   },
   {
     "id": "q0041",
@@ -426,7 +426,7 @@
     "id": "q0042",
     "domain": "money",
     "intensity": 1,
-    "scenario": "A friend opening a café asks you to put in 1,000 euros. They need an answer tonight and have no business plan yet.",
+    "scenario": "A friend who has run a successful food stall is opening a café and asks you to put in 500 euros tonight. There is no written plan yet.",
     "answer": {
       "type": "choice",
       "options": [
@@ -439,7 +439,7 @@
         },
         {
           "key": "B",
-          "text": "Say no until you have seen a plan, even if they lose the deal.",
+          "text": "Say no; you never put money in without a written plan.",
           "keyed": {
             "conscientiousness": 1
           }
@@ -453,7 +453,7 @@
         },
         {
           "key": "D",
-          "text": "Say no, and tell them honestly you think it will fail.",
+          "text": "Say no, and tell them honestly that most cafés fail.",
           "keyed": {
             "honesty_humility": 1
           }
@@ -463,7 +463,7 @@
     "lang": "en",
     "source": "llm-draft",
     "drafted": "2026-11-24",
-    "revised": "2026-11-24"
+    "revised": "2026-11-27"
   },
   {
     "id": "q0043",
@@ -1608,27 +1608,27 @@
     "id": "q0071",
     "domain": "sacrificial",
     "intensity": 3,
-    "scenario": "Your father needs a kidney. You are a match, but the operation carries a small risk, and your own two children are very young.",
+    "scenario": "Your father needs a kidney. You are a match, but the operation carries a small but real risk, and your two children are very young. Your two siblings have not been tested.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Donate; he is your father.",
+          "text": "Donate straight away; he is your father.",
           "keyed": {
             "loyalty": 1
           }
         },
         {
           "key": "B",
-          "text": "Decline; the risk to your young family scares you too much.",
+          "text": "Decline; you cannot bear the thought of your children growing up without you.",
           "keyed": {
             "emotionality": 1
           }
         },
         {
           "key": "C",
-          "text": "Donate only if your siblings get tested first.",
+          "text": "Insist that both siblings get tested too, so the risk is shared fairly.",
           "keyed": {
             "equality": 1
           }
@@ -1645,6 +1645,6 @@
     "lang": "en",
     "source": "llm-draft",
     "drafted": "2026-11-24",
-    "revised": "2026-11-24"
+    "revised": "2026-11-27"
   }
 ]

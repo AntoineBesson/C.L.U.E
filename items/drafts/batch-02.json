@@ -297,34 +297,34 @@
     "id": "q0079",
     "domain": "money",
     "intensity": 2,
-    "scenario": "You can save 300 euros a year by switching to a cheaper energy supplier that uses coal.",
+    "scenario": "You can save 300 euros a year by switching to a cheaper energy supplier that burns coal.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Stay with the greener supplier.",
+          "text": "Stay; pollution harms people you will never meet.",
           "keyed": {
             "impartial_beneficence": 1
           }
         },
         {
           "key": "B",
-          "text": "Switch and put the 300 euros toward your savings.",
+          "text": "Switch; your own household's budget comes first.",
           "keyed": {
-            "conscientiousness": 1
+            "impartial_beneficence": -1
           }
         },
         {
           "key": "C",
-          "text": "Switch and give the money to people struggling with their bills.",
+          "text": "Switch and give the 300 euros to a family struggling with its bills.",
           "keyed": {
             "care": 1
           }
         },
         {
           "key": "D",
-          "text": "Look into installing your own solar panels instead.",
+          "text": "Switch, and put the money toward trying solar panels later.",
           "keyed": {
             "openness": 1
           }
@@ -333,40 +333,41 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-27"
   },
   {
     "id": "q0080",
     "domain": "money",
     "intensity": 1,
-    "scenario": "A colleague collects 20 euros from everyone for a gift. You barely know the person leaving.",
+    "scenario": "A colleague collects 30 euros from everyone for a leaving gift. You have spoken to the person leaving twice.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Pay the 20 euros like everyone else.",
+          "text": "Pay the 30 like everyone else.",
           "keyed": {
             "equality": 1
           }
         },
         {
           "key": "B",
-          "text": "Give 5 euros; that is what you owe someone you barely know.",
+          "text": "Give 10; that fits how well you know them.",
           "keyed": {
             "proportionality": 1
           }
         },
         {
           "key": "C",
-          "text": "Pay, and sign the card warmly.",
+          "text": "Pay, and write a warm message in the card.",
           "keyed": {
             "agreeableness": 1
           }
         },
         {
           "key": "D",
-          "text": "Pay, and make sure everyone sees you chip in the most.",
+          "text": "Give 50, and make sure the person knows it came from you.",
           "keyed": {
             "narcissism": 1
           }
@@ -375,7 +376,8 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-27"
   },
   {
     "id": "q0081",
@@ -675,7 +677,7 @@
     "id": "q0088",
     "domain": "family",
     "intensity": 2,
-    "scenario": "Your brother asks you to lend him 2,000 euros. He has not paid back the last 500.",
+    "scenario": "Your brother asks you to lend him 2,000 euros for this month's rent. He has not paid back the last 500.",
     "answer": {
       "type": "choice",
       "options": [
@@ -688,21 +690,21 @@
         },
         {
           "key": "B",
-          "text": "Lend it only after he repays the 500.",
+          "text": "No new loan until he repays the 500.",
           "keyed": {
             "proportionality": 1
           }
         },
         {
           "key": "C",
-          "text": "Lend it, and help him make a budget.",
+          "text": "Pay his landlord directly and sit down with him about his budget.",
           "keyed": {
             "care": 1
           }
         },
         {
           "key": "D",
-          "text": "Say no, and stop answering his calls for a while.",
+          "text": "Say no, and tell him to sort out his own mess.",
           "keyed": {
             "psychopathy": 1
           }
@@ -711,7 +713,8 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-27"
   },
   {
     "id": "q0089",
@@ -1347,34 +1350,34 @@
     "id": "q0104",
     "domain": "sacrificial",
     "intensity": 3,
-    "scenario": "A fire spreads through a care home. You can carry out one resident who can still walk with help, or two bedridden residents one at a time, at greater risk to yourself.",
+    "scenario": "A fire spreads through a care home. You can lead out one resident who can walk with help, or go back into the smoke twice for two bedridden residents. You might not make it out the second time.",
     "answer": {
       "type": "choice",
       "options": [
         {
           "key": "A",
-          "text": "Go for the two bedridden residents.",
+          "text": "Go back for the two bedridden residents.",
           "keyed": {
             "impartial_beneficence": 1
           }
         },
         {
           "key": "B",
-          "text": "Help the one who can walk; you are too scared to go back in.",
+          "text": "Take the one who can walk; going back into the smoke terrifies you.",
           "keyed": {
             "emotionality": 1
           }
         },
         {
           "key": "C",
-          "text": "Help whoever is calling out to you most.",
+          "text": "Stay with the one who can walk, who is clinging to you and crying.",
           "keyed": {
             "care": 1
           }
         },
         {
           "key": "D",
-          "text": "Wait for the firefighters' instructions.",
+          "text": "Get out and follow the firefighters' instructions.",
           "keyed": {
             "authority": 1
           }
@@ -1383,7 +1386,8 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-27"
   },
   {
     "id": "q0105",
@@ -1417,7 +1421,7 @@
     "id": "q0106",
     "domain": "sacrificial",
     "intensity": 3,
-    "scenario": "Doctors can save a woman's life only with blood stored from donors who gave it for research and never agreed to this use.",
+    "scenario": "A woman will die without a rare blood type. The only match is in a research bank whose donors signed forms saying it must never be given to patients.",
     "answer": {
       "type": "choice",
       "options": [
@@ -1430,21 +1434,21 @@
         },
         {
           "key": "B",
-          "text": "Ask the donors first, even if it may be too late.",
+          "text": "Refuse; the donors were made a promise, and it should be kept.",
           "keyed": {
             "honesty_humility": 1
           }
         },
         {
           "key": "C",
-          "text": "Follow the hospital's rules, whatever they say.",
+          "text": "Use it only if the hospital's ethics board approves in time.",
           "keyed": {
             "authority": 1
           }
         },
         {
           "key": "D",
-          "text": "Refuse; using it that way would be a violation.",
+          "text": "Refuse; putting their blood in her against their wishes would be a violation.",
           "keyed": {
             "purity": 1
           }
@@ -1453,7 +1457,8 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-27"
   },
   {
     "id": "q0107",
@@ -1501,7 +1506,7 @@
     "id": "q0108",
     "domain": "sacrificial",
     "intensity": 3,
-    "scenario": "A flood will drown a town of 2,000 unless engineers open a dam that will destroy a village of 50 people who cannot be warned in time.",
+    "scenario": "A flood will drown a town of 300 unless engineers open a dam, which will destroy a village of 100 people who cannot be warned in time.",
     "answer": {
       "type": "choice",
       "options": [
@@ -1537,13 +1542,14 @@
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-27"
   },
   {
     "id": "q0109",
     "domain": "sacrificial",
     "intensity": 3,
-    "scenario": "Rescuers can reach only one of two cars in a river: one holds your neighbour, the other two strangers.",
+    "scenario": "Two cars have gone into a river. You can reach only one: one holds your neighbour, the other two elderly strangers.",
     "answer": {
       "type": "choice",
       "options": [
@@ -1563,23 +1569,24 @@
         },
         {
           "key": "C",
-          "text": "Flip a coin; every life counts the same.",
+          "text": "Go to the nearer car; weighing lives is not your place.",
           "keyed": {
-            "equality": 1
+            "instrumental_harm": -1
           }
         },
         {
           "key": "D",
-          "text": "Save whoever seems more frightened.",
+          "text": "Save your neighbour; you could not face her family otherwise.",
           "keyed": {
-            "care": 1
+            "emotionality": 1
           }
         }
       ]
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-27"
   },
   {
     "id": "q0110",
@@ -1591,36 +1598,37 @@
       "options": [
         {
           "key": "A",
-          "text": "Whoever it saves the most lives to vaccinate.",
+          "text": "The elderly; they are the most likely to die.",
           "keyed": {
             "impartial_beneficence": 1
           }
         },
         {
           "key": "B",
-          "text": "Children first.",
-          "keyed": {
-            "care": 1
-          }
-        },
-        {
-          "key": "C",
-          "text": "Nurses first; they risk the most for everyone.",
+          "text": "Nurses; they risk the most for everyone.",
           "keyed": {
             "proportionality": 1
           }
         },
         {
-          "key": "D",
-          "text": "A lottery; everyone gets the same chance.",
+          "key": "C",
+          "text": "Follow the health ministry's order, whatever it is.",
           "keyed": {
-            "equality": 1
+            "authority": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Children; they have the most life ahead of them.",
+          "keyed": {
+            "care": 1
           }
         }
       ]
     },
     "lang": "en",
     "source": "llm-draft",
-    "drafted": "2026-11-24"
+    "drafted": "2026-11-24",
+    "revised": "2026-11-27"
   }
 ]
