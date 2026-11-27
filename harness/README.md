@@ -27,6 +27,12 @@ python -m clue_harness.analyse --run ../runs/phase0-smoke \
     --scales-run ../runs/phase0-scales --scales ../items/scales/mfq2.json ../items/scales/ous.json \
     > ../runs/phase0-smoke/report.md
 
+# Daily sets with crowd guesses. On request-limited models (free tiers, Mistral) use
+# --grouped: one request per set instead of two per card (runs/grouped-check).
+# The item gate and adaptive replays keep isolated answers (clue_harness.run).
+python -m clue_harness.sets --personas ../agents/personas-phase1.json --items ../items/seed.json \
+    --backend openrouter:nvidia/nemotron-3-ultra-550b-a55b:free --set-size 4 --grouped --out ../runs/sets-nemotron
+
 # Phase 1 pre-run (100 agents) and item gate: see runs/phase1-prerun/run.sh
 
 # Simulated crowd for the game. Each run is given with the commit it ran at, so a
@@ -47,7 +53,7 @@ python -m clue_harness.personas --n 50 --seed 2027 --first-id 101 > ../agents/pe
 | `run.py` | The runner: retries, strict-suffix retry, resumable cache, JSONL + Parquet output |
 | `scales.py` | Questionnaire items as harness items (`likert`), scoring, persona fidelity report |
 | `analyse.py` | The trial report |
-| `sets.py` | Daily-set mode: cards played in sets within one conversation, with a crowd-split guess after each answer |
+| `sets.py` | Daily-set mode: cards played in sets within one conversation, with a crowd-split guess after each answer; `--grouped` sends a whole set in one request (for request-limited models) |
 | `sets_report.py` | Sets vs isolated answers (context effect, tracking), crowd-guess accuracy, agent `crowd` shares |
 | `gate.py` | Phase 1 item gate: keep/drop per item from a pre-run (entropy, top share, tracking against measured labels) |
 | `crowd.py` | Simulated crowd for the game (`items/crowd/simulated.json`): pooled agent answers per item, fingerprinted against the item text the run used |

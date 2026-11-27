@@ -54,7 +54,8 @@ def report(sets_rows: list[dict], iso_rows: list[dict], items: dict, personas: d
             pairs = [(a, b) for a, b in pairs if b]
             if pairs:
                 agree = np.mean([a["chosen_key"] == b["chosen_key"] for a, b in pairs])
-                w(f"| {pos + 1}{' (no context: resampling baseline)' if pos == 0 else ''} | {agree:.0%} | {len(pairs)} |")
+                note = " (no context: resampling baseline)" if pos == 0 and not rs[0]["mode"].startswith("grouped") else ""
+                w(f"| {pos + 1}{note} | {agree:.0%} | {len(pairs)} |")
         w("")
         pairs_iso = [iso[(m, r["persona_id"], r["item_id"])] for r in valid if (m, r["persona_id"], r["item_id"]) in iso]
         a_set = [a for *_, a in alignment_rows(valid, items, personas)]

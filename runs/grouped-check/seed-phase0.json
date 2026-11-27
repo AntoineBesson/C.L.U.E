@@ -1,0 +1,1037 @@
+[
+  {
+    "id": "q0001",
+    "domain": "work",
+    "intensity": 2,
+    "scenario": "A colleague presents your idea as their own in a meeting with your manager. Nobody else knows it was yours.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Let it go; the team benefits either way.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Tell your manager privately that it was your idea.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Stay quiet, and use it against them later.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Talk to the colleague first, before anyone else.",
+          "keyed": {
+            "loyalty": 1
+          }
+        }
+      ]
+    },
+    "crowd": {
+      "kind": "shares",
+      "source": "placeholder",
+      "n": 0,
+      "answerShare": {
+        "A": 0.22,
+        "B": 0.38,
+        "C": 0.08,
+        "D": 0.32
+      },
+      "predictedShare": {
+        "A": 0.25,
+        "B": 0.33,
+        "C": 0.12,
+        "D": 0.26
+      }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0002",
+    "domain": "money",
+    "intensity": 1,
+    "scenario": "A cashier gives you 20 euros too much in change. You only notice once you are back at your car.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        {
+          "key": "A",
+          "text": "Go back and return it.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Keep it; it was their mistake.",
+          "keyed": {
+            "honesty_humility": -1
+          }
+        }
+      ]
+    },
+    "crowd": {
+      "kind": "shares",
+      "source": "placeholder",
+      "n": 0,
+      "answerShare": {
+        "A": 0.71,
+        "B": 0.29
+      },
+      "predictedShare": {
+        "A": 0.52,
+        "B": 0.43
+      }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0003",
+    "domain": "friends",
+    "intensity": 2,
+    "scenario": "Your best friend asks you to be their alibi: they say they were with you last night. You know they were somewhere they should not have been.",
+    "answer": {
+      "type": "slider",
+      "prompt": "How likely are you to cover for them?",
+      "minLabel": "Never",
+      "maxLabel": "Certainly",
+      "keyed": {
+        "loyalty": 1,
+        "honesty_humility": -1
+      }
+    },
+    "crowd": {
+      "kind": "mean",
+      "source": "placeholder",
+      "n": 0,
+      "mean": 41
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0004",
+    "domain": "family",
+    "intensity": 2,
+    "scenario": "Your parent can no longer live alone. Moving them in with you would strain your relationship and your job.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Move them in anyway.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Find a good care home and visit often.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Ask your siblings to share the load equally.",
+          "keyed": {
+            "equality": 1
+          }
+        }
+      ]
+    },
+    "crowd": {
+      "kind": "shares",
+      "source": "placeholder",
+      "n": 0,
+      "answerShare": {
+        "A": 0.31,
+        "B": 0.41,
+        "C": 0.28
+      },
+      "predictedShare": {
+        "A": 0.27,
+        "B": 0.38,
+        "C": 0.3
+      }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0005",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A runaway trolley will hit five workers. You can pull a lever to send it onto a side track, where it will hit one worker instead.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        {
+          "key": "A",
+          "text": "Pull the lever.",
+          "keyed": {
+            "instrumental_harm": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Do nothing.",
+          "keyed": {
+            "instrumental_harm": -1
+          }
+        }
+      ]
+    },
+    "crowd": {
+      "kind": "shares",
+      "source": "placeholder",
+      "n": 0,
+      "answerShare": {
+        "A": 0.68,
+        "B": 0.32
+      },
+      "predictedShare": {
+        "A": 0.58,
+        "B": 0.38
+      }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0006",
+    "domain": "online",
+    "intensity": 1,
+    "scenario": "You find a stranger's phone on a bench. It is unlocked.",
+    "answer": {
+      "type": "text",
+      "prompt": "What do you do, in a sentence?",
+      "maxLength": 200
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0007",
+    "domain": "work",
+    "intensity": 2,
+    "scenario": "Your team misses a deadline because a teammate was ill. Your manager asks who is responsible.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Say the whole team shares the blame.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Explain exactly what happened, including the illness.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Point out that you delivered your part on time.",
+          "keyed": {
+            "narcissism": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Let the ill teammate take the blame; they are not there anyway.",
+          "keyed": {
+            "psychopathy": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0008",
+    "domain": "work",
+    "intensity": 1,
+    "scenario": "Your manager tells you to follow a new procedure that you think is slower than the old one.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Follow it as instructed.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Follow it, and send a short note suggesting a better way.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Quietly keep doing it your way.",
+          "keyed": {
+            "authority": -1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Get colleagues together to push back as a group.",
+          "keyed": {
+            "extraversion": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0009",
+    "domain": "money",
+    "intensity": 1,
+    "scenario": "You win 1,000 euros in a work raffle.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Share some of it with the colleagues at your table.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Give a large part to a charity that saves lives abroad.",
+          "keyed": {
+            "impartial_beneficence": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Spend it on a trip somewhere you have never been.",
+          "keyed": {
+            "openness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Put it all into savings.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0010",
+    "domain": "friends",
+    "intensity": 2,
+    "scenario": "A close friend shows you their new business plan. You are fairly sure it will fail. They ask what you honestly think.",
+    "answer": {
+      "type": "slider",
+      "prompt": "How blunt would you be?",
+      "minLabel": "Very gentle",
+      "maxLabel": "Completely blunt",
+      "keyed": {
+        "honesty_humility": 1,
+        "agreeableness": -1
+      }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0011",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "Your friend wants to go out on a Monday night. You have an important meeting at 8 am on Tuesday.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Go. Tuesday-you can deal with it.",
+          "keyed": {
+            "extraversion": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Say yes, then cancel at 9 pm with a mysterious headache.",
+          "keyed": {
+            "honesty_humility": -1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Go for one drink, and actually leave after one drink.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Go, but make your friend promise to drag you home by midnight.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0012",
+    "domain": "online",
+    "intensity": 1,
+    "scenario": "Someone you barely know posts a photo of you from a party without asking. You look fine, but you did not want it online.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Message them politely and ask them to take it down.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Post an unflattering photo of them in return.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Leave it; it is not a big deal.",
+          "keyed": {
+            "emotionality": -1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Comment publicly that you did not agree to it.",
+          "keyed": {
+            "extraversion": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0013",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A hospital has one ventilator left. Two patients need it: a 30-year-old with a good chance of recovery, and a 70-year-old who arrived first.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        {
+          "key": "A",
+          "text": "Give it to the 30-year-old.",
+          "keyed": {
+            "instrumental_harm": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Give it to the patient who arrived first.",
+          "keyed": {
+            "proportionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0014",
+    "domain": "everyday",
+    "intensity": 1,
+    "scenario": "Someone in your flat keeps eating your yoghurts. You have no proof, but you are 90% sure who it is.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Plant a disgusting yoghurt at the front of the fridge and wait.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Suggest a shared food budget so everyone pays the same.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Ask them kindly whether they are short on money.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Eat their leftovers in return, without a word.",
+          "keyed": {
+            "proportionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0015",
+    "domain": "money",
+    "intensity": 2,
+    "scenario": "You can earn a big bonus by persuading a customer to buy an upgrade they do not really need. Nobody would ever find out.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        {
+          "key": "A",
+          "text": "Make the sale.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Tell them they do not need it.",
+          "keyed": {
+            "machiavellianism": -1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0016",
+    "domain": "work",
+    "intensity": 2,
+    "scenario": "You are offered a promotion that would make you the manager of your friends at work.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Accept; you are the best person for the job.",
+          "keyed": {
+            "narcissism": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Accept, but first ask your friends how they feel.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Decline to protect the friendships.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Accept, and use it as a stepping stone to a better company.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0017",
+    "domain": "everyday",
+    "intensity": 1,
+    "scenario": "A stranger drops their wallet without noticing and is walking away quickly through a crowd.",
+    "answer": {
+      "type": "slider",
+      "prompt": "How much effort would you make to return it?",
+      "minLabel": "None",
+      "maxLabel": "Chase them down the street",
+      "keyed": {
+        "impartial_beneficence": 1
+      }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0018",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "Your friends plan a weekend trip that you cannot really afford.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Go anyway and sort out the money later.",
+          "keyed": {
+            "extraversion": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Suggest a cheaper plan for everyone.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Skip it, and feel left out for weeks.",
+          "keyed": {
+            "emotionality": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Go, and quietly let the others cover more of the costs.",
+          "keyed": {
+            "machiavellianism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0019",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "At a dinner, the host proudly serves a dish made from insects. Everyone else is eating it.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Politely refuse; the idea disgusts you.",
+          "keyed": {
+            "purity": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Try it out of curiosity.",
+          "keyed": {
+            "openness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Eat it so you do not offend the host.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Eat it and post a photo of yourself doing it.",
+          "keyed": {
+            "narcissism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0020",
+    "domain": "money",
+    "intensity": 1,
+    "scenario": "You can buy a second-hand mattress in perfect condition for a tenth of the price of a new one.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        {
+          "key": "A",
+          "text": "Buy the second-hand one.",
+          "keyed": {
+            "purity": -1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Pay for a new one.",
+          "keyed": {
+            "purity": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0021",
+    "domain": "work",
+    "intensity": 1,
+    "scenario": "A colleague is clearly struggling emotionally but has not said anything.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ask them gently if they are okay.",
+          "keyed": {
+            "care": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Tell your manager so they can step in.",
+          "keyed": {
+            "authority": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Give them space; it is their business.",
+          "keyed": {
+            "emotionality": -1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Invite them out with the team to cheer them up.",
+          "keyed": {
+            "extraversion": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0022",
+    "domain": "online",
+    "intensity": 1,
+    "scenario": "You come across the public profile of your ex's new partner.",
+    "answer": {
+      "type": "slider",
+      "prompt": "How long would you spend looking through it?",
+      "minLabel": "Not at all",
+      "maxLabel": "A long time",
+      "keyed": {
+        "emotionality": 1
+      }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0023",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A self-driving car cannot brake in time. It can hit three pedestrians, or swerve into a wall and kill its only passenger.",
+    "answer": {
+      "type": "slider",
+      "prompt": "What should it do?",
+      "minLabel": "Protect the passenger",
+      "maxLabel": "Save the pedestrians",
+      "keyed": {
+        "instrumental_harm": 1,
+        "impartial_beneficence": 1
+      }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0024",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A lifeboat is overloaded and will sink in the storm unless one person leaves it.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Draw lots so everyone has the same chance.",
+          "keyed": {
+            "equality": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Volunteer to go yourself.",
+          "keyed": {
+            "impartial_beneficence": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Make the heaviest person leave to save the rest.",
+          "keyed": {
+            "instrumental_harm": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Let the captain decide.",
+          "keyed": {
+            "authority": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0025",
+    "domain": "sacrificial",
+    "intensity": 3,
+    "scenario": "A fire breaks out. You can reach your own child or a room with five other children, but not both.",
+    "answer": {
+      "type": "binary",
+      "options": [
+        {
+          "key": "A",
+          "text": "Save your child.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Save the five children.",
+          "keyed": {
+            "impartial_beneficence": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0026",
+    "domain": "everyday",
+    "intensity": 1,
+    "scenario": "Someone cuts in front of you in a long queue.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Tell them firmly to go to the back.",
+          "keyed": {
+            "proportionality": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Let it go; it is only a few minutes.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Step back in front of them without a word.",
+          "keyed": {
+            "psychopathy": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Make a loud joke about it so others laugh.",
+          "keyed": {
+            "narcissism": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0027",
+    "domain": "everyday",
+    "intensity": 2,
+    "scenario": "Leaving a car park, you scratch a parked car. Nobody saw it.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Leave a note with your phone number.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Drive off; scratches happen.",
+          "keyed": {
+            "psychopathy": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Wait for the owner to come back.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Drive off, but feel bad about it all day.",
+          "keyed": {
+            "emotionality": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0028",
+    "domain": "work",
+    "intensity": 1,
+    "scenario": "Your team wins an award for a project you led.",
+    "answer": {
+      "type": "slider",
+      "prompt": "How much of the credit is really yours?",
+      "minLabel": "Mostly the team's",
+      "maxLabel": "Mostly mine",
+      "keyed": {
+        "narcissism": 1,
+        "honesty_humility": -1
+      }
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0029",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "A friend invites you on a last-minute trip abroad tomorrow, but you planned to finish important work this weekend.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Go; the work can wait.",
+          "keyed": {
+            "openness": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Stay and finish the work.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Go, and get more friends to come along.",
+          "keyed": {
+            "extraversion": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Stay, and promise your friend a trip next month.",
+          "keyed": {
+            "agreeableness": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  },
+  {
+    "id": "q0030",
+    "domain": "friends",
+    "intensity": 1,
+    "scenario": "A friend invites you to stay the night. Their flat is messy and not very clean.",
+    "answer": {
+      "type": "choice",
+      "options": [
+        {
+          "key": "A",
+          "text": "Stay; the friendship matters more.",
+          "keyed": {
+            "loyalty": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "Make an excuse and book a hotel.",
+          "keyed": {
+            "purity": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "Stay, and offer to help tidy up.",
+          "keyed": {
+            "conscientiousness": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "Tell them honestly that it puts you off.",
+          "keyed": {
+            "honesty_humility": 1
+          }
+        }
+      ]
+    },
+    "lang": "en",
+    "source": "hand-written"
+  }
+]
