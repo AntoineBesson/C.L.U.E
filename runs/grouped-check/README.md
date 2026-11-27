@@ -30,3 +30,26 @@ Full report: [report.md](report.md).
 **Decision:** grouped mode is the default for request-limited models (free
 tiers, Mistral) when playing daily sets. The item gate and the
 adaptive-policy replays keep isolated answers (`clue_harness.run`).
+
+## Guesses in a second turn (2026-11-27)
+
+Same 20 personas and cards, but the agent answers the whole set first and
+guesses the whole set in a second turn ([report-separate.md](report-separate.md);
+240 free requests, 2 per set).
+
+| | Guess on the answer's line | Guesses in a second turn |
+| --- | --- | --- |
+| Same answer as isolated (baseline 75%) | 74% | 73% |
+| Invalid answers / guesses | 0 / 0 | 0 / 0 |
+| False-consensus gap (own pick vs others) | +24.8 points | **+5.4 points** |
+| Error of the average guess, per option | 11.1 points | 13.7 points |
+| Average game points per agent (predictionPoints vs the other 19 agents) | 75.5 (66-85) | 79.4 (73-85) |
+| Same, for Clu's even-split guess | 76.9 | 79.8 |
+
+- **The second turn removes most of the own-pick bias** (+5 points, in the
+  range people usually show), so it stays the default.
+- **As leaderboard bots**, agents score 73-85 points per card with a spread
+  of about 3 points between them. On average they do not beat the even-split
+  benchmark yet: their average guess tracks the crowd well, but each agent's
+  own guess is noisy. Bots will sit around Clu on a simulated leaderboard
+  rather than above it.

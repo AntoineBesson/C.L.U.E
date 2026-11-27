@@ -1,0 +1,367 @@
+{
+  "q0001": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.05,
+      "B": 0.3,
+      "C": 0.4,
+      "D": 0.25
+    },
+    "predictedShare": {
+      "A": 0.218,
+      "B": 0.33,
+      "C": 0.138,
+      "D": 0.315
+    }
+  },
+  "q0002": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.45,
+      "B": 0.55
+    },
+    "predictedShare": {
+      "A": 0.616,
+      "B": 0.385
+    }
+  },
+  "q0004": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.15,
+      "B": 0.75,
+      "C": 0.1
+    },
+    "predictedShare": {
+      "A": 0.223,
+      "B": 0.515,
+      "C": 0.263
+    }
+  },
+  "q0005": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.65,
+      "B": 0.35
+    },
+    "predictedShare": {
+      "A": 0.723,
+      "B": 0.277
+    }
+  },
+  "q0007": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.2,
+      "B": 0.45,
+      "C": 0.3,
+      "D": 0.05
+    },
+    "predictedShare": {
+      "A": 0.358,
+      "B": 0.376,
+      "C": 0.186,
+      "D": 0.08
+    }
+  },
+  "q0008": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.25,
+      "B": 0.35,
+      "C": 0.4,
+      "D": 0.0
+    },
+    "predictedShare": {
+      "A": 0.353,
+      "B": 0.352,
+      "C": 0.173,
+      "D": 0.122
+    }
+  },
+  "q0009": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.1,
+      "B": 0.2,
+      "C": 0.5,
+      "D": 0.2
+    },
+    "predictedShare": {
+      "A": 0.235,
+      "B": 0.143,
+      "C": 0.268,
+      "D": 0.355
+    }
+  },
+  "q0011": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.55,
+      "B": 0.1,
+      "C": 0.35,
+      "D": 0.0
+    },
+    "predictedShare": {
+      "A": 0.215,
+      "B": 0.149,
+      "C": 0.372,
+      "D": 0.264
+    }
+  },
+  "q0012": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.35,
+      "B": 0.15,
+      "C": 0.25,
+      "D": 0.25
+    },
+    "predictedShare": {
+      "A": 0.445,
+      "B": 0.063,
+      "C": 0.335,
+      "D": 0.158
+    }
+  },
+  "q0013": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.85,
+      "B": 0.15
+    },
+    "predictedShare": {
+      "A": 0.698,
+      "B": 0.302
+    }
+  },
+  "q0014": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.45,
+      "B": 0.05,
+      "C": 0.35,
+      "D": 0.15
+    },
+    "predictedShare": {
+      "A": 0.173,
+      "B": 0.35,
+      "C": 0.324,
+      "D": 0.154
+    }
+  },
+  "q0015": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.6,
+      "B": 0.4
+    },
+    "predictedShare": {
+      "A": 0.402,
+      "B": 0.598
+    }
+  },
+  "q0016": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.5,
+      "B": 0.15,
+      "C": 0.15,
+      "D": 0.2
+    },
+    "predictedShare": {
+      "A": 0.338,
+      "B": 0.284,
+      "C": 0.2,
+      "D": 0.178
+    }
+  },
+  "q0018": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.35,
+      "B": 0.4,
+      "C": 0.1,
+      "D": 0.15
+    },
+    "predictedShare": {
+      "A": 0.225,
+      "B": 0.388,
+      "C": 0.24,
+      "D": 0.148
+    }
+  },
+  "q0019": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.35,
+      "B": 0.55,
+      "C": 0.0,
+      "D": 0.1
+    },
+    "predictedShare": {
+      "A": 0.335,
+      "B": 0.288,
+      "C": 0.295,
+      "D": 0.083
+    }
+  },
+  "q0020": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.9,
+      "B": 0.1
+    },
+    "predictedShare": {
+      "A": 0.488,
+      "B": 0.512
+    }
+  },
+  "q0021": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.55,
+      "B": 0.0,
+      "C": 0.45,
+      "D": 0.0
+    },
+    "predictedShare": {
+      "A": 0.47,
+      "B": 0.134,
+      "C": 0.217,
+      "D": 0.178
+    }
+  },
+  "q0024": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.05,
+      "B": 0.25,
+      "C": 0.25,
+      "D": 0.45
+    },
+    "predictedShare": {
+      "A": 0.352,
+      "B": 0.175,
+      "C": 0.134,
+      "D": 0.339
+    }
+  },
+  "q0025": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.7,
+      "B": 0.3
+    },
+    "predictedShare": {
+      "A": 0.699,
+      "B": 0.301
+    }
+  },
+  "q0026": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.55,
+      "B": 0.25,
+      "C": 0.05,
+      "D": 0.15
+    },
+    "predictedShare": {
+      "A": 0.328,
+      "B": 0.449,
+      "C": 0.093,
+      "D": 0.131
+    }
+  },
+  "q0027": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.3,
+      "B": 0.5,
+      "C": 0.1,
+      "D": 0.1
+    },
+    "predictedShare": {
+      "A": 0.372,
+      "B": 0.255,
+      "C": 0.19,
+      "D": 0.183
+    }
+  },
+  "q0029": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.5,
+      "B": 0.45,
+      "C": 0.0,
+      "D": 0.05
+    },
+    "predictedShare": {
+      "A": 0.235,
+      "B": 0.4,
+      "C": 0.088,
+      "D": 0.278
+    }
+  },
+  "q0030": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 20,
+    "answerShare": {
+      "A": 0.25,
+      "B": 0.35,
+      "C": 0.3,
+      "D": 0.1
+    },
+    "predictedShare": {
+      "A": 0.33,
+      "B": 0.196,
+      "C": 0.342,
+      "D": 0.132
+    }
+  }
+}
