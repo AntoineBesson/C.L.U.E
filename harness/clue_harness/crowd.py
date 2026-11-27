@@ -2,8 +2,9 @@
 
     python -m clue_harness.crowd \\
         --run ../runs/phase1-prerun@bb974b5 --run ../runs/phase1-batch01@972140b \\
-        --guesses ../runs/sets-pilot@2fa28a9 \\
-        --items ../items/seed.json ../items/drafts/batch-01.json \\
+        --run ../runs/phase1-batch02@e9ae8c5 --guesses ../runs/sets-pilot@2fa28a9 \\
+        --guesses '../runs/grouped-check/grouped-separate@e9ae8c5#../runs/grouped-check/seed-phase0.json' \\
+        --items ../items/seed.json ../items/drafts/batch-01.json ../items/drafts/batch-02.json \\
         > ../items/crowd/simulated.json
 
 Until real players exist, the game uses these splits as the "crowd" in
@@ -17,7 +18,9 @@ replace earlier ones for the same item. The run's ``gate.json``, when present,
 says whether the item passed the Phase 1 gate; the game only plays draft items
 that passed.
 
-``--guesses`` runs (same ``dir@commit`` form) are runs where agents also
+A run that played its own copy of the bank takes ``dir@commit#items.json``.
+
+``--guesses`` runs (same form) are runs where agents also
 guessed how others split (``clue_harness.sets``). They add ``predictedShare``,
 the geometric mean of the agents' guesses per option (as the server computes
 it for players), to items whose text still matches. That turns the game's
@@ -132,12 +135,20 @@ def predicted(item: dict, rows: list[dict]) -> tuple[dict[str, float], int] | No
     return out, len(guesses)
 
 
-def build(runs: list[tuple[Path, str | None]], item_files: list[Path],
-          guess_runs: list[tuple[Path, str | None]] = ()) -> dict:
+RunSpec = tuple  # (dir, commit or None[, items file used by that run])
+
+
+def _run_items(spec: tuple, item_files: list[Path]) -> dict[str, dict]:
+    run, ref, *rest = spec
+    return items_at(ref, [rest[0]] if rest and rest[0] else item_files)
+
+
+def build(runs: list[RunSpec], item_files: list[Path], guess_runs: list[RunSpec] = ()) -> dict:
     out: dict[str, dict] = {}
     used = []
-    for run, ref in runs:
-        items = items_at(ref, item_files)
+    for spec in runs:
+        run, ref = spec[0], spec[1]
+        items = _run_items(spec, item_files)
         by_item: dict[str, list[dict]] = defaultdict(list)
         for r in load_answers(run):
             by_item[r["item_id"]].append(r)
@@ -158,8 +169,13 @@ def build(runs: list[tuple[Path, str | None]], item_files: list[Path],
             n_items += 1
         used.append({"run": run.name, "commit": ref, "items": n_items,
                      "agents": len({r["agent_id"] for r in load_answers(run)})})
-    for run, ref in guess_runs:
-        items = items_at(ref, item_files)
+
+    # Guesses from every guess run whose wording matches are pooled per item.
+    pooled: dict[str, list[dict]] = defaultdict(list)
+    sources: dict[str, list[str]] = defaultdict(list)
+    for spec in guess_runs:
+        run, ref = spec[0], spec[1]
+        items = _run_items(spec, item_files)
         by_item = defaultdict(list)
         for r in load_answers(run):
             by_item[r["item_id"]].append(r)
@@ -168,14 +184,18 @@ def build(runs: list[tuple[Path, str | None]], item_files: list[Path],
             item, entry = items.get(iid), out.get(iid)
             if item is None or entry is None or entry["fingerprint"] != fingerprint(item):
                 continue  # no answer split, or the guesses were about another wording
-            got = predicted(item, rows)
-            if got is None or entry["crowd"]["kind"] != "shares":
+            if entry["crowd"]["kind"] != "shares" or predicted(item, rows) is None:
                 continue
-            entry["crowd"]["predictedShare"], entry["guesses"] = got
-            entry["guessRun"] = run.name
+            pooled[iid] += rows
+            sources[iid].append(run.name)
             n_items += 1
         used.append({"run": run.name, "commit": ref, "items": n_items, "guesses": True,
                      "agents": len({r["agent_id"] for r in load_answers(run)})})
+    for iid, rows in pooled.items():
+        entry = out[iid]
+        item_like = {"answer": {"type": "choice", "options": [{"key": k} for k in entry["crowd"]["answerShare"]]}}
+        entry["crowd"]["predictedShare"], entry["guesses"] = predicted(item_like, rows)
+        entry["guessRun"] = "+".join(sources[iid])
     return {
         "generated": date.today().isoformat(),
         "note": "Simulated crowd: AI players (personas x models), not real people.",
@@ -186,14 +206,16 @@ def build(runs: list[tuple[Path, str | None]], item_files: list[Path],
 
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--run", action="append", required=True, help="run dir, optionally @<git commit> it ran at")
-    ap.add_argument("--guesses", action="append", default=[], help="run dir with crowd guesses, optionally @<commit>")
+    ap.add_argument("--run", action="append", required=True,
+                    help="run dir, optionally @<git commit> it ran at and #<items file> it played (default: --items)")
+    ap.add_argument("--guesses", action="append", default=[], help="run dir with crowd guesses, same form as --run")
     ap.add_argument("--items", nargs="+", type=Path, required=True)
     args = ap.parse_args(argv)
 
-    def parse(spec: str) -> tuple[Path, str | None]:
+    def parse(spec: str) -> tuple[Path, str | None, Path | None]:
+        spec, _, items_file = spec.partition("#")
         path, _, ref = spec.partition("@")
-        return Path(path), ref or None
+        return Path(path), ref or None, Path(items_file) if items_file else None
 
     out = build([parse(s) for s in args.run], args.items, [parse(s) for s in args.guesses])
     json.dump(out, sys.stdout, indent=1, ensure_ascii=False)

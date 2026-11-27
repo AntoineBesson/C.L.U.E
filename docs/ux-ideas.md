@@ -29,7 +29,7 @@ the effort. Nothing here is built yet unless marked.
   on the option the guess missed most, and a summary line for the set.
 - **Keyboard shortcuts**: 1-4 or A-D to pick, Enter to validate or lock in,
   S to skip, Y/N on "Are you sure?".
-- **Truth bonus is back** for the 25 cards where AI players also guessed the
+- **Truth bonus is back** for the 25 seed cards where AI players also guessed the
   crowd (sets pilot).
 
 ## Quick wins
@@ -70,6 +70,7 @@ the effort. Nothing here is built yet unless marked.
 ## Needs a decision first
 
 - Global (server) leaderboard: needs server collection, off until the ethics review.
-- Truth bonus on the other 35 cards: only the 25 sets-pilot cards (one model,
-  50 agents) have AI crowd guesses. A guess run on both models and the drafts
-  would cover the whole bank.
+- Truth bonus on the other 73 cards: only 25 seed cards have AI crowd guesses
+  (sets pilot on Qwen, plus the Nemotron grouped check where the wording still
+  matches). A grouped guess run (second-turn guesses) over the drafts would
+  cover the whole bank on the free quota.

@@ -38,7 +38,12 @@ python -m clue_harness.sets --personas ../agents/personas-phase1.json --items ..
 # Simulated crowd for the game. Each run is given with the commit it ran at, so a
 # split is dropped automatically once its item is reworded. Re-run after each new run.
 python -m clue_harness.crowd --run ../runs/phase1-prerun@bb974b5 --run ../runs/phase1-batch01@972140b \
-    --guesses ../runs/sets-pilot@2fa28a9 --items ../items/seed.json ../items/drafts/batch-01.json > ../items/crowd/simulated.json
+    --run ../runs/phase1-batch02@e9ae8c5 --guesses ../runs/sets-pilot@2fa28a9 \
+    --guesses '../runs/grouped-check/grouped-separate@e9ae8c5#../runs/grouped-check/seed-phase0.json' \
+    --items ../items/seed.json ../items/drafts/batch-01.json ../items/drafts/batch-02.json \
+    > ../items/crowd/simulated.json
+
+# Phase 1 personas
 python -m clue_harness.personas --n 50 --seed 2027 --first-id 101 > ../agents/personas-phase1.json
 ```
 
