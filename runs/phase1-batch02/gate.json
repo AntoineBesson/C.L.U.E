@@ -1,0 +1,1152 @@
+[
+  {
+    "id": "q0036",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.31,
+      "B": 0.48,
+      "C": 0.03,
+      "D": 0.18
+    },
+    "entropy": 1.6291379579273875,
+    "entropy_bar": 1.2,
+    "top_share": 0.48,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.4,
+      "openrouter:qwen/qwen3.8-27b": 0.56
+    },
+    "alignment": 0.17579999999999998,
+    "p": 0.0034982508745627187,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0040",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.14,
+      "B": 0.58,
+      "C": 0.17,
+      "D": 0.11
+    },
+    "entropy": 1.637791362450008,
+    "entropy_bar": 1.2,
+    "top_share": 0.58,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.72,
+      "openrouter:qwen/qwen3.8-27b": 0.44
+    },
+    "alignment": 0.3898500194590114,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "top option 72% on openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0041",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.47,
+      "B": 0.23,
+      "C": 0.2,
+      "D": 0.1
+    },
+    "entropy": 1.7962017511269135,
+    "entropy_bar": 1.2,
+    "top_share": 0.47,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.5,
+      "openrouter:qwen/qwen3.8-27b": 0.44
+    },
+    "alignment": 0.37186478145648927,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0042",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.07,
+      "B": 0.71,
+      "C": 0.12,
+      "D": 0.1
+    },
+    "entropy": 1.3186325808070931,
+    "entropy_bar": 1.2,
+    "top_share": 0.71,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.7,
+      "openrouter:qwen/qwen3.8-27b": 0.72
+    },
+    "alignment": 0.3549766016280668,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "top option 71% pooled"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0043",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.53,
+      "B": 0.24,
+      "C": 0.17,
+      "D": 0.06
+    },
+    "entropy": 1.6577009156273246,
+    "entropy_bar": 1.2,
+    "top_share": 0.53,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.66,
+      "openrouter:qwen/qwen3.8-27b": 0.4
+    },
+    "alignment": 0.35626450203508364,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0050",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.26,
+      "B": 0.12,
+      "C": 0.42,
+      "D": 0.2
+    },
+    "entropy": 1.8623874264269502,
+    "entropy_bar": 1.2,
+    "top_share": 0.42,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.46,
+      "openrouter:qwen/qwen3.8-27b": 0.38
+    },
+    "alignment": 0.4009841720582006,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0057",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.49,
+      "B": 0.31,
+      "C": 0.07,
+      "D": 0.13
+    },
+    "entropy": 1.679275502035967,
+    "entropy_bar": 1.2,
+    "top_share": 0.49,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.52,
+      "openrouter:qwen/qwen3.8-27b": 0.46
+    },
+    "alignment": 0.31885365969098567,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0058",
+    "type": "choice",
+    "n": 99,
+    "invalid": 1,
+    "shares": {
+      "A": 0.5050505050505051,
+      "B": 0.16161616161616163,
+      "C": 0.20202020202020202,
+      "D": 0.13131313131313133
+    },
+    "entropy": 1.7734264410662997,
+    "entropy_bar": 1.2,
+    "top_share": 0.5050505050505051,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.4489795918367347,
+      "openrouter:qwen/qwen3.8-27b": 0.56
+    },
+    "alignment": 0.3771259706776665,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0065",
+    "type": "binary",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.51,
+      "B": 0.49
+    },
+    "entropy": 0.9997114417528099,
+    "entropy_bar": 0.6,
+    "top_share": 0.51,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.62,
+      "openrouter:qwen/qwen3.8-27b": 0.6
+    },
+    "alignment": 0.30854129041036993,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0071",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.71,
+      "B": 0.14,
+      "C": 0.0,
+      "D": 0.15
+    },
+    "entropy": 1.158472456497058,
+    "entropy_bar": 1.2,
+    "top_share": 0.71,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.72,
+      "openrouter:qwen/qwen3.8-27b": 0.7
+    },
+    "alignment": 0.12445648840933782,
+    "p": 0.031484257871064465,
+    "reasons": [
+      "entropy 1.16 <= 1.20 bits",
+      "top option 71% pooled"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0072",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.5,
+      "B": 0.25,
+      "C": 0.22,
+      "D": 0.03
+    },
+    "entropy": 1.632340216321841,
+    "entropy_bar": 1.2,
+    "top_share": 0.5,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.46,
+      "openrouter:qwen/qwen3.8-27b": 0.54
+    },
+    "alignment": 0.4488812350504981,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0073",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.24,
+      "B": 0.56,
+      "C": 0.09,
+      "D": 0.11
+    },
+    "entropy": 1.625515705069478,
+    "entropy_bar": 1.2,
+    "top_share": 0.56,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.56,
+      "openrouter:qwen/qwen3.8-27b": 0.56
+    },
+    "alignment": 0.38682419020563685,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0074",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.19,
+      "B": 0.47,
+      "C": 0.21,
+      "D": 0.13
+    },
+    "entropy": 1.8226493797900722,
+    "entropy_bar": 1.2,
+    "top_share": 0.47,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.5,
+      "openrouter:qwen/qwen3.8-27b": 0.44
+    },
+    "alignment": 0.6384227884246562,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0075",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.64,
+      "B": 0.2,
+      "C": 0.16,
+      "D": 0.0
+    },
+    "entropy": 1.2994705707972523,
+    "entropy_bar": 1.2,
+    "top_share": 0.64,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.58,
+      "openrouter:qwen/qwen3.8-27b": 0.7
+    },
+    "alignment": 0.5955523026554299,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0076",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.07,
+      "B": 0.44,
+      "C": 0.2,
+      "D": 0.29
+    },
+    "entropy": 1.7719913254658133,
+    "entropy_bar": 1.2,
+    "top_share": 0.44,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.5,
+      "openrouter:qwen/qwen3.8-27b": 0.62
+    },
+    "alignment": 0.3905140453654598,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0077",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.48,
+      "B": 0.33,
+      "C": 0.16,
+      "D": 0.03
+    },
+    "entropy": 1.6108752550186454,
+    "entropy_bar": 1.2,
+    "top_share": 0.48,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.52,
+      "openrouter:qwen/qwen3.8-27b": 0.44
+    },
+    "alignment": 0.5904748782910945,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0078",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.52,
+      "B": 0.31,
+      "C": 0.08,
+      "D": 0.09
+    },
+    "entropy": 1.6185334299916172,
+    "entropy_bar": 1.2,
+    "top_share": 0.52,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.6,
+      "openrouter:qwen/qwen3.8-27b": 0.44
+    },
+    "alignment": 0.656047495991415,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0079",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.46,
+      "B": 0.4,
+      "C": 0.1,
+      "D": 0.04
+    },
+    "entropy": 1.5620536425448175,
+    "entropy_bar": 1.2,
+    "top_share": 0.46,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.5
+    },
+    "alignment": 0.06005659665768793,
+    "p": 0.28335832083958024,
+    "reasons": [
+      "does not track its keys (alignment +0.06, p 0.28)"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0080",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.67,
+      "B": 0.24,
+      "C": 0.04,
+      "D": 0.05
+    },
+    "entropy": 1.2830890272505715,
+    "entropy_bar": 1.2,
+    "top_share": 0.67,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.74,
+      "openrouter:qwen/qwen3.8-27b": 0.6
+    },
+    "alignment": 0.22869327603304576,
+    "p": 0.011494252873563218,
+    "reasons": [
+      "top option 74% on openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0081",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.52,
+      "B": 0.18,
+      "C": 0.19,
+      "D": 0.11
+    },
+    "entropy": 1.7413973304773567,
+    "entropy_bar": 1.2,
+    "top_share": 0.52,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.56
+    },
+    "alignment": 0.27027515679452024,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0082",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.26,
+      "B": 0.28,
+      "C": 0.39,
+      "D": 0.07
+    },
+    "entropy": 1.8178607749816025,
+    "entropy_bar": 1.2,
+    "top_share": 0.39,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.4,
+      "openrouter:qwen/qwen3.8-27b": 0.46
+    },
+    "alignment": 0.4724782032561336,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0083",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.1,
+      "B": 0.19,
+      "C": 0.08,
+      "D": 0.63
+    },
+    "entropy": 1.4988708009267597,
+    "entropy_bar": 1.2,
+    "top_share": 0.63,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.68,
+      "openrouter:qwen/qwen3.8-27b": 0.58
+    },
+    "alignment": 0.3018474541358032,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0084",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.29,
+      "B": 0.51,
+      "C": 0.11,
+      "D": 0.09
+    },
+    "entropy": 1.676274048602355,
+    "entropy_bar": 1.2,
+    "top_share": 0.51,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.46,
+      "openrouter:qwen/qwen3.8-27b": 0.56
+    },
+    "alignment": 0.66635,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0085",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.11,
+      "B": 0.62,
+      "C": 0.08,
+      "D": 0.19
+    },
+    "entropy": 1.5246107717304782,
+    "entropy_bar": 1.2,
+    "top_share": 0.62,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.58,
+      "openrouter:qwen/qwen3.8-27b": 0.66
+    },
+    "alignment": 0.6441382905357436,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0086",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.48,
+      "B": 0.45,
+      "C": 0.02,
+      "D": 0.05
+    },
+    "entropy": 1.3556438913358482,
+    "entropy_bar": 1.2,
+    "top_share": 0.48,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.64,
+      "openrouter:qwen/qwen3.8-27b": 0.56
+    },
+    "alignment": 0.4510617715463664,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0087",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.46,
+      "B": 0.43,
+      "C": 0.07,
+      "D": 0.04
+    },
+    "entropy": 1.4932090009225643,
+    "entropy_bar": 1.2,
+    "top_share": 0.46,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.46
+    },
+    "alignment": 0.4655289187722583,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0088",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.18,
+      "B": 0.67,
+      "C": 0.05,
+      "D": 0.1
+    },
+    "entropy": 1.3807007176752966,
+    "entropy_bar": 1.2,
+    "top_share": 0.67,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.86
+    },
+    "alignment": 0.3587368951491927,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "top option 86% on openrouter:qwen/qwen3.8-27b"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0089",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.57,
+      "B": 0.19,
+      "C": 0.17,
+      "D": 0.07
+    },
+    "entropy": 1.6206191265899508,
+    "entropy_bar": 1.2,
+    "top_share": 0.57,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.56,
+      "openrouter:qwen/qwen3.8-27b": 0.58
+    },
+    "alignment": 0.6636956377037652,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0090",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.46,
+      "B": 0.08,
+      "C": 0.19,
+      "D": 0.27
+    },
+    "entropy": 1.772091836850081,
+    "entropy_bar": 1.2,
+    "top_share": 0.46,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.5
+    },
+    "alignment": 0.5121796050156633,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0091",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.59,
+      "B": 0.29,
+      "C": 0.11,
+      "D": 0.01
+    },
+    "entropy": 1.3837448240141397,
+    "entropy_bar": 1.2,
+    "top_share": 0.59,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.66,
+      "openrouter:qwen/qwen3.8-27b": 0.52
+    },
+    "alignment": 0.43384912671981746,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0092",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.49,
+      "B": 0.33,
+      "C": 0.09,
+      "D": 0.09
+    },
+    "entropy": 1.6574118065103667,
+    "entropy_bar": 1.2,
+    "top_share": 0.49,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.52,
+      "openrouter:qwen/qwen3.8-27b": 0.46
+    },
+    "alignment": 0.46651908994390323,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0093",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.53,
+      "B": 0.12,
+      "C": 0.26,
+      "D": 0.09
+    },
+    "entropy": 1.6704552719231982,
+    "entropy_bar": 1.2,
+    "top_share": 0.53,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.58
+    },
+    "alignment": 0.3208549838256582,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0094",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.19,
+      "B": 0.43,
+      "C": 0.33,
+      "D": 0.05
+    },
+    "entropy": 1.7227096535658835,
+    "entropy_bar": 1.2,
+    "top_share": 0.43,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.44
+    },
+    "alignment": 0.6230081427662175,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0095",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.27,
+      "B": 0.2,
+      "C": 0.11,
+      "D": 0.42
+    },
+    "entropy": 1.8503401495959337,
+    "entropy_bar": 1.2,
+    "top_share": 0.42,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.52,
+      "openrouter:qwen/qwen3.8-27b": 0.32
+    },
+    "alignment": 0.31458476295141125,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0096",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.48,
+      "B": 0.14,
+      "C": 0.11,
+      "D": 0.27
+    },
+    "entropy": 1.765687396706266,
+    "entropy_bar": 1.2,
+    "top_share": 0.48,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.54,
+      "openrouter:qwen/qwen3.8-27b": 0.42
+    },
+    "alignment": 0.26422694064544894,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0097",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.42,
+      "B": 0.39,
+      "C": 0.04,
+      "D": 0.15
+    },
+    "entropy": 1.6517424175100908,
+    "entropy_bar": 1.2,
+    "top_share": 0.42,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.48,
+      "openrouter:qwen/qwen3.8-27b": 0.38
+    },
+    "alignment": 0.24335287637500586,
+    "p": 0.0009995002498750624,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0098",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.39,
+      "B": 0.47,
+      "C": 0.07,
+      "D": 0.07
+    },
+    "entropy": 1.5788628750418936,
+    "entropy_bar": 1.2,
+    "top_share": 0.47,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.52,
+      "openrouter:qwen/qwen3.8-27b": 0.42
+    },
+    "alignment": 0.3400131015502037,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0099",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.34,
+      "B": 0.14,
+      "C": 0.15,
+      "D": 0.37
+    },
+    "entropy": 1.8675578000375557,
+    "entropy_bar": 1.2,
+    "top_share": 0.37,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.44,
+      "openrouter:qwen/qwen3.8-27b": 0.34
+    },
+    "alignment": 0.7192000000000001,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0100",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.23,
+      "B": 0.16,
+      "C": 0.57,
+      "D": 0.04
+    },
+    "entropy": 1.558689631807709,
+    "entropy_bar": 1.2,
+    "top_share": 0.57,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.54,
+      "openrouter:qwen/qwen3.8-27b": 0.6
+    },
+    "alignment": 0.4729738522308272,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0101",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.45,
+      "B": 0.15,
+      "C": 0.21,
+      "D": 0.19
+    },
+    "entropy": 1.8569958207472723,
+    "entropy_bar": 1.2,
+    "top_share": 0.45,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.38,
+      "openrouter:qwen/qwen3.8-27b": 0.52
+    },
+    "alignment": 0.5422345225396795,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0102",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.56,
+      "B": 0.24,
+      "C": 0.14,
+      "D": 0.06
+    },
+    "entropy": 1.603218994118055,
+    "entropy_bar": 1.2,
+    "top_share": 0.56,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.54,
+      "openrouter:qwen/qwen3.8-27b": 0.58
+    },
+    "alignment": 0.3646513237153693,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0103",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.32,
+      "B": 0.42,
+      "C": 0.2,
+      "D": 0.06
+    },
+    "entropy": 1.7595995031869034,
+    "entropy_bar": 1.2,
+    "top_share": 0.42,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.42
+    },
+    "alignment": 0.6269960721369409,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0104",
+    "type": "choice",
+    "n": 99,
+    "invalid": 1,
+    "shares": {
+      "A": 0.8282828282828283,
+      "B": 0.09090909090909091,
+      "C": 0.0,
+      "D": 0.08080808080808081
+    },
+    "entropy": 0.832906222184017,
+    "entropy_bar": 1.2,
+    "top_share": 0.8282828282828283,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.7755102040816326,
+      "openrouter:qwen/qwen3.8-27b": 0.88
+    },
+    "alignment": 0.3315498394458739,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "entropy 0.83 <= 1.20 bits",
+      "top option 83% pooled"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0105",
+    "type": "binary",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.57,
+      "B": 0.43
+    },
+    "entropy": 0.9858150371789198,
+    "entropy_bar": 0.6,
+    "top_share": 0.57,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.52,
+      "openrouter:qwen/qwen3.8-27b": 0.66
+    },
+    "alignment": 0.6914040953647174,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0106",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.85,
+      "B": 0.04,
+      "C": 0.06,
+      "D": 0.05
+    },
+    "entropy": 0.8446797392700407,
+    "entropy_bar": 1.2,
+    "top_share": 0.85,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.8,
+      "openrouter:qwen/qwen3.8-27b": 0.9
+    },
+    "alignment": 0.2412923544505034,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "entropy 0.84 <= 1.20 bits",
+      "top option 85% pooled"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0107",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.47,
+      "B": 0.39,
+      "C": 0.06,
+      "D": 0.08
+    },
+    "entropy": 1.5767948140866888,
+    "entropy_bar": 1.2,
+    "top_share": 0.47,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.42,
+      "openrouter:qwen/qwen3.8-27b": 0.52
+    },
+    "alignment": 0.756744143719807,
+    "p": 0.0004997501249375312,
+    "reasons": [],
+    "keep": true
+  },
+  {
+    "id": "q0108",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.77,
+      "B": 0.12,
+      "C": 0.09,
+      "D": 0.02
+    },
+    "entropy": 1.0829418032233038,
+    "entropy_bar": 1.2,
+    "top_share": 0.77,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.74,
+      "openrouter:qwen/qwen3.8-27b": 0.8
+    },
+    "alignment": 0.4825821409600389,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "entropy 1.08 <= 1.20 bits",
+      "top option 77% pooled"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0109",
+    "type": "choice",
+    "n": 100,
+    "invalid": 0,
+    "shares": {
+      "A": 0.35,
+      "B": 0.61,
+      "C": 0.03,
+      "D": 0.01
+    },
+    "entropy": 1.183308482908991,
+    "entropy_bar": 1.2,
+    "top_share": 0.61,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.72,
+      "openrouter:qwen/qwen3.8-27b": 0.5
+    },
+    "alignment": 0.4748522751438141,
+    "p": 0.0004997501249375312,
+    "reasons": [
+      "entropy 1.18 <= 1.20 bits",
+      "top option 72% on openrouter:nvidia/nemotron-3-ultra-550b-a55b:free"
+    ],
+    "keep": false
+  },
+  {
+    "id": "q0110",
+    "type": "choice",
+    "n": 99,
+    "invalid": 1,
+    "shares": {
+      "A": 0.494949494949495,
+      "B": 0.010101010101010102,
+      "C": 0.46464646464646464,
+      "D": 0.030303030303030304
+    },
+    "entropy": 1.235826116620708,
+    "entropy_bar": 1.2,
+    "top_share": 0.494949494949495,
+    "top_share_by_model": {
+      "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free": 0.5714285714285714,
+      "openrouter:qwen/qwen3.8-27b": 0.56
+    },
+    "alignment": 0.15687068473610608,
+    "p": 0.07846076961519241,
+    "reasons": [
+      "does not track its keys (alignment +0.16, p 0.08)"
+    ],
+    "keep": false
+  }
+]

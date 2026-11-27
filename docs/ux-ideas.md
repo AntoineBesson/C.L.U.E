@@ -23,15 +23,19 @@ the effort. Nothing here is built yet unless marked.
   Points per card, running totals and final standings. Room answers are not
   saved or sent, since consent covers the phone's owner only.
 
+- **Streaks**: a daily streak (Paris days with a solo answer) on the menu and
+  end screen, and a "great reads in a row" badge on the reveal.
+- **Words, not only numbers**: several verdicts per score band, one sentence
+  on the option the guess missed most, and a summary line for the set.
+- **Keyboard shortcuts**: 1-4 or A-D to pick, Enter to validate or lock in,
+  S to skip, Y/N on "Are you sure?".
+- **Truth bonus is back** for the 25 seed cards where AI players also guessed the
+  crowd (sets pilot).
+
 ## Quick wins
 
-- **Streaks and a daily habit.** "3 days in a row" counter and a gentle "today's
-  set is ready" card. The spec already plans daily sets; a streak makes them stick.
-- **Score feedback in words, not only numbers.** "You overestimated how many
-  would lie by 20 points" teaches the player something about people.
 - **Shorter first session.** 3 cards before the first reveal, so new players
   reach the fun part in under a minute.
-- **Keyboard shortcuts** (1-4 to pick, Enter to validate) for desktop players.
 
 ## Social and party play
 
@@ -66,7 +70,7 @@ the effort. Nothing here is built yet unless marked.
 ## Needs a decision first
 
 - Global (server) leaderboard: needs server collection, off until the ethics review.
-- Truth bonus with the simulated crowd: AI players did not guess the crowd, so
-  the bonus is off. The harness could ask each agent to predict the split too,
-  which would bring the bonus back before real players arrive (about one extra
-  call per agent and item).
+- Truth bonus on the other 73 cards: only 25 seed cards have AI crowd guesses
+  (sets pilot on Qwen, plus the Nemotron grouped check where the wording still
+  matches). A grouped guess run (second-turn guesses) over the drafts would
+  cover the whole bank on the free quota.

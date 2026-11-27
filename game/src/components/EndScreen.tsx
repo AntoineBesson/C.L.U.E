@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { estimateTraits, uniqueness } from '../profile'
 import { SIMULATED_AGENTS } from '../crowd'
 import { scoreSet } from '../leaderboard'
+import { setVerdict } from '../feedback'
+import { getStreak } from '../storage'
 import { deleteAllData, exportData } from '../storage'
 import type { Item, ResponseRecord } from '../types'
 import { Leaderboard } from './Leaderboard'
@@ -33,6 +35,8 @@ export function EndScreen({ items, responses, tracking, remaining, packLabel, on
     ? signals.reduce((sum, s) => sum + (s.msToFirstValidate ?? s.msTotal), 0) / signals.length / 1000
     : null
   const set = scoreSet(items, responses)
+  const [summary] = useState(() => (set.scores.length ? setVerdict(set.average) : null))
+  const [streak] = useState(getStreak)
   const { scores, total: points } = set
   const traits = estimateTraits(items, responses)
   const unique = uniqueness(items, responses)
@@ -58,6 +62,12 @@ export function EndScreen({ items, responses, tracking, remaining, packLabel, on
         <div>
           <h1>That&rsquo;s today&rsquo;s set!</h1>
           <p className="tagline">You answered {responses.length} dilemmas.</p>
+          {streak.current > 0 && (
+            <p className="tagline">
+              🔥 {streak.current === 1 ? 'Day 1 of your streak. Come back tomorrow!' : `${streak.current} days in a row!`}
+              {streak.current > 1 && streak.current >= streak.best ? ' A new best.' : ''}
+            </p>
+          )}
         </div>
       </div>
 
@@ -66,6 +76,7 @@ export function EndScreen({ items, responses, tracking, remaining, packLabel, on
           <CountUp value={points} />
           <span>points for reading the crowd</span>
         </div>
+        {summary && <p className="set-verdict">{summary}</p>}
         {simulated && (
           <p className="hint">
             Simulated crowd: {SIMULATED_AGENTS} AI players with varied personalities stand in for real players until

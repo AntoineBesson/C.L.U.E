@@ -4,6 +4,7 @@ import { shuffle } from '../items'
 import { SignalRecorder } from '../tracking/SignalRecorder'
 import type { AnswerValue, ChoiceOption, Item, ResponseRecord } from '../types'
 import { Mascot } from '../ui/Mascot'
+import { optionIndex, useKeys } from '../ui/keys'
 import { sfx } from '../ui/sound'
 
 const DOMAIN_LABELS: Record<string, string> = {
@@ -97,6 +98,59 @@ export function Card({ item, tracking, playerId, sessionId, onDone, onSkip }: Pr
     promptMs.current += performance.now() - promptOpenedAt.current
   }
 
+  function choose(o: ChoiceOption) {
+    rec?.selectOption(o.key, typeof value === 'string' ? value : null)
+    if (value !== o.key) sfx.pop()
+    setValue(o.key)
+  }
+
+  function reconsider() {
+    closePrompt()
+    sfx.back()
+    reconsidered.current++
+    setPhase('answering')
+  }
+
+  function confirmYes() {
+    if (value === null) return
+    closePrompt()
+    sfx.lock()
+    finish(value)
+  }
+
+  // Keyboard: 1-4 or A-D picks an option (as labelled on screen), Enter validates,
+  // S skips. On "Are you sure?": Enter or Y validates, Esc or N reconsiders.
+  useKeys((e) => {
+    const onButton = e.target instanceof HTMLButtonElement
+    const k = e.key.toLowerCase()
+    if (phase === 'confirming') {
+      if ((e.key === 'Enter' && !onButton) || k === 'y') {
+        confirmYes()
+        return true
+      }
+      if (e.key === 'Escape' || k === 'n') {
+        reconsider()
+        return true
+      }
+      return false
+    }
+    if (e.key === 'Enter' && !onButton) {
+      validate()
+      return true
+    }
+    if (onSkip && k === 's') {
+      sfx.back()
+      onSkip()
+      return true
+    }
+    const i = optionIndex(e.key)
+    if (options && i !== null && i < options.length) {
+      choose(options[i])
+      return true
+    }
+    return false
+  })
+
   return (
     <div
       ref={cardRef}
@@ -129,11 +183,7 @@ export function Card({ item, tracking, playerId, sessionId, onDone, onSkip }: Pr
               style={{ '--i': i } as React.CSSProperties}
               disabled={phase !== 'answering'}
               onPointerEnter={() => rec?.hoverOption(o.key)}
-              onClick={() => {
-                rec?.selectOption(o.key, typeof value === 'string' ? value : null)
-                if (value !== o.key) sfx.pop()
-                setValue(o.key)
-              }}
+              onClick={() => choose(o)}
             >
               <span className="badge" aria-hidden="true">
                 {String.fromCharCode(65 + i)}
@@ -215,6 +265,16 @@ export function Card({ item, tracking, playerId, sessionId, onDone, onSkip }: Pr
           Validate
         </button>
       )}
+      {phase === 'answering' && (
+        <p className="kbd-hint" aria-hidden="true">
+          {options ? (
+            <>
+              <kbd>1</kbd>-<kbd>{options.length}</kbd> or <kbd>A</kbd>-<kbd>{String.fromCharCode(64 + options.length)}</kbd> to pick ·{' '}
+            </>
+          ) : null}
+          <kbd>Enter</kbd> to validate{onSkip ? <> · <kbd>S</kbd> to skip</> : null}
+        </p>
+      )}
       {phase === 'answering' && onSkip && (
         <button
           className="link-btn skip"
@@ -233,22 +293,13 @@ export function Card({ item, tracking, playerId, sessionId, onDone, onSkip }: Pr
           <p>Are you sure?</p>
           <div className="confirm-actions">
             <button
-              onClick={() => {
-                closePrompt()
-                sfx.back()
-                reconsidered.current++
-                setPhase('answering')
-              }}
+              onClick={reconsider}
             >
               Let me think again
             </button>
             <button
               className="primary"
-              onClick={() => {
-                closePrompt()
-                sfx.lock()
-                finish(value)
-              }}
+              onClick={confirmYes}
             >
               Yes, validate
             </button>

@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { defaultPrediction, normalise } from '../scoring'
 import type { CrowdPrediction, Item } from '../types'
 import { Mascot } from '../ui/Mascot'
+import { optionIndex, useKeys } from '../ui/keys'
 import { sfx } from '../ui/sound'
 
 /** "How did everyone else answer?" Shown after the player's own answer. */
@@ -38,9 +39,36 @@ export function Prediction({
     onDone(p)
   }
 
+  // Keyboard: Enter locks in; 1-4 jumps to that option's slider (then arrows adjust it).
+  const box = useRef<HTMLDivElement>(null)
+  useKeys((e) => {
+    if (e.key === 'Enter' && !(e.target instanceof HTMLButtonElement)) {
+      lockIn(pred.kind === 'shares' ? { kind: 'shares', shares: normalise(pred.shares) } : pred)
+      return true
+    }
+    const i = /^[1-9]$/.test(e.key) ? optionIndex(e.key) : null
+    const sliders = box.current?.querySelectorAll<HTMLInputElement>('input[type=range]')
+    if (i !== null && sliders && i < sliders.length) {
+      sliders[i].focus()
+      return true
+    }
+    return false
+  })
+  const hint = (
+    <p className="kbd-hint" aria-hidden="true">
+      {pred.kind === 'shares' && (
+        <>
+          <kbd>1</kbd>-<kbd>{Object.keys(pred.shares).length}</kbd> pick a bar, <kbd>←</kbd>
+          <kbd>→</kbd> adjust ·{' '}
+        </>
+      )}
+      <kbd>Enter</kbd> to lock in
+    </p>
+  )
+
   if (pred.kind === 'mean' && a.type === 'slider') {
     return (
-      <div className="panel card prediction">
+      <div className="panel card prediction" ref={box}>
         {header}
         <p className="scenario small">{item.scenario}</p>
         <p className="prompt">What will {who} answer on average?</p>
@@ -70,6 +98,7 @@ export function Prediction({
         <button className="primary big" onClick={() => lockIn(pred)}>
           Lock in my guess
         </button>
+        {hint}
       </div>
     )
   }
@@ -77,7 +106,7 @@ export function Prediction({
   if (pred.kind === 'shares' && (a.type === 'choice' || a.type === 'binary')) {
     const shares = normalise(pred.shares)
     return (
-      <div className="panel card prediction">
+      <div className="panel card prediction" ref={box}>
         {header}
         <p className="scenario small">{item.scenario}</p>
         <p className="prompt">How do you think {who} split?</p>
@@ -108,6 +137,7 @@ export function Prediction({
         <button className="primary big" onClick={() => lockIn({ kind: 'shares', shares })}>
           Lock in my guess
         </button>
+        {hint}
       </div>
     )
   }

@@ -23,6 +23,110 @@ LIKERT_STRICT = "Reply with exactly one whole number between {lo} and {hi} and n
 SLIDER_STRICT = "Reply with exactly one whole number between 0 and 100 and nothing else. Do not explain."
 
 
+GUESS_PROMPT = (
+    "Now guess how other people answered that last question. Out of 100 people, how many "
+    "picked each option? Reply only in the form {example} (the numbers add up to 100)."
+)
+GUESS_STRICT = "Reply with exactly {example} using your own numbers, adding up to 100, and nothing else."
+_EXAMPLES = {2: "A=60, B=40", 3: "A=40, B=35, C=25", 4: "A=40, B=30, C=20, D=10"}
+
+
+def guess_prompt(order: list[str], strict: bool = False) -> str:
+    return (GUESS_STRICT if strict else GUESS_PROMPT).format(example=_EXAMPLES[len(order)])
+
+
+_GUESS_RE = re.compile(r"\b([A-D])\s*[=:]\s*(\d{1,3})(?:\.\d+)?\s*%?")
+
+
+def parse_guess(order: list[str], raw: str) -> dict[str, float] | None:
+    """Map 'A=40, B=30, ...' to option key -> share (normalised). None unless every shown letter has a number."""
+    found: dict[str, float] = {}
+    for letter, n in _GUESS_RE.findall((raw or "").upper()):
+        found.setdefault(letter, float(n))
+    letters = LETTERS[: len(order)]
+    if set(found) != set(letters):
+        return None
+    total = sum(found.values())
+    if total <= 0:
+        return None
+    return {order[LETTERS.index(L)]: found[L] / total for L in letters}
+
+
+GROUP_HEAD = "Here are {n} situations. Answer each one as yourself."
+GROUP_ANSWER = "Reply with one line per situation and nothing else, exactly in this form:\n{lines}"
+GROUP_GUESS = ("For each situation, give your own answer, then guess how 100 people split across its options. "
+               "Reply with one line per situation and nothing else, exactly in this form:\n{lines}")
+GROUP_STRICT = "Every line must start with the situation number, a colon and one letter. Do not explain."
+
+
+def render_group(cards: list[tuple[dict, list[str]]], guess: bool, strict: bool = False) -> str:
+    """Several choice/binary cards in one message, answered (and guessed) in one reply."""
+    parts = [GROUP_HEAD.format(n=len(cards)), ""]
+    for n, (item, order) in enumerate(cards, 1):
+        by_key = {o["key"]: o for o in item["answer"]["options"]}
+        parts += [f"Situation {n}", item["scenario"], "What do you do?"]
+        parts += [f"{L}. {by_key[k]['text']}" for L, k in zip(LETTERS, order)]
+        parts.append("")
+    # Placeholders rather than example numbers, so the format does not anchor answers or guesses.
+    def line(n: int, order: list[str]) -> str:
+        shown = LETTERS[: len(order)]
+        base = f"{n}: <{'/'.join(shown)}>"
+        return base + " | " + ", ".join(f"{L}=<number>" for L in shown) if guess else base
+    lines = "\n".join(line(n, o) for n, (_, o) in enumerate(cards, 1))
+    parts.append((GROUP_GUESS if guess else GROUP_ANSWER).format(lines=lines))
+    if guess:
+        parts.append("The numbers on each line add up to 100.")
+    if strict:
+        parts.append(GROUP_STRICT)
+    return "\n".join(parts)
+
+
+_GROUP_LINE = re.compile(r"^\W*(?:situation|question|q)?\s*(\d{1,2})\s*[:.)=-]?\**\s*[:.)=-]?\s*\**\s*<?\(?([A-Da-d])\)?>?\**(?![A-Za-z])(.*)$", re.I)
+
+
+def parse_group(cards: list[tuple[dict, list[str]]], raw: str, guess: bool) -> list[tuple[str | None, dict | None]]:
+    """Per card: (option key or None, guess or None). Lines may come in any order; extra text is ignored."""
+    out: list[tuple[str | None, dict | None]] = [(None, None)] * len(cards)
+    for line in (raw or "").splitlines():
+        m = _GROUP_LINE.match(line.strip())
+        if not m:
+            continue
+        n = int(m.group(1)) - 1
+        if not 0 <= n < len(cards) or out[n][0] is not None:
+            continue
+        _, order = cards[n]
+        i = LETTERS.index(m.group(2).upper())
+        key = order[i] if i < len(order) else None
+        g = parse_guess(order, m.group(3)) if guess and key else None
+        out[n] = (key, g)
+    return out
+
+
+GROUP_GUESS_TURN = ("Now guess how other people answered each situation above. Out of 100 people, how many "
+                    "picked each option? Reply with one line per situation and nothing else, exactly in this form:\n{lines}\n"
+                    "The numbers on each line add up to 100.")
+
+
+def render_group_guess(cards: list[tuple[dict, list[str]]], strict: bool = False) -> str:
+    """Second turn of a grouped set: crowd guesses for every card, asked after the answers."""
+    lines = "\n".join(f"{n}: " + ", ".join(f"{L}=<number>" for L in LETTERS[: len(o)])
+                      for n, (_, o) in enumerate(cards, 1))
+    return GROUP_GUESS_TURN.format(lines=lines) + ("\n" + GROUP_STRICT.replace("one letter", "the numbers") if strict else "")
+
+
+_GUESS_LINE = re.compile(r"^\W*(?:situation|question|q)?\s*(\d{1,2})\s*[:.)-]+\**\s*(.*)$", re.I)
+
+
+def parse_group_guess(cards: list[tuple[dict, list[str]]], raw: str) -> list[dict | None]:
+    out: list[dict | None] = [None] * len(cards)
+    for line in (raw or "").splitlines():
+        m = _GUESS_LINE.match(line.strip())
+        if m and 0 < int(m.group(1)) <= len(cards) and out[int(m.group(1)) - 1] is None:
+            n = int(m.group(1)) - 1
+            out[n] = parse_guess(cards[n][1], m.group(2))
+    return out
+
+
 def stable_seed(*parts: str) -> int:
     return int.from_bytes(hashlib.sha256("|".join(parts).encode()).digest()[:8], "big")
 

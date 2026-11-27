@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { crowdLabel } from '../crowd'
+import { verdict } from '../feedback'
 import { ITEMS, shuffle } from '../items'
 import { packItems, type Pack } from '../packs'
 import {
@@ -338,6 +339,10 @@ function RoomReveal({ item, turns, names, totals, target, last, onNext }: {
   const goal = targetSplit(item, turns, target)
   const pts = cardPoints(item, turns, target)
   const best = Math.max(...Object.values(pts))
+  const [line] = useState(() => {
+    const top = turns.filter((t) => pts[t.player] === best).map((t) => names[t.player])
+    return `${top.join(' and ')}: ${verdict(best)}`
+  })
   const a = item.answer
   const db = item.crowd
 
@@ -404,6 +409,7 @@ function RoomReveal({ item, turns, names, totals, target, last, onNext }: {
           </div>
         )}
 
+        <p className="insight">{line}</p>
         <h3 className="room-points-title">Points this card</h3>
         <ul className="room-points">
           {turns.map((t) => {

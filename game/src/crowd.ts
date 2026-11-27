@@ -18,6 +18,8 @@ export interface SimulatedEntry {
   crowd: CrowdStats
   /** Whether the item passed the Phase 1 gate on this run. */
   gate?: boolean
+  /** Agents whose crowd guesses gave predictedShare (truth bonus). */
+  guesses?: number
 }
 
 interface SimulatedFile {

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24",
+ "generated": "2026-11-27",
  "note": "Simulated crowd: AI players (personas x models), not real people.",
  "runs": [
   {
@@ -13,6 +13,26 @@
    "commit": "972140b",
    "items": 47,
    "agents": 100
+  },
+  {
+   "run": "phase1-batch02",
+   "commit": "e9ae8c5",
+   "items": 49,
+   "agents": 100
+  },
+  {
+   "run": "sets-pilot",
+   "commit": "2fa28a9",
+   "items": 25,
+   "guesses": true,
+   "agents": 50
+  },
+  {
+   "run": "grouped-separate",
+   "commit": "e9ae8c5",
+   "items": 12,
+   "guesses": true,
+   "agents": 20
   }
  ],
  "items": {
@@ -32,9 +52,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.157,
+     "B": 0.3314,
+     "C": 0.1116,
+     "D": 0.3464
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0002": {
    "fingerprint": "aa04d39f",
@@ -50,9 +78,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.6977,
+     "B": 0.2709
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0003": {
    "fingerprint": "b819f0a3",
@@ -85,9 +119,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2246,
+     "B": 0.3945,
+     "C": 0.1491,
+     "D": 0.1664
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0005": {
    "fingerprint": "72371f7d",
@@ -103,9 +145,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.72,
+     "B": 0.2638
+    }
    },
-   "gate": false
+   "gate": false,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0007": {
    "fingerprint": "74e98f0a",
@@ -123,9 +171,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2815,
+     "B": 0.3932,
+     "C": 0.2099,
+     "D": 0.06
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0008": {
    "fingerprint": "fd956416",
@@ -143,9 +199,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3798,
+     "B": 0.2985,
+     "C": 0.1563,
+     "D": 0.1056
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0009": {
    "fingerprint": "969863a9",
@@ -163,9 +227,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2028,
+     "B": 0.1944,
+     "C": 0.2393,
+     "D": 0.281
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0010": {
    "fingerprint": "ee3b5a8d",
@@ -198,9 +270,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.1658,
+     "B": 0.1425,
+     "C": 0.3243,
+     "D": 0.2873
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0012": {
    "fingerprint": "ce541aab",
@@ -218,9 +298,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2765,
+     "B": 0.2096,
+     "C": 0.1121,
+     "D": 0.3235
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0013": {
    "fingerprint": "36b3738d",
@@ -236,9 +324,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.5368,
+     "B": 0.4383
+    }
    },
-   "gate": false
+   "gate": false,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0014": {
    "fingerprint": "9a66fda3",
@@ -256,9 +350,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2024,
+     "B": 0.2107,
+     "C": 0.155,
+     "D": 0.3155
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0015": {
    "fingerprint": "7fb5f603",
@@ -274,9 +376,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3239,
+     "B": 0.6315
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0016": {
    "fingerprint": "1ac9c9cc",
@@ -294,9 +402,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3048,
+     "B": 0.3048,
+     "C": 0.1959,
+     "D": 0.1348
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0017": {
    "fingerprint": "71047167",
@@ -329,9 +445,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2413,
+     "B": 0.1861,
+     "C": 0.2105,
+     "D": 0.2709
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0019": {
    "fingerprint": "7bec8415",
@@ -349,9 +473,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3969,
+     "B": 0.2247,
+     "C": 0.2431,
+     "D": 0.0757
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0020": {
    "fingerprint": "9fcf6812",
@@ -367,9 +499,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.4267,
+     "B": 0.4964
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0021": {
    "fingerprint": "301748d8",
@@ -387,9 +525,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.424,
+     "B": 0.0996,
+     "C": 0.2484,
+     "D": 0.1758
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0022": {
    "fingerprint": "c0ee7d33",
@@ -407,9 +553,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3116,
+     "B": 0.2261,
+     "C": 0.1851,
+     "D": 0.1812
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0023": {
    "fingerprint": "dc5725ff",
@@ -442,9 +596,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.2908,
+     "B": 0.242,
+     "C": 0.1109,
+     "D": 0.2633
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0025": {
    "fingerprint": "c7271b04",
@@ -460,9 +622,15 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.5966,
+     "B": 0.3113
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0026": {
    "fingerprint": "5bffb166",
@@ -480,9 +648,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3399,
+     "B": 0.4069,
+     "C": 0.0973,
+     "D": 0.1069
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0027": {
    "fingerprint": "2ac58a1b",
@@ -500,9 +676,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.4218,
+     "B": 0.2175,
+     "C": 0.0899,
+     "D": 0.1816
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0028": {
    "fingerprint": "0cabe29c",
@@ -535,9 +719,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.1974,
+     "B": 0.3657,
+     "C": 0.1166,
+     "D": 0.2449
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0030": {
    "fingerprint": "b8319cc2",
@@ -555,9 +747,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3665,
+     "B": 0.1593,
+     "C": 0.2931,
+     "D": 0.1135
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 70,
+   "guessRun": "sets-pilot+grouped-separate"
   },
   "q0031": {
    "fingerprint": "8ba9f85e",
@@ -575,9 +775,17 @@
     "models": [
      "openrouter:mistralai/mistral-medium-3-5",
      "openrouter:qwen/qwen3.8-27b"
-    ]
+    ],
+    "predictedShare": {
+     "A": 0.3902,
+     "B": 0.3362,
+     "C": 0.1355,
+     "D": 0.0915
+    }
    },
-   "gate": true
+   "gate": true,
+   "guesses": 50,
+   "guessRun": "sets-pilot"
   },
   "q0032": {
    "fingerprint": "461a2c7f",
@@ -660,24 +868,24 @@
    "gate": true
   },
   "q0036": {
-   "fingerprint": "48660095",
-   "run": "phase1-batch01",
+   "fingerprint": "737c3cba",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
     "n": 100,
     "answerShare": {
-     "A": 0.18,
-     "B": 0.72,
-     "C": 0.1,
-     "D": 0.0
+     "A": 0.31,
+     "B": 0.48,
+     "C": 0.03,
+     "D": 0.18
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },
-   "gate": false
+   "gate": true
   },
   "q0037": {
    "fingerprint": "bcf6d5b1",
@@ -740,84 +948,84 @@
    "gate": true
   },
   "q0040": {
-   "fingerprint": "65e82e99",
-   "run": "phase1-batch01",
+   "fingerprint": "360c94d7",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
     "n": 100,
     "answerShare": {
-     "A": 0.07,
-     "B": 0.73,
-     "C": 0.14,
-     "D": 0.06
+     "A": 0.14,
+     "B": 0.58,
+     "C": 0.17,
+     "D": 0.11
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },
    "gate": false
   },
   "q0041": {
-   "fingerprint": "48bfa547",
-   "run": "phase1-batch01",
+   "fingerprint": "32cd13e6",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
     "n": 100,
     "answerShare": {
-     "A": 0.64,
-     "B": 0.34,
-     "C": 0.01,
-     "D": 0.01
+     "A": 0.47,
+     "B": 0.23,
+     "C": 0.2,
+     "D": 0.1
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },
-   "gate": false
+   "gate": true
   },
   "q0042": {
-   "fingerprint": "44d1f9f1",
-   "run": "phase1-batch01",
+   "fingerprint": "6643bb08",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
     "n": 100,
     "answerShare": {
-     "A": 0.1,
-     "B": 0.65,
-     "C": 0.13,
-     "D": 0.12
+     "A": 0.07,
+     "B": 0.71,
+     "C": 0.12,
+     "D": 0.1
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },
    "gate": false
   },
   "q0043": {
-   "fingerprint": "12d30f22",
-   "run": "phase1-batch01",
+   "fingerprint": "3da5d7d3",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
     "n": 100,
     "answerShare": {
-     "A": 0.73,
-     "B": 0.21,
-     "C": 0.04,
-     "D": 0.02
+     "A": 0.53,
+     "B": 0.24,
+     "C": 0.17,
+     "D": 0.06
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },
-   "gate": false
+   "gate": true
   },
   "q0044": {
    "fingerprint": "d898feaf",
@@ -940,24 +1148,24 @@
    "gate": true
   },
   "q0050": {
-   "fingerprint": "1a63dd92",
-   "run": "phase1-batch01",
+   "fingerprint": "884da76d",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
     "n": 100,
     "answerShare": {
-     "A": 0.44,
-     "B": 0.11,
-     "C": 0.45,
-     "D": 0.0
+     "A": 0.26,
+     "B": 0.12,
+     "C": 0.42,
+     "D": 0.2
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },
-   "gate": false
+   "gate": true
   },
   "q0051": {
    "fingerprint": "5566283d",
@@ -1080,44 +1288,44 @@
    "gate": true
   },
   "q0057": {
-   "fingerprint": "be19030f",
-   "run": "phase1-batch01",
+   "fingerprint": "52ef0c8d",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
     "n": 100,
     "answerShare": {
-     "A": 0.23,
-     "B": 0.63,
-     "C": 0.11,
-     "D": 0.03
+     "A": 0.49,
+     "B": 0.31,
+     "C": 0.07,
+     "D": 0.13
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },
-   "gate": false
+   "gate": true
   },
   "q0058": {
-   "fingerprint": "632434ae",
-   "run": "phase1-batch01",
+   "fingerprint": "2e0fd005",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
-    "n": 100,
+    "n": 99,
     "answerShare": {
-     "A": 0.71,
-     "B": 0.09,
-     "C": 0.11,
-     "D": 0.09
+     "A": 0.5051,
+     "B": 0.1616,
+     "C": 0.202,
+     "D": 0.1313
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },
-   "gate": false
+   "gate": true
   },
   "q0059": {
    "fingerprint": "fc209d76",
@@ -1240,24 +1448,22 @@
    "gate": true
   },
   "q0065": {
-   "fingerprint": "4e69de2c",
-   "run": "phase1-batch01",
+   "fingerprint": "6cfbd771",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
     "n": 100,
     "answerShare": {
-     "A": 0.48,
-     "B": 0.49,
-     "C": 0.01,
-     "D": 0.02
+     "A": 0.51,
+     "B": 0.49
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },
-   "gate": false
+   "gate": true
   },
   "q0066": {
    "fingerprint": "b5d425a3",
@@ -1356,20 +1562,798 @@
    "gate": true
   },
   "q0071": {
-   "fingerprint": "f65433ca",
-   "run": "phase1-batch01",
+   "fingerprint": "d90387e4",
+   "run": "phase1-batch02",
    "crowd": {
     "kind": "shares",
     "source": "agents",
     "n": 100,
     "answerShare": {
-     "A": 0.62,
-     "B": 0.02,
-     "C": 0.02,
-     "D": 0.34
+     "A": 0.71,
+     "B": 0.14,
+     "C": 0.0,
+     "D": 0.15
     },
     "models": [
-     "openrouter:mistralai/mistral-medium-3-5",
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": false
+  },
+  "q0072": {
+   "fingerprint": "dfe39e0c",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.5,
+     "B": 0.25,
+     "C": 0.22,
+     "D": 0.03
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0073": {
+   "fingerprint": "f29ea30a",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.24,
+     "B": 0.56,
+     "C": 0.09,
+     "D": 0.11
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0074": {
+   "fingerprint": "a6c83281",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.19,
+     "B": 0.47,
+     "C": 0.21,
+     "D": 0.13
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0075": {
+   "fingerprint": "94a6746d",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.64,
+     "B": 0.2,
+     "C": 0.16,
+     "D": 0.0
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0076": {
+   "fingerprint": "76cf71b7",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.07,
+     "B": 0.44,
+     "C": 0.2,
+     "D": 0.29
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0077": {
+   "fingerprint": "6bd99b01",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.48,
+     "B": 0.33,
+     "C": 0.16,
+     "D": 0.03
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0078": {
+   "fingerprint": "e75d081b",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.52,
+     "B": 0.31,
+     "C": 0.08,
+     "D": 0.09
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0079": {
+   "fingerprint": "e676ceca",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.46,
+     "B": 0.4,
+     "C": 0.1,
+     "D": 0.04
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": false
+  },
+  "q0080": {
+   "fingerprint": "48efc8af",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.67,
+     "B": 0.24,
+     "C": 0.04,
+     "D": 0.05
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": false
+  },
+  "q0081": {
+   "fingerprint": "5b02dffb",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.52,
+     "B": 0.18,
+     "C": 0.19,
+     "D": 0.11
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0082": {
+   "fingerprint": "0bd3093a",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.26,
+     "B": 0.28,
+     "C": 0.39,
+     "D": 0.07
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0083": {
+   "fingerprint": "01d35f93",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.1,
+     "B": 0.19,
+     "C": 0.08,
+     "D": 0.63
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0084": {
+   "fingerprint": "ed853802",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.29,
+     "B": 0.51,
+     "C": 0.11,
+     "D": 0.09
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0085": {
+   "fingerprint": "190a8a7e",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.11,
+     "B": 0.62,
+     "C": 0.08,
+     "D": 0.19
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0086": {
+   "fingerprint": "a31203c9",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.48,
+     "B": 0.45,
+     "C": 0.02,
+     "D": 0.05
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0087": {
+   "fingerprint": "23f7c50a",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.46,
+     "B": 0.43,
+     "C": 0.07,
+     "D": 0.04
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0088": {
+   "fingerprint": "0c8d3f0b",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.18,
+     "B": 0.67,
+     "C": 0.05,
+     "D": 0.1
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": false
+  },
+  "q0089": {
+   "fingerprint": "029a27f7",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.57,
+     "B": 0.19,
+     "C": 0.17,
+     "D": 0.07
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0090": {
+   "fingerprint": "a5f6c8dd",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.46,
+     "B": 0.08,
+     "C": 0.19,
+     "D": 0.27
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0091": {
+   "fingerprint": "6f0fc8c1",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.59,
+     "B": 0.29,
+     "C": 0.11,
+     "D": 0.01
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0092": {
+   "fingerprint": "5663bb85",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.49,
+     "B": 0.33,
+     "C": 0.09,
+     "D": 0.09
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0093": {
+   "fingerprint": "c56b9f45",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.53,
+     "B": 0.12,
+     "C": 0.26,
+     "D": 0.09
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0094": {
+   "fingerprint": "c17ddd03",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.19,
+     "B": 0.43,
+     "C": 0.33,
+     "D": 0.05
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0095": {
+   "fingerprint": "0a2e4e29",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.27,
+     "B": 0.2,
+     "C": 0.11,
+     "D": 0.42
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0096": {
+   "fingerprint": "3938d874",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.48,
+     "B": 0.14,
+     "C": 0.11,
+     "D": 0.27
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0097": {
+   "fingerprint": "78820722",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.42,
+     "B": 0.39,
+     "C": 0.04,
+     "D": 0.15
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0098": {
+   "fingerprint": "6e8a07e2",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.39,
+     "B": 0.47,
+     "C": 0.07,
+     "D": 0.07
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0099": {
+   "fingerprint": "f50ea19b",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.34,
+     "B": 0.14,
+     "C": 0.15,
+     "D": 0.37
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0100": {
+   "fingerprint": "46694f98",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.23,
+     "B": 0.16,
+     "C": 0.57,
+     "D": 0.04
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0101": {
+   "fingerprint": "0dfad00e",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.45,
+     "B": 0.15,
+     "C": 0.21,
+     "D": 0.19
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0102": {
+   "fingerprint": "d00549c8",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.56,
+     "B": 0.24,
+     "C": 0.14,
+     "D": 0.06
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0103": {
+   "fingerprint": "2f84a2c9",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.32,
+     "B": 0.42,
+     "C": 0.2,
+     "D": 0.06
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0104": {
+   "fingerprint": "0ba5b2ef",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 99,
+    "answerShare": {
+     "A": 0.8283,
+     "B": 0.0909,
+     "C": 0.0,
+     "D": 0.0808
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": false
+  },
+  "q0105": {
+   "fingerprint": "820345ea",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.57,
+     "B": 0.43
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0106": {
+   "fingerprint": "e43192c2",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.85,
+     "B": 0.04,
+     "C": 0.06,
+     "D": 0.05
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": false
+  },
+  "q0107": {
+   "fingerprint": "5079c897",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.47,
+     "B": 0.39,
+     "C": 0.06,
+     "D": 0.08
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": true
+  },
+  "q0108": {
+   "fingerprint": "17d615de",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.77,
+     "B": 0.12,
+     "C": 0.09,
+     "D": 0.02
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": false
+  },
+  "q0109": {
+   "fingerprint": "e58c6793",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 100,
+    "answerShare": {
+     "A": 0.35,
+     "B": 0.61,
+     "C": 0.03,
+     "D": 0.01
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+     "openrouter:qwen/qwen3.8-27b"
+    ]
+   },
+   "gate": false
+  },
+  "q0110": {
+   "fingerprint": "a30a7bfe",
+   "run": "phase1-batch02",
+   "crowd": {
+    "kind": "shares",
+    "source": "agents",
+    "n": 99,
+    "answerShare": {
+     "A": 0.4949,
+     "B": 0.0101,
+     "C": 0.4646,
+     "D": 0.0303
+    },
+    "models": [
+     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
      "openrouter:qwen/qwen3.8-27b"
     ]
    },

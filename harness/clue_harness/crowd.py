@@ -2,7 +2,9 @@
 
     python -m clue_harness.crowd \\
         --run ../runs/phase1-prerun@bb974b5 --run ../runs/phase1-batch01@972140b \\
-        --items ../items/seed.json ../items/drafts/batch-01.json \\
+        --run ../runs/phase1-batch02@e9ae8c5 --guesses ../runs/sets-pilot@2fa28a9 \\
+        --guesses '../runs/grouped-check/grouped-separate@e9ae8c5#../runs/grouped-check/seed-phase0.json' \\
+        --items ../items/seed.json ../items/drafts/batch-01.json ../items/drafts/batch-02.json \\
         > ../items/crowd/simulated.json
 
 Until real players exist, the game uses these splits as the "crowd" in
@@ -16,20 +18,28 @@ replace earlier ones for the same item. The run's ``gate.json``, when present,
 says whether the item passed the Phase 1 gate; the game only plays draft items
 that passed.
 
-Agents did not guess the crowd, so there is no ``predictedShare``: the game's
-truth bonus stays off until human guesses exist.
+A run that played its own copy of the bank takes ``dir@commit#items.json``.
+
+``--guesses`` runs (same form) are runs where agents also
+guessed how others split (``clue_harness.sets``). They add ``predictedShare``,
+the geometric mean of the agents' guesses per option (as the server computes
+it for players), to items whose text still matches. That turns the game's
+truth bonus back on. They do not replace the answer shares, which come from
+the larger isolated runs.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import math
 import subprocess
 import sys
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
 
+EPS = 0.01  # as the game and server: a guess of 0 counts as 1%
 FNV_OFFSET = 0x811C9DC5
 FNV_PRIME = 0x01000193
 
@@ -109,11 +119,36 @@ def split(item: dict, rows: list[dict]) -> dict | None:
     return None
 
 
-def build(runs: list[tuple[Path, str | None]], item_files: list[Path]) -> dict:
+def predicted(item: dict, rows: list[dict]) -> tuple[dict[str, float], int] | None:
+    """Geometric mean of the agents' guessed shares per option, and how many guesses."""
+    a = item["answer"]
+    if a["type"] not in ("choice", "binary"):
+        return None
+    keys = [o["key"] for o in a["options"]]
+    guesses = [r["guess"] for r in rows if isinstance(r.get("guess"), dict) and not r.get("guess_invalid")]
+    if not guesses:
+        return None
+    out = {}
+    for k in keys:
+        logs = [math.log(max(float(g.get(k, 0)), EPS)) for g in guesses]
+        out[k] = round(math.exp(sum(logs) / len(logs)), 4)
+    return out, len(guesses)
+
+
+RunSpec = tuple  # (dir, commit or None[, items file used by that run])
+
+
+def _run_items(spec: tuple, item_files: list[Path]) -> dict[str, dict]:
+    run, ref, *rest = spec
+    return items_at(ref, [rest[0]] if rest and rest[0] else item_files)
+
+
+def build(runs: list[RunSpec], item_files: list[Path], guess_runs: list[RunSpec] = ()) -> dict:
     out: dict[str, dict] = {}
     used = []
-    for run, ref in runs:
-        items = items_at(ref, item_files)
+    for spec in runs:
+        run, ref = spec[0], spec[1]
+        items = _run_items(spec, item_files)
         by_item: dict[str, list[dict]] = defaultdict(list)
         for r in load_answers(run):
             by_item[r["item_id"]].append(r)
@@ -134,6 +169,33 @@ def build(runs: list[tuple[Path, str | None]], item_files: list[Path]) -> dict:
             n_items += 1
         used.append({"run": run.name, "commit": ref, "items": n_items,
                      "agents": len({r["agent_id"] for r in load_answers(run)})})
+
+    # Guesses from every guess run whose wording matches are pooled per item.
+    pooled: dict[str, list[dict]] = defaultdict(list)
+    sources: dict[str, list[str]] = defaultdict(list)
+    for spec in guess_runs:
+        run, ref = spec[0], spec[1]
+        items = _run_items(spec, item_files)
+        by_item = defaultdict(list)
+        for r in load_answers(run):
+            by_item[r["item_id"]].append(r)
+        n_items = 0
+        for iid, rows in by_item.items():
+            item, entry = items.get(iid), out.get(iid)
+            if item is None or entry is None or entry["fingerprint"] != fingerprint(item):
+                continue  # no answer split, or the guesses were about another wording
+            if entry["crowd"]["kind"] != "shares" or predicted(item, rows) is None:
+                continue
+            pooled[iid] += rows
+            sources[iid].append(run.name)
+            n_items += 1
+        used.append({"run": run.name, "commit": ref, "items": n_items, "guesses": True,
+                     "agents": len({r["agent_id"] for r in load_answers(run)})})
+    for iid, rows in pooled.items():
+        entry = out[iid]
+        item_like = {"answer": {"type": "choice", "options": [{"key": k} for k in entry["crowd"]["answerShare"]]}}
+        entry["crowd"]["predictedShare"], entry["guesses"] = predicted(item_like, rows)
+        entry["guessRun"] = "+".join(sources[iid])
     return {
         "generated": date.today().isoformat(),
         "note": "Simulated crowd: AI players (personas x models), not real people.",
@@ -144,14 +206,19 @@ def build(runs: list[tuple[Path, str | None]], item_files: list[Path]) -> dict:
 
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--run", action="append", required=True, help="run dir, optionally @<git commit> it ran at")
+    ap.add_argument("--run", action="append", required=True,
+                    help="run dir, optionally @<git commit> it ran at and #<items file> it played (default: --items)")
+    ap.add_argument("--guesses", action="append", default=[], help="run dir with crowd guesses, same form as --run")
     ap.add_argument("--items", nargs="+", type=Path, required=True)
     args = ap.parse_args(argv)
-    runs = []
-    for spec in args.run:
+
+    def parse(spec: str) -> tuple[Path, str | None, Path | None]:
+        spec, _, items_file = spec.partition("#")
         path, _, ref = spec.partition("@")
-        runs.append((Path(path), ref or None))
-    json.dump(build(runs, args.items), sys.stdout, indent=1, ensure_ascii=False)
+        return Path(path), ref or None, Path(items_file) if items_file else None
+
+    out = build([parse(s) for s in args.run], args.items, [parse(s) for s in args.guesses])
+    json.dump(out, sys.stdout, indent=1, ensure_ascii=False)
     sys.stdout.write("\n")
 
 

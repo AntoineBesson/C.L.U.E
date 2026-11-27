@@ -27,4 +27,4 @@ it.
 (built by `harness/clue_harness/crowd.py`). The game uses it as the crowd in
 guess-the-crowd until real players exist, and labels it as simulated. It also
 plays draft items (`drafts/*.json`) that passed the gate on their current
-wording, so the bank is bigger than `seed.json` alone.
+wording, so the bank is bigger than `seed.json` alone (98 cards on 2026-11-27).
